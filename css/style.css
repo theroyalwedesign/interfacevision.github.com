@@ -1,0 +1,85 @@
+/* Rest CSS */
+body,html { /* strange background color issue */
+  background-color: black;
+}
+
+html,body,div,img,ul,li,p {
+  font-family: "Lucida Sans Unicode","Lucida Grande","Trebuchet MS", Helvetica, Arial, sans-serif;
+  line-height: 20px;
+  letter-spacing: .1px;
+  word-spacing: 1px;
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+  vertical-align: baseline;
+}
+
+/* General */
+
+body {
+  min-width: 958px;
+  background-color: black;
+  color: #666;
+  font-size: 12px;
+}
+
+body div.header {
+  z-index: 200;
+  height: 92px;
+  position: relative;
+  background: #111418 url("../images/site/header.jpg") repeat-x scroll center top;
+}
+
+body div.inner {
+  height: 100%;
+  width: 960px;
+  min-width: 958px;
+  position: relative;
+  clear: both;
+  text-align: left;
+  margin: 0 auto;
+}
+
+body div.heading {
+  position: absolute;
+  top:24px;
+}
+
+p.logo {
+  font-size: 32px;
+  margin-bottom: 4px;
+}
+
+p.statement {
+  font-size: 20px;
+}
+
+p.copyright {
+  font-size: 10px;
+}
+
+.feature {
+  background: #111418 url("../images/site/feature.jpg") repeat-x scroll center top;
+  height: 400px;
+}
+
+.background {
+  height: 400px;
+  background: transparent url("../images/site/imageBackground.jpg") center top no-repeat;
+}
+
+.imageSlideshow {
+  display: block;
+  overflow: hidden;
+  position: absolute;
+  left: 0px;
+  top: 20px;
+}
+
+.footer {
+  background-color: #000000;
+  border-top: 1px solid #151515;
+  padding-top: 10px;
+  font-size: 9px;
+  min-height: 30px;
+}
