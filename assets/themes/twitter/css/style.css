@@ -280,7 +280,7 @@ body {
   .featurette-video.pull-right {
     display: block;
     float: none;
-    max-width: 40%;
+    max-width: 100%;
     margin: 0 auto 20px;
   }
 
@@ -348,3 +348,36 @@ body {
 		padding-top: 174px;
 	}
 }
+
+.icon-social {
+	background-image:url("/assets/img/social-media.png");
+	width: 32px;
+	height: 32px;
+}
+
+.nav-a-social {
+	padding-left: 1px !important;
+	padding-right: 1px !important;
+}
+
+.icon-google { background-position: 0px 0px; }
+.icon-google-color { background-position: 0px -32px; }
+
+.icon-rss { background-position: -32px 0px; }
+.icon-rss-color { background-position: -32px -32px; }
+
+.icon-mail { background-position: -64px 0px; }
+.icon-mail-color { background-position: -64px -32px; }
+
+.icon-facebook { background-position: -96px 0px; }
+.icon-facebook-color { background-position: -96px -32px; }
+
+.icon-twitter { background-position: -128px 0px; }
+.icon-twitter-color { background-position: -128px -32px; }
+
+.icon-linkedin { background-position: -160px 0px; }
+.icon-linkedin-color { background-position: -160px -32px; }
+
+.icon-youtube { background-position: -192px 0px; }
+.icon-youtube-color { background-position: -192px -32px; }
+
