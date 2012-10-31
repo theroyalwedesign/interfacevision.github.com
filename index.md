@@ -8,16 +8,16 @@ tagline: Programming Without Coding
 {% assign posts_collate = site.posts %}
 
 <div class="featurette">
-    <iframe class="featurette-video pull-right" src="http://player.vimeo.com/video/41001941" width="640" height="360" frameborder="0" webkitallowfullscreen="webkitallowfullscreen" mozallowfullscreen="mozallowfullscreen" allowfullscreen="allowfullscreen"> </iframe>
+  <iframe class="featurette-video pull-right" src="http://player.vimeo.com/video/41001941" width="640" height="360" frameborder="0" webkitallowfullscreen="webkitallowfullscreen" mozallowfullscreen="mozallowfullscreen" allowfullscreen="allowfullscreen"> </iframe>
   <h2 class="featurette-heading">We Code</h2>
   <h2 class="featurette-heading muted">So You Don't Have To</h2>
-  <h2 class="featurette-heading muted"><a hreft="#">See How</a></h2>
+  <h2 class="featurette-heading muted"><a href="/technology.html">See How</a></h2>
 </div>
 
 <div class="signup-divider pagination-centered">
-  <h1>We Need Your Feedback And Help!</h1>
-  <p class="lead">We need feedback from Business Analysts, UI and UX Designers and Software Developers.</p>
-  <a class="btn btn-large btn-success" href="#">Sign Up For Alpha</a>
+  <h1>We Need Your Feedback!</h1>
+  <!--<a class="btn btn-large btn-success" href="https://docs.google.com/a/interfacevision.com/spreadsheet/viewform?formkey=dHhIdnh0eHVBN2p0MVRJYnB6Mmw0amc6MQ"  target="_blank">Sign Up For Alpha</a> -->
+  <a class="btn btn-large btn-success" href="/signup.html">Sign Up For Alpha</a>
 </div>
 
 <div class='huge-divider pagination-centered'>

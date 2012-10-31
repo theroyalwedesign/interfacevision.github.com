@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Interface Vision - Home</title>
+    <title>Interface Vision - The Technology</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <meta name="author" content="Eric Hosick">
@@ -54,28 +54,58 @@
 
     <div class="container marketing">
     
-<div class='featurette'>
-  <iframe allowfullscreen='allowfullscreen' class='featurette-video pull-right' frameborder='0' height='360' mozallowfullscreen='mozallowfullscreen' src='http://player.vimeo.com/video/41001941' webkitallowfullscreen='webkitallowfullscreen' width='640'> </iframe>
-  <h2 class='featurette-heading'>We Code</h2>
-  <h2 class='featurette-heading muted'>So You Don't Have To</h2>
-  <h2 class='featurette-heading muted'><a href='/technology.html'>See How</a></h2>
-</div><div class='signup-divider pagination-centered'>
-  <h1>We Need Your Feedback!</h1>
-  <!--<a class="btn btn-large btn-success" href="https://docs.google.com/a/interfacevision.com/spreadsheet/viewform?formkey=dHhIdnh0eHVBN2p0MVRJYnB6Mmw0amc6MQ"  target="_blank">Sign Up For Alpha</a> -->
-  <a class='btn btn-large btn-success' href='/signup.html'>Sign Up For Alpha</a>
-</div><div class='huge-divider pagination-centered'>
-  <h1>HOW WE DO THE IMPOSSIBLE</h1>
-</div><div class='featurette'>
-  <img class='featurette-image pull-right' src='../assets/img/iPadMockupVision-542x424.png' />
-  <h2 class='featurette-heading'>Step 1. <span class='muted'>We Code The Parts</span></h2>
-  <p class='lead'>We code hundreds of non-business specific software parts. We have low level software parts that do very simple tasks like adding two numbers.</p>
-  <p class='lead'>We have high level software parts that do very complex tasks like communicating across the internet.</p>
-  <p class='lead'>We hope you can stick with the high level parts to get your project out the door as fast as possible. However, if your business has very specific needs, you can use the low level parts.</p>
-</div><hr class='featurette-divider' /><div class='featurette'>
-  <img class='featurette-image pull-left' src='../assets/img/iPadMockupVision-542x424.png' />
-  <h2 class='featurette-heading'>Step 2. <span class='muted'>You Hook Up The Parts</span></h2>
-  <p class='lead'>You hook up parts, using our visual object language and framework, to solve your business specific problem. That's it. There is <strong>no need</strong> to code and compile. You no longer need to debug or test because the programs you create area always running. That means immediate feedback to any changes you make. Which means much faster turn around times.</p>
-  <p class='lead'>Creating an online service? No problem. Our environment is being designed from the ground up to work seamlessly in the cloud.</p>
+<div class="hero-unit">
+  <h1 id='interface_vision__a_visual_object_language_and_framework'>Interface Vision - A Visual Object Language and Framework</h1>
+
+<h2 id='the_vision'>The Vision</h2>
+
+<blockquote>
+<p>Eventually, programming will be done through composing programs visually: not through coding. This is inevitable.</p>
+</blockquote>
+
+<p>Provided in this paper is a description of a visual object language and framework that gets us closer to this vision.</p>
+
+<h2 id='part_1__interface_vision'>Part 1 - Interface Vision</h2>
+
+<h3 id='introduction'>Introduction</h3>
+
+<p>Interface Vision is a visual object language and fully composable object framework. The framework and visual language were developed using a programming methodology called Simple Interface Programming (SIP).</p>
+
+<h3 id='what_makes_sip_different'>What Makes SIP Different</h3>
+
+<p>Interface Vision’s framework has no public methods.</p>
+
+<p>But Wait. How is that possible? If you have no public methods, then:</p>
+
+<ul>
+<li>How does Interface Vision pass information to a system (object) without pubic methods?</li>
+
+<li>How does Interface Vision communicate between sub-systems (objects)?</li>
+</ul>
+
+<h4 id='communication_between_systemsobjects__how_we_do_it'>Communication Between Systems/Objects - How We Do It</h4>
+
+<p>This is how Interface Vision communicates between systems:</p>
+
+<ul>
+<li>Properties of objects, instead of methods, contain a system’s behaviour.</li>
+
+<li>Properties contain a direct value (an object or primitive data type) or a reference to a value.</li>
+
+<li>References are handled using specific types of objects which are able to locate a value external to the system via Composite Centric Memory (CCM). CCM is described in detail later.</li>
+
+<li>All objects are located within Composite Centric Memory (CCM).</li>
+</ul>
+
+<p>Let’s look at a specific example.</p>
+
+<h4 id='example_using_an_add_item_and_internal_information'>Example Using an Add Item And Internal Information</h4>
+
+<p>Let’s say we want to add two integers. We create an Add type with two properties as follows:</p>
+
+<h2 id='footnotes'>Footnotes</h2>
+
+<p>Notice how, in the first coding example, withLong contains the logic to add: opLeft.withLong + opRight.withLong. This is how properties can contain behavior.</p>
 </div>
 
 

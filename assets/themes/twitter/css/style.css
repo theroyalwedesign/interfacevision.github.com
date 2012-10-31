@@ -31,6 +31,8 @@ h1,h2,h3,h4,h5,h6,p,li {
 	font-size: 2.0em;
 	font-weight: 300;
 	font-style: italic;
+	margin-left: 3em;
+	margin-right: 3em;
 }
 
 .hero-unit h1 {
@@ -238,9 +240,8 @@ body {
 
 .signup-divider {
 	margin-top: 40px;
+	margin-bottom: 40px;
 }
-
-
 
 /* RESPONSIVE CSS
 -------------------------------------------------- */
