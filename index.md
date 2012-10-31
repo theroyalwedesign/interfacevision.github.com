@@ -20,7 +20,7 @@ tagline: Programming Without Coding
   <a class="btn btn-large btn-success" href="/signup.html">Sign Up For Alpha</a>
 </div>
 
-<div class='huge-divider pagination-centered'>
+<div class="huge-divider pagination-centered">
   <h1>HOW WE DO THE IMPOSSIBLE</h1>
 </div>  
 

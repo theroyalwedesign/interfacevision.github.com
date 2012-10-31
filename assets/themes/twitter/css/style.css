@@ -24,6 +24,12 @@ h1,h2,h3,h4,h5,h6,p,li {
 	color: #0B2A41;
 }
 
+h6 {
+	text-align: center;
+	font-style: italic;
+	font-size: 1em;
+}
+
 .hero-unit blockquote p {
 	text-align: center;
 	padding-top: .2em;
