@@ -28,7 +28,7 @@
 
   <body>
 
-    <div class="navbar navbar-fixed-top">
+    <div class="navbar">
       <div class="navbar-inner">
         <div class="container-fluid">
           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -55,72 +55,125 @@
     <div class="container marketing">
     
 <div class="hero-unit">
-  <h1 id='interface_vision__a_visual_object_language_and_framework'>Interface Vision - A Visual Object Language and Framework</h1>
+  <h1 id='about_our_technology'>About Our Technology</h1>
 
 <h2 id='the_vision'>The Vision</h2>
 
 <blockquote>
-<p>Eventually, programming will be done through composing programs visually: not through coding. This is inevitable.</p>
+<p>Eventually, programming will be accomplished by composing programs visually: not through coding. This is inevitable.</p>
 </blockquote>
-
-<p>Provided in this paper is a description of a visual object language and framework that gets us closer to this vision.</p>
 
 <h2 id='part_1__interface_vision'>Part 1 - Interface Vision</h2>
 
 <h3 id='introduction'>Introduction</h3>
 
-<p>Interface Vision is a visual object language and fully composable object framework. The framework and visual language were developed using a programming methodology called Simple Interface Programming (SIP).</p>
+<p>Interface Vision is a visual object language and fully <a href='http://en.wikipedia.org/wiki/Composability'>composable</a> object framework. Instead of coding, users of Interface Vision visually connect systems <a href='#id-1'>(1)</a> to each other: specifically their properties.</p>
 
-<h3 id='what_makes_sip_different'>What Makes SIP Different</h3>
+<p>The framework and visual language were developed using a programming methodology called Simple Interface Programming (SIP).</p>
 
-<p>Interface Vision’s framework has no public methods.</p>
+<p>Our framework is written in C# using <a href='http://www.mono-project.com/Main_Page'>Mono</a>, <a href='http://monodevelop.com/'>Monodevelop</a>, <a href='http://xamarin.com/monotouch'>Mono Touch</a> and <a href='http://www.microsoft.com/visualstudio/eng'>Visual Studio</a>.</p>
 
-<p>But Wait. How is that possible? If you have no public methods, then:</p>
+<p>So, before we delve into Interface Vision, let&#8217;s talk about the programming methodology SIP.</p>
 
-<ul>
-<li>How does Interface Vision pass information to a system (object) without pubic methods?</li>
+<h3 id='what_makes_sip_different_from_oop'>What Makes SIP Different From OOP?</h3>
 
-<li>How does Interface Vision communicate between sub-systems (objects)?</li>
-</ul>
+<p>Systems (classes) within SIP have <strong>no public methods</strong>! Yes. Really. Our framework has tens of thousands of lines of code and we have all of one method: static int main.</p>
 
-<h4 id='communication_between_systemsobjects__how_we_do_it'>Communication Between Systems/Objects - How We Do It</h4>
-
-<p>This is how Interface Vision communicates between systems:</p>
+<p>Wait. If we have no public methods, then how do we:</p>
 
 <ul>
-<li>Properties of objects, instead of methods, contain a system’s behaviour <a href='#id-1'>(1)</a>.</li>
+<li><strong>define</strong> the behavior of a system?</li>
 
-<li>Properties contain a direct value (an object or primitive data type) or a reference to a value.</li>
+<li><strong>pass</strong> external information to a system?</li>
 
-<li>References are handled using specific types of objects which are able to locate a value external to the system via Composite Centric Memory (CCM). CCM is described in detail later.</li>
-
-<li>All objects are located within Composite Centric Memory (CCM).</li>
+<li><strong>initialize</strong> a system?</li>
 </ul>
 
-<p>Let’s look at a specific example.</p>
+<h4 id='where_we_put_behavior'>Where We Put Behavior</h4>
 
-<h4 id='example_using_an_add_part_and_internal_information'>Example Using an Add Part And Internal Information</h4>
+<p>SIP use properties, instead of method, to describe system behavior. Notice in <a href='#id-s1-1'>Source 1.1</a>, withLong contains the logic to add:</p>
 
-<p>Let’s say we want to add two integers. We create an Add type with two properties as shown: <a href='#id-2'>(2)</a>:</p>
-
-<pre><code>public interface IPart {
-	long withLong { get; set; }
+<pre><code>...
+public long withLong {
+	get { return opLeft.withLong + opRight.withLong; }
 }
-public class Add : IPart {
-	public IPart opLeft { get; set; }
-	public IPart opRight { get; set; }
+...</code></pre>
+
+<p>Want to know more?</p>
+
+<ul>
+<li><a href='http://blog.interfacevision.com/technology/no-methods/'>Why We Don&#8217;t Use Methods</a> - Explains why we decided methods were bad.</li>
+
+<li><a href='http://blog.interfacevision.com/technology/methods-and-abstraction/'>Methods, Properties and Abstractions</a> - Explains how methods and properties differ as abstractions.</li>
+</ul>
+
+<h4 id='how_we_pass_information_to_systems'>How We Pass Information To Systems</h4>
+
+<p>In SIP, we don&#8217;t really pass external information into a system. Instead, we &#8220;pull&#8221; that information into a system. How do we do this?</p>
+
+<p>Traditionally, properties contain information internal to a system (object/class/module/etc.). However, within SIP, a property can also contain a reference to external information.</p>
+
+<p>These &#8220;references&#8221; are actually a specific type of system/ which is able to locate information contained within <a href='#id-composite-centric-memory'>Composite Centric Memory (CCM)</a>. We call these locators and each locator is able to find information within a given data structure.</p>
+
+<p>Want to know more?</p>
+
+<ul>
+<li><a href='http://blog.interfacevision.com/technology/locators/'>Locators</a> - Explains how locators are used to find information within CCM.</li>
+</ul>
+
+<h4 id='how_do_we_initialize_a_system'>How Do We Initialize A System?</h4>
+
+<p>Constructors are specialised method and we don&#8217;t have any methods so we don&#8217;t use constructors (Every class still has one implicit constructor which is called during run-time. We just don&#8217;t use constructors to initialize the properties of an instance). In a way this makes sense. Users drag and drop, within the development environment, a system to create a new instance.</p>
+
+<p>We store and load all of these &#8220;hooked up&#8221; instances in a configuration file using <a href='http://en.wikipedia.org/wiki/Serialization'>serialization</a>.</p>
+
+<h3 id='example_configuration_internal_information'>Example Configuration Internal Information</h3>
+
+<p>Let’s say we want to add two integers. We create an Add class (system) with two properties as shown <a href='#id-2'>(2)</a>:</p>
+
+<pre><code>public interface IItem {
+	long withLong { get; set; }
+	int withInt { get; set; }
+}
+
+public class Add : IItem {
+	public IItem opLeft { get; set; }
+	public IItem opRight { get; set; }
 	public long withLong {
 		get { return opLeft.withLong + opRight.withLong; }
+	}
+	public long withInt {
+		get { return opLeft.withInt + opRight.withInt; }
 	}
 }</code></pre>
 
 <h6 id='id-s1-1'>Source-1.1: The Add Part can add two numbers.</h6>
 
-<p>The first thing to note is that the properties opLeft and opRight are of type IPart: not a primitive datatype like long or int. The long primitive data type comes from the withLong property of both opLeft and opRight as can be seen within Add’s withLong property.</p>
+<p>The first thing to note is that the properties opLeft and opRight are of type IItem.</p>
 
-<p>The Long type contains the final numerical value and is implemented as follows:</p>
+<pre><code>...
+public IItem opLeft { get; set; }
+public IItem opRight { get; set; }
+...</code></pre>
 
-<pre><code>public class Long : IPart {
+<p>This means if we want to add two long primitive data types (or integers), we will need to call the withLong (withInt) property of IItem. This is seen within the implementation of withLong (and withInt) of Add:</p>
+
+<pre><code>...
+public long withLong {
+	get { return opLeft.withLong + opRight.withLong; }
+}
+...</code></pre>
+
+<p>This probably means we will need a Long class (and Int class) to hold the value of the primitive data type.</p>
+
+<pre><code>public class Long : IItem {
+	public long value { get; set; }
+	public long withLong {
+		get { return value;}
+	}
+}
+
+public class Int : IItem {
 	public long value { get; set; }
 	public long withLong {
 		get { return value;}
@@ -132,7 +185,7 @@ public class Add : IPart {
 <p>So, let’s see how we compose addition using C# object initializers:</p>
 
 <pre><code>static void main() { 
-	IPart myProgram = new Add {
+	IItem myProgram = new Add {
 		opLeft = new Long { value = 5 },
 		opRight = new Long { value = 7 }
 	};
@@ -155,9 +208,9 @@ public class Add : IPart {
 <p class='pagination-centered'><img class='img-polaroid' src='/assets/img/technology-system-add-form.png' /><img /></p>
 <h6 id='figure12_a_form_which_adds_two_numbers'>Figure-1.2: A form which adds two numbers.</h6>
 
-<p>We are only allowed to compose programs and we can’t provide information via a public method with parameters. So, we need to create a composable system/object type that can locate information on a form called FormValue#.</p>
+<p>We are only allowed to compose programs and we can’t provide information via a public method with parameters. So, we need to create a composable system/object type that can locate information on a form called FormValue (<a href='#id-4'>4</a>).</p>
 
-<pre><code>public class FormValue : IPart {
+<pre><code>public class FormValue : IItem {
 	public string nameForm { get; set; }
 	public string nameField { get; set; }
 	public long withLong {
@@ -167,10 +220,10 @@ public class Add : IPart {
 
 <h6 id='source14_the_formvalue_part_is_able_to_retrieve_a_value_from_the_field_of_a_form'>Source-1.4: The FormValue Part is able to retrieve a value from the field of a form.</h6>
 
-<p>The example code is almost boilerplate except the global object called Ccm which stands for Composite Centric Memory (CCM)#. Ccm will be covered in detail later. Here is an example usage#:</p>
+<p>The example code is almost boilerplate except the global object called Ccm which stands for Composite Centric Memory (CCM) (<a href='#id-5'>5</a>). Ccm will be covered in detail later. Here is an example usage (<a href='#id-6'>6</a>):</p>
 
 <pre><code>static void main() { 
-	IPart myProgram = new Add {
+	IItem myProgram = new Add {
 		opLeft = new FormValue {
 			nameForm = “AddForm”,
 			nameField = “opLeft”
@@ -189,13 +242,207 @@ public class Add : IPart {
 <p class='pagination-centered'><img class='img-polaroid' src='/assets/img/technology-system-add-external-example.png' /><img /></p>
 <h6 id='figure13_an_example_of_adding_two_numbers_external_to_a_system'>Figure-1.3: An example of adding two numbers external to a system.</h6>
 
+<h3 id='simplified_object_interfaces_decoupling_and_code_reuse'>Simplified Object Interfaces, Decoupling and Code Reuse</h3>
+
+<p>What is interesting about the examples is that they all have a similar interface: they all look the same to an external observer. However, internally, these systems are doing completely different things.</p>
+
+<p>In the first example, when Add calls withLong of the object plugged into the opLeft (or opRight) property, a value is simply returned from a Long type. However, in the second example, Add ends up using an object that references a form. Two completely different behaviors: but externally they look the exact same.</p>
+
+<p>Since the interface is the exact same, Add is fully unaware of where the values being added are coming from. This means that the system to Add is not “connected” to the system that finds the value on the form for us.</p>
+
+<p>This is a desired feature of software languages and frameworks. A way to decouple systems from each other <a href='#id-7'>7</a>. An advantage of decoupling is that sub-systems are more reusable when they are decoupled from other sub-systems.</p>
+
+<h3 id='greatest_disadvantage_of_traditional_programming'>Greatest Disadvantage of Traditional Programming</h3>
+
+<p>The greatest disadvantage of traditional programming is that communication between systems can not be generalized. Every method or function leads to greater specialization of the framework’s communication system. As the framework grows, so does the complexity of the Universe’s communication system. We can’t help it. This is an intrinsic aspect of traditional programming methodologies: information is communicated through specialized interfaces.</p>
+
+<h3 id='generalized_solution'>Generalized Solution</h3>
+
+<p>Figure-1.4 is a generalized Simple Interface Object. What is important to note is that the interface contains a single withSystem property used for both input and output. This means <strong>every type</strong> has the exact same interface <a href='#id-8'>8</a>. This makes them a lot easier to use than traditional method based objects which have specialized, and thus unique, interfaces.</p>
+<p class='pagination-centered'><img class='img-polaroid' src='/assets/img/technology-system-generalized.png' /><img /></p>
+<h6 id='figure13_figure14_all_simple_interface_objects_have_the_generalized_interface'>Figure-1.3: Figure-1.4: All Simple Interface Objects have the generalized interface.</h6>
+
+<p>Using traditional development methods, you end up with thousands of objects: each with their own unique signature/interface. With SIP, you end up with thousands of objects with the same generalized signature/interface.</p>
+
+<h3 id='loading_and_saving_programs_through_persistence'>Loading and Saving Programs Through Persistence</h3>
+
+<p>If programs are created visually, then how are they saved? Are they compiled or interpreted like traditional programs? Programs created using Interface Vision are neither compiled or interpreted. Programs are stored as data in different formats<a href='#id-8'>8</a>. The program is loaded from one of the stored data formats and deserialized into objects that form the executable program. The objects have already been written and compiled so there is no need to compile a program you’ve just created. In fact, the program is always running: even while you are developing it.</p>
+
+<p>Here is an example of a program described and stored json (a standard format used to store the state of an object).</p>
+
+<pre><code>{
+  &quot;$type&quot;: &quot;Add&quot;,
+  &quot;opLeft&quot;: {
+    &quot;$type&quot;: &quot;FormValue&quot;,
+    &quot;nameForm&quot;: &quot;AddForm&quot;,
+    &quot;nameValue&quot;: &quot;opLeft&quot;,
+  },
+  &quot;opRight&quot;: {
+    &quot;$type&quot;: &quot;FormValue&quot;,
+    &quot;nameForm&quot;: &quot;AddForm&quot;,
+    &quot;nameValue&quot;: &quot;opRight&quot;,
+  },
+}</code></pre>
+
+<p>What is really interesting about this json is that it looks very similar to the example C# usage code . In fact, there is an almost one-to-one relationship between the persisted version a program and the program written using C# object initializers.</p>
+
+<p>This one-to-one relationship also greatly simplifies database usage (both Sql and non-sql solutions). The only difference between traditional objects and functions and relational databases was that traditional objects have methods: they both have properties. Since Simple Interface Objects have no methods, they can also be viewed as relations.</p>
+
+<h3 id='software_layers_using_sip'>Software Layers Using SIP</h3>
+
+<p>Using SIP, the software layers are differ slight from traditional programming methodologies as seen in Figure-1.5.</p>
+<p class='pagination-centered'><img class='img-polaroid' src='/assets/img/technology-system-software-layers.png' /><img /></p>
+<h6 id='figure15_software_layers_using_sip'>Figure-1.5: Software layers using SIP.</h6>
+
+<p><strong>Layer 4</strong> is the software framework. It contains all the object types that are available to the developer when programming. A drawback is that if a new type of object is required, the developer would need to update or add it to the framework.</p>
+
+<p><strong>Layer 5</strong> is a domain specific program created by visual composition <a href='#id-10'>10</a>. The result of the program is a data file in the form of json, xml or other format. This file can be stored anywhere: even in the cloud or in a database. It can be loaded in different environments such as iOS, Android, OSX and Windows.</p>
+
+<p>The domain specific business logic is 100% removed from the programming language and framework. This makes it easier to create cross platform applications (among other advantages).</p>
+
+<h3 id='some_advantages'>Some Advantages</h3>
+
+<p>Interface Vision has some of the following advantages over traditional methods of development:</p>
+
+<ul>
+<li>A much simpler framework for software integrators to work with: especially from a visual standpoint <a href='#id-11'>11</a>.</li>
+
+<li>A reduction in complexity and specialization making it easier to learn.</li>
+
+<li>Programs can easily work with each other: even if developed by different teams in different companies.</li>
+
+<li>A one-to-one relationship when persisting. This includes sql and non-sql stores.</li>
+
+<li>100% decoupled objects allowing for much greater code reuse.</li>
+
+<li>Removal of domain specific logic/business logic from source code.</li>
+
+<li>Programs that are always on: changeable during run-time. This means immediate feedback. Changes are seen instantly. No need to code/compile/test/run.</li>
+
+<li>Lower development costs.</li>
+
+<li>Much easier to debug.</li>
+
+<li>Composing a program is easier for systems analysts. UX designers are also able to mock out actual solutions that can be easily filled out by programmers.</li>
+
+<li>Parallel processing is easy to configure.</li>
+
+<li>The ability to inject behavior anywhere within your program: anytime and anywhere. You can “grow” programs.</li>
+
+<li>For the framework itself, less source code than would be required using traditional programming methodologies.</li>
+
+<li>Highly scalable framework that is effective in cloud computing environments.</li>
+</ul>
+
+<h3 id='id-composite-centric-memory'>Composite Centric Memory</h3>
+
+<p>The final “secret” of Interface Vision and SIP is composite centric memory. Composite centric memory has the following key aspects:</p>
+
+<ul>
+<li><strong>Data Structures</strong> - Object types are created specifically to store information: data structures. They are usually some type of data structure like a list, hashtable, balanced tree, collection, set, etc.</li>
+
+<li><strong>Locator</strong>s - Object types are created specifically to locate information within data structures <a href='#id-12'>12</a>. An example of just such a locator is the FormValue type defined in the above example. Every data structure must have at least one object type that can search that data structure.</li>
+
+<li>A program has a root object that is a hierarchy made up of one or more data structures: this is the root of the CCM.</li>
+</ul>
+
+<p>A developer is required to place object instances they compose in composite centric memory. The format of the CCM is not important: it can be any type of data structure or even a collection of different types of data structures. However, for every program there is a single “root” by which all information is accessible. Locator objects are able to find information within the CCM.</p>
+
+<p>Information in CCMs can be accessed as follows:</p>
+
+<ul>
+<li><strong>Global Level</strong> - For information shared across all systems, within a globally accessible static type. This has an associated locator type to find information located within this static CCM.</li>
+
+<li><strong>Thread Level</strong> - For each thread, a non-static CCM is available. This has an associated locator type to find information located within this thread specific CCM.</li>
+
+<li><strong>System Level</strong> - For each call into a system (with), a message can be passed. This message is a CCM in itself and has an associated locator type.</li>
+</ul>
+
+<p>CCM allows access to all external information required by any system to accomplish a task. Note, this is not similar to a global variable in that a system accesses a CCM via locators. Programmers should not access CCM directly (and really they can’t since they are not allowed to code: they can only compose using existing types).</p>
+
+<h3 id='miscellaneous_stuff'>Miscellaneous Stuff</h3>
+
+<h4 id='thread_safe_code_and_reentrance'>Thread Safe Code and Re-Entrance</h4>
+
+<p>One issue that comes up is multi-threaded programs. It is often necessary for a function or method to be used by different threads at the same time. This means any data shared between these programs, even within the method or function, needs to be “protected” in some way. We don’t want two programs updating the same data at the same time.</p>
+
+<p><strong>Duplicate a CCM</strong> - Optimally, we want to remove the need for a developer to make their code thread safe. The most desirable solution, then, is taking advantage of the properties of CCMs. A program is composed of different objects. To create a new instance of an entire program, you just duplicate the CCM for that program and run it in a thread. You are assured that everything within that CCM instance is only accessed by the current thread. You don’t have to even consider thread safe code.</p>
+
+<p><strong>Mutex A System</strong> - A property that needs to be thread safe can be wrapped or decorated with a Mutex type. An example of just such a mutex type is provided below.</p>
+
+<pre><code>public class Mutex : IItem {
+	public string nameOfMutex { get; set; }
+	public IItem wrappedItem { get; set; }
+	public long withLong {
+		get {
+			long temp = 0;
+      Ccm.shared.mutext[nameOfMutex].enter = this;
+      temp = wrappedItem.withLong;
+      Ccm.shared.mutext[nameOfMutex].exit = this;
+      return temp;
+		}
+	}
+}</code></pre>
+
+<p>Here is an example usage that makes our above Add json example thread safe:</p>
+
+<pre><code>{
+  &quot;$type&quot;: &quot;Mutex&quot;,
+  &quot;nameOfMutex&quot;: &quot;AddMutex&quot;,
+  &quot;wrappedItem&quot;: {
+    &quot;$type&quot;: &quot;Add&quot;,
+    &quot;opLeft&quot;: {
+      &quot;$type&quot;: &quot;FormValue&quot;,
+      &quot;nameForm&quot;: &quot;AddForm&quot;,
+      &quot;nameValue&quot;: &quot;opLeft&quot;,
+    },
+    &quot;opRight&quot;: {
+      &quot;$type&quot;: &quot;FormValue&quot;,
+      &quot;nameForm&quot;: &quot;AddForm&quot;,
+      &quot;nameValue&quot;: &quot;opRight&quot;,
+    }
+  }
+}</code></pre>
+
+<p>Consider for a moment that the example Mutex type is fully re-usable. It can be plugged into any property! The same approach can be used for things like exception handling.</p>
+
+<h4 id='minimizing_memory_allocation_during_run_time'>Minimizing Memory Allocation During Run Time</h4>
+
+<p>Allocating memory can be expensive. Interface Vision is able to minimize memory allocation during run-time. A program is composed solely of objects. These objects are first loaded when the program is deserialized from json, xml, etc. They stay around for the lifetime of the program. This means an entire program can be configured that requires no memory allocation during run time.</p>
+
+<p>Let’s consider a program for logging a user into a web based system. Let’s say we want to have up to 400 people a second logging in and it takes 1 second to log them in. Our program is composed to login a single user. That program is then stored in a Factory type that is able to pre-allocate as many of our log-in programs as we require: 400 in this case. For every login, we ask for a login program from the Factory, run that login based on some varying information (perhaps username and password), and return that program to the factory when we are done. If all 400 programs are in use, the Factory can create a new instance of the entire program which would require memory allocation.</p>
+
+<p>This can lead to faster execution of programs as there is no need to allocate or deallocate memory during run-time.</p>
+
+<p>This also makes for programs that are cloud friendly as they can be easily scaled. We don’t have to worry about our code being thread safe meaning it will run faster <a href='#id-13'>13</a>.</p>
+
 <h2 id='footnotes'>Footnotes</h2>
 
-<p id='id-1'> 1. Notice how, in the first coding example, withLong contains the logic to add: opLeft.withLong + opRight.withLong. This is how properties can contain behaviour.</p>
+<p id='id-1'> 1. Within this &#8220;paper&#8221; we look at systems as being similar to objects, classes, modules and the such.</p>
 
-<p id='id-2'> 2. Interface Vision was written in C#. Note that we are providing a withLong property where, later on in the page, you see it is withSystem. In reality, and for execution speed, every object can implement a with* method where * is a primitive data type like long, int, float, boolean, long<span />, etc.</p>
+<p id='id-2'> 2. Interface Vision was written in C#. Note that we are providing a withLong property where, later on in the page, you see it is withSystem. In reality, and for execution speed, every object can implement a with* method where * is a primitive data type like long, int, float, boolean, long, etc.</p>
 
-<p id='id-3'> 3. Note that, to keep the example simple, we do not provide a configuration for the form itself.</p>
+<p id='id-3'> 3. Note that we do not provide a configuration for the form itself. This was done to keep the example simple.</p>
+
+<p id='id-4'> 4. We could generalize the idea of locating information within our framework.</p>
+
+<p id='id-5'> 5. Some may view a global instance as a “hack”. This is just an example and other methods of memory access are used.</p>
+
+<p id='id-6'> 6. Note that, to keep the example simple, we do not provide a configuration for the form itself. The Form class would be part of the vision framework. Instantiating and defining the form would be done in the exact same manner as was done with the Add program.</p>
+
+<p id='id-7'> 7. In fact, Interface Vision’s framework has almost 100% decoupling.</p>
+
+<p id='id-8'> 8. The properties themselves are accessible externally but really only used directly during serialization and deserialization.</p>
+
+<p id='id-9'> 9. Programs can be stored as json, xml, binary data, and even as key/value pairs in a database.</p>
+
+<p id='id-10'> 10. Remember, the program could also be created by using C# object initializers and then compiled or someone could “program” in json (although this is frowned upon).</p>
+
+<p id='id-11'> 11. The framework is specifically designed to be composed visually: not coded against. However, coding is possible using C# object initializers.</p>
+
+<p id='id-12'> 12. Traditionally, data structure objects support both the structure and the searching of that structure. This does seem to violate the single-responsibility principle.</p>
+
+<p id='id-13'> 13. Code that is thread safe usually requires some kind of operating system call slowing down the code in general: even when it is not being used in a multi-threaded environment.</p>
 </div>
 
 
