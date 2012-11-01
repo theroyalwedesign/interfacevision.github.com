@@ -17,7 +17,7 @@ tagline: Programming Without Coding
 
 ### Introduction
 
-Interface Vision is a visual object language and fully [composable](http://en.wikipedia.org/wiki/Composability) object framework. Instead of coding, users of Interface Vision visually connect systems [(1)](#id-1) to each other: specifically their properties.
+Interface Vision is a visual object language and fully [composable](http://en.wikipedia.org/wiki/Composability) object framework. Instead of coding, users of Interface Vision visually connect systems (objects) [(1)](#id-1) to each other: specifically their properties.
 
 The framework and visual language were developed using a programming methodology called Simple Interface Programming (SIP).
 
@@ -37,7 +37,7 @@ Wait. If we have no public methods, then how do we:
 
 #### Where We Put Behavior
 
-SIP use properties, instead of method, to describe system behavior. Notice in [Source 1.1](#id-s1-1), withLong contains the logic to add:
+SIP use properties, instead of method, to define system behavior. Notice in [Source 1.1](#id-s1-1), withLong contains the logic to add:
 
     ...
     public long withLong {
@@ -54,18 +54,20 @@ Want to know more?
 
 In SIP, we don't really pass external information into a system. Instead, we "pull" that information into a system. How do we do this?
 
-Traditionally, properties contain information internal to a system (object/class/module/etc.). However, within SIP, a property can also contain a reference to external information.
+Traditionally, properties contain information internal to a system (object/class/module/etc.) and external information is provided via methods with parameters. However, within SIP, a property can contain a reference to external information.
 
-These "references" are actually a specific type of system/ which is able to locate information contained within [Composite Centric Memory (CCM)](#id-composite-centric-memory). We call these locators and each locator is able to find information within a given data structure.
+This "reference" is actually a specific type of system/class which is able to locate information contained within [Composite Centric Memory (CCM)](#id-composite-centric-memory). We call these locators and each locator is able to find information within an associated data structure. For example, a HashTable would have a HashTableLocator.
 
 Want to know more?
 
 * [Locators](http://blog.interfacevision.com/technology/locators/) - Explains how locators are used to find information within CCM.
 
 #### How Do We Initialize A System?
-Constructors are specialised method and we don't have any methods so we don't use constructors (Every class still has one implicit constructor which is called during run-time. We just don't use constructors to initialize the properties of an instance). In a way this makes sense. Users drag and drop, within the development environment, a system to create a new instance.
+Constructors are a type of method which means we don't use them (Every class still has one implicit constructor which is called during run-time. We just don't use constructors to initialize the properties of an instance). In a way this makes sense. Users drag and drop, within the development environment, a system to create a new instance.
 
-We store and load all of these "hooked up" instances in a configuration file using [serialization](http://en.wikipedia.org/wiki/Serialization).
+We store and load all of these "hooked up" instances in a configuration file using [serialization](http://en.wikipedia.org/wiki/Serialization). An example of just such a configuration is shown in [Source-1.5](#id-s1-5)
+
+It is possible to code the initialization as shown in [Source-1.3](#id-s1-3).
 
 ### Example Configuration Internal Information
 Let’s say we want to add two integers. We create an Add class (system) with two properties as shown [(2)](#id-2):
@@ -73,6 +75,7 @@ Let’s say we want to add two integers. We create an Add class (system) with tw
     public interface IItem {
     	long withLong { get; set; }
     	int withInt { get; set; }
+    	int withFloat { get; set; }    	
     }
 
     public class Add : IItem {
@@ -82,6 +85,9 @@ Let’s say we want to add two integers. We create an Add class (system) with tw
     		get { return opLeft.withLong + opRight.withLong; }
     	}
     	public long withInt {
+    		get { return opLeft.withInt + opRight.withInt; }
+    	}
+    	public long withFloat {
     		get { return opLeft.withInt + opRight.withInt; }
     	}
     }
@@ -94,7 +100,7 @@ The first thing to note is that the properties opLeft and opRight are of type II
   	public IItem opRight { get; set; }
     ...
 
-This means if we want to add two long primitive data types (or integers), we will need to call the withLong (withInt) property of IItem. This is seen within the implementation of withLong (and withInt) of Add:
+This means if we want to add two long primitive data types (or integers or floats), we will need to call the withLong (withInt, withFloat) property of IItem. This is seen within the implementation of withLong (and withInt) of Add:
 
     ...
   	public long withLong {
@@ -102,7 +108,7 @@ This means if we want to add two long primitive data types (or integers), we wil
   	}
     ...
 
-This probably means we will need a Long class (and Int class) to hold the value of the primitive data type.
+This probably means we will need a Long class (an Int class and Float class) to hold the value of the primitive data type.
 
     public class Long : IItem {
     	public long value { get; set; }
@@ -117,7 +123,13 @@ This probably means we will need a Long class (and Int class) to hold the value 
     		get { return value;}
     	}
     }
-###### Source-1.2: The Long Part can contain a long primitive data type.
+    public class Int : IItem {
+    	public long value { get; set; }
+    	public long withLong {
+    		get { return value;}
+    	}
+    }
+###### Source-1.2: A Long can contain a long primitive data type.
 
 So, let’s see how we compose addition using C# object initializers:    
 
@@ -128,7 +140,7 @@ So, let’s see how we compose addition using C# object initializers:
     	};
     	long result = myProgram.withLong;
     }
-###### Source-1.3: Our first program simply adds two numbers.
+###### Source-1.3: Our first program simply adds two numbers. {#id-s1-3}
 The result of adding two numbers is found by simply calling myProgram.withLong.
 
 We can visually represent Add using a diagram.
@@ -221,6 +233,7 @@ Here is an example of a program described and stored json (a standard format use
         "nameValue": "opRight",
       },
     }
+###### Source-1.5: A Configuration using json. {#id-s1-5}
 
 What is really interesting about this json is that it looks very similar to the example C# usage code . In fact, there is an almost one-to-one relationship between the persisted version a program and the program written using C# object initializers.
 
