@@ -57,29 +57,31 @@
 <div class="hero-unit">
   <h1 id='about_our_technology'>About Our Technology</h1>
 
-<h2 id='the_vision'>The Vision</h2>
+<h2 id='the_vision__visual_programming'>The Vision - Visual Programming</h2>
 
 <blockquote>
-<p>Eventually, programming will be accomplished by composing programs visually: not through coding. This is inevitable.</p>
+<p>Eventually, programming will be done by composing software visually: not through coding. This is inevitable.</p>
 </blockquote>
 
-<h2 id='part_1__interface_vision'>Part 1 - Interface Vision</h2>
+<h2 id='part_1__interface_vision_and_sip'>Part 1 - Interface Vision and SIP</h2>
 
 <h3 id='introduction'>Introduction</h3>
 
-<p>Interface Vision is a visual object language and fully <a href='http://en.wikipedia.org/wiki/Composability'>composable</a> object framework. Instead of coding, users of Interface Vision visually connect systems (objects) <a href='#id-1'>(1)</a> to each other: specifically their properties.</p>
+<p>Interface Vision is a visual object language and fully <a href='http://en.wikipedia.org/wiki/Composability'>composable</a> object framework. Instead of writing <a href='http://en.wikipedia.org/wiki/Source_code'>source code</a>, programmers visually connect systems/objects <a href='#id-1'>(1)</a> to each other: specifically their <a href='http://en.wikipedia.org/wiki/Property_(programming)'>properties</a>.</p>
 
-<p>The framework and visual language were developed using a programming methodology called Simple Interface Programming (SIP).</p>
+<p>The visual object language and framework are being developed using a <a href='http://en.wikipedia.org/wiki/Programming_paradigm'>programming paradigm</a> we developed called Simple Interface Programming (SIP).</p>
 
 <p>Our framework is written in C# using <a href='http://www.mono-project.com/Main_Page'>Mono</a>, <a href='http://monodevelop.com/'>Monodevelop</a>, <a href='http://xamarin.com/monotouch'>Mono Touch</a> and <a href='http://www.microsoft.com/visualstudio/eng'>Visual Studio</a>.</p>
 
-<p>So, before we delve into Interface Vision, let&#8217;s talk about the programming methodology SIP.</p>
+<p>So, before we delve into Interface Vision, let&#8217;s talk about the programming paradigm SIP.</p>
 
-<h3 id='what_makes_sip_different_from_oop'>What Makes SIP Different From OOP?</h3>
+<h3 id='what_makes_sip_different'>What Makes SIP Different?</h3>
 
-<p>Systems (classes) within SIP have <strong>no public methods</strong>! Yes. Really. Our framework has tens of thousands of lines of code and we have all of one method: static int main.</p>
+<p>SIP does not use functions or <a href='http://en.wikipedia.org/wiki/Method_(computer_science)'>methods</a>. Yes. Really. Our framework has tens of thousands of lines of source code and we have <strong>one</strong> function:</p>
 
-<p>Wait. If we have no public methods, then how do we:</p>
+<pre><code>static int main { ... }</code></pre>
+
+<p>Wait. If we have no functions or methods, then how do we:</p>
 
 <ul>
 <li><strong>define</strong> the behavior of a system?</li>
@@ -89,9 +91,15 @@
 <li><strong>initialize</strong> a system?</li>
 </ul>
 
+<p>Want to know more?</p>
+
+<ul>
+<li><a href='http://blog.interfacevision.com/technology/only-properties/'>Why We Only Use Properties</a> - Explains why we decided subroutines with parameters are bad.</li>
+</ul>
+
 <h4 id='where_we_put_behavior'>Where We Put Behavior</h4>
 
-<p>SIP use properties, instead of method, to define system behavior. Notice in <a href='#id-s1-1'>Source 1.1</a>, withLong contains the logic to add:</p>
+<p>SIP use <a href='http://en.wikipedia.org/wiki/Property_(programming)'>properties</a>, instead of methods, to define system behavior. Notice, in <a href='#id-s1-1'>Source 1.1</a>, withLong contains the specific task to add:</p>
 
 <pre><code>...
 public long withLong {
@@ -99,11 +107,11 @@ public long withLong {
 }
 ...</code></pre>
 
+<p>Stated another way, we do have subroutines (methods, functions, etc.) but we don&#8217;t allow them to receive parameters: no <a href='http://en.wikipedia.org/wiki/Method_signature'>method signatures</a>.</p>
+
 <p>Want to know more?</p>
 
 <ul>
-<li><a href='http://blog.interfacevision.com/technology/no-methods/'>Why We Don&#8217;t Use Methods</a> - Explains why we decided methods were bad.</li>
-
 <li><a href='http://blog.interfacevision.com/technology/methods-and-abstraction/'>Methods, Properties and Abstractions</a> - Explains how methods and properties differ as abstractions.</li>
 </ul>
 
@@ -111,7 +119,7 @@ public long withLong {
 
 <p>In SIP, we don&#8217;t really pass external information into a system. Instead, we &#8220;pull&#8221; that information into a system. How do we do this?</p>
 
-<p>Traditionally, properties contain information internal to a system (object/class/module/etc.) and external information is provided via methods with parameters. However, within SIP, a property can contain a reference to external information.</p>
+<p>Traditionally, properties and <a href='http://en.wikipedia.org/wiki/Attribute_(computing)'>attributes</a> contain information internal to a system (object/class/module/etc.). External information is provided via methods with parameters. However, within SIP, a property can contain a reference to external information.</p>
 
 <p>This &#8220;reference&#8221; is actually a specific type of system/class which is able to locate information contained within <a href='#id-composite-centric-memory'>Composite Centric Memory (CCM)</a>. We call these locators and each locator is able to find information within an associated data structure. For example, a HashTable would have a HashTableLocator.</p>
 
@@ -123,15 +131,31 @@ public long withLong {
 
 <h4 id='how_do_we_initialize_a_system'>How Do We Initialize A System?</h4>
 
-<p>Constructors are a type of method which means we don&#8217;t use them (Every class still has one implicit constructor which is called during run-time. We just don&#8217;t use constructors to initialize the properties of an instance). In a way this makes sense. Users drag and drop, within the development environment, a system to create a new instance.</p>
+<p>Since Interface Vision is a <a href='http://en.wikipedia.org/wiki/Visual_programming_language'>visual programming language</a>, users drag and drop a system/class to create instances. Usually, a user will attach a new instance to a property of an existing instance.</p>
 
-<p>We store and load all of these &#8220;hooked up&#8221; instances in a configuration file using <a href='http://en.wikipedia.org/wiki/Serialization'>serialization</a>. An example of just such a configuration is shown in <a href='#id-s1-5'>Source-1.5</a></p>
+<p>We store and load all of these attached instances in a configuration file using <a href='http://en.wikipedia.org/wiki/Serialization'>serialization</a>. An example of just such a configuration is shown in <a href='#id-s1-5'>Source-1.5</a></p>
 
-<p>It is possible to code the initialization as shown in <a href='#id-s1-3'>Source-1.3</a>.</p>
+<p>However, it is possible to code the configuration as shown in <a href='#id-s1-3'>Source-1.3</a>.</p>
 
-<h3 id='example_configuration_internal_information'>Example Configuration Internal Information</h3>
+<h3 id='an_example_configuration_using_internal_information'>An Example Configuration Using Internal Information</h3>
 
-<p>Let’s say we want to add two integers. We create an Add class (system) with two properties as shown <a href='#id-2'>(2)</a>:</p>
+<p>Let’s say we want to add two numbers (longs, integers, floats, etc.). Addition takes a left operand and a right operand. Traditionally, add is defined as a function (or a method) as follows:</p>
+
+<pre><code>long add ( long opLeft, long opRight ) {
+  return opLeft + opRight;
+}
+
+int add ( int opLeft, int opRight ) {
+  return opLeft + opRight;
+}
+
+float add ( float opLeft, float opRight ) {
+  return opLeft + opRight;
+}</code></pre>
+
+<p>However, in SIP, you aren&#8217;t allowed to use parameters. Instead we use properties.</p>
+
+<p>We create an Add system (class) with properties as shown <a href='#id-2'>(2)</a>:</p>
 
 <pre><code>public interface IItem {
 	long withLong { get; set; }
@@ -153,42 +177,67 @@ public class Add : IItem {
 	}
 }</code></pre>
 
-<h6 id='id-s1-1'>Source-1.1: The Add Part can add two numbers.</h6>
+<h6 id='id-s1-1'>Source-1.1: The Add system can add two numbers.</h6>
 
-<p>The first thing to note is that the properties opLeft and opRight are of type IItem.</p>
+<p>The first thing to note is that the properties opLeft (the left operand of add) and opRight (the right operand of add) are not primitive data types. They are of type IItem.</p>
 
 <pre><code>...
 public IItem opLeft { get; set; }
 public IItem opRight { get; set; }
 ...</code></pre>
 
-<p>This means if we want to add two long primitive data types (or integers or floats), we will need to call the withLong (withInt, withFloat) property of IItem. This is seen within the implementation of withLong (and withInt) of Add:</p>
+<p>This means if we want to add two long primitive data types (or integers or floats), we will need to call the withLong (withInt, withFloat) property of IItem. This is seen within the implementation of withLong, withInt and withFloat of Add.</p>
 
 <pre><code>...
-public long withLong {
-	get { return opLeft.withLong + opRight.withLong; }
+public long withLong {C
+	get { return opLeft.withLong + opRight.withLong; } /* TODO: Check for overflow */
+}
+public long withInt {
+	get { return opLeft.withInt + opRight.withInt; } /* TODO: Check for overflow */
+}
+public long withFloat {
+	get { return opLeft.withInt + opRight.withInt; } /* TODO: Check for overflow */
 }
 ...</code></pre>
 
-<p>This probably means we will need a Long class (an Int class and Float class) to hold the value of the primitive data type.</p>
+<p>This probably means we will need a Long system, Int system and Float system to hold the value of a primitive data type.</p>
 
 <pre><code>public class Long : IItem {
 	public long value { get; set; }
 	public long withLong {
-		get { return value;}
+		get { return value; }
+	}
+	public int withInt {
+		get { return (int)value; } /* TODO: Check for overflow */
+	}
+	public float withFloat {
+		get { return (float)value; }
 	}
 }
 
 public class Int : IItem {
-	public long value { get; set; }
+	public int value { get; set; }
 	public long withLong {
-		get { return value;}
+		get { return value; }
+	}
+	public int withInt {
+		get { return value; }
+	}
+	public float withFloat {
+		get { return (float)value; }
 	}
 }
-public class Int : IItem {
-	public long value { get; set; }
+
+public class Float : IItem {
+	public float value { get; set; }
 	public long withLong {
-		get { return value;}
+		get { return (long)value; } /* TODO: Check for overflow */
+	}
+	public int withInt {
+		get { return (int)value; } /* TODO: Check for overflow */
+	}
+	public float withFloat {
+		get { return value; }
 	}
 }</code></pre>
 
@@ -208,15 +257,21 @@ public class Int : IItem {
 
 <p>The result of adding two numbers is found by simply calling myProgram.withLong.</p>
 
-<p>We can visually represent Add using a diagram.</p>
+<pre><code>long result = myProgram.withLong;</code></pre>
+
+<p>We could use the same composed system to get the result as an integer.</p>
+
+<pre><code>int result = myProgram.withInt;</code></pre>
+
+<p>We can visually represent our add configuration using a diagram.</p>
 <p class='pagination-centered'><img class='img-polaroid' src='/assets/img/technology-system-add-internal-example.png' /><img /></p>
 <h6 id='figure11_an_example_of_adding_two_numbers_internal_to_a_system'>Figure-1.1: An example of adding two numbers internal to a system.</h6>
 
 <p>In this example, the information located in the properties is internal to the system. The values are just parts of type Long assigned to properties. Let’s look at an example where the information is external.</p>
 
-<h4 id='locator_objects_and_external_information'>Locator Objects And External Information</h4>
+<h3 id='an_example_configuration_using_external_information'>An Example Configuration Using External Information</h3>
 
-<p>Figure-1.2 is a form that has two inputs. When we press “Add” on that form, two numbers are summed (<a href='#id-3'>3</a>).</p>
+<p>Figure-1.2 is a form that has two fields. When we press “Add” on that form, two numbers are summed (<a href='#id-3'>3</a>).</p>
 <p class='pagination-centered'><img class='img-polaroid' src='/assets/img/technology-system-add-form.png' /><img /></p>
 <h6 id='figure12_a_form_which_adds_two_numbers'>Figure-1.2: A form which adds two numbers.</h6>
 
@@ -232,20 +287,26 @@ public class Int : IItem {
 
 <h6 id='source14_the_formvalue_part_is_able_to_retrieve_a_value_from_the_field_of_a_form'>Source-1.4: The FormValue Part is able to retrieve a value from the field of a form.</h6>
 
-<p>The example code is almost boilerplate except the global object called Ccm which stands for Composite Centric Memory (CCM) (<a href='#id-5'>5</a>). Ccm will be covered in detail later. Here is an example usage (<a href='#id-6'>6</a>):</p>
+<p>The example code in Source-1.4 is almost boilerplate except the global object called Ccm (which stands for <a href='#id-composite-centric-memory'>Composite Centric Memory (CCM)</a> ).</p>
+
+<pre><code>...
+get { return Ccm.shared[nameForm].field[nameField].withLong; }
+...</code></pre>
+
+<p>Here is an example usage (<a href='#id-6'>6</a>):</p>
 
 <pre><code>static void main() { 
-	IItem myProgram = new Add {
-		opLeft = new FormValue {
-			nameForm = “AddForm”,
-			nameField = “opLeft”
+  IItem myProgram = new Add {
+    opLeft = new FormValue {
+      nameForm = “AddForm”,
+      nameField = “opLeft”
     },
-		opRight = new FormValue {
+    opRight = new FormValue {
       nameForm = “AddForm”,
       nameField = “opRight”
     }
-	};
-	long result = myProgram.withLong;
+  };
+  long result = myProgram.withLong;
 }</code></pre>
 
 <h6 id='source14_the_values_to_add_are_external_to_the_add_part'>Source-1.4: The values to add are external to the Add part.</h6>
@@ -254,15 +315,15 @@ public class Int : IItem {
 <p class='pagination-centered'><img class='img-polaroid' src='/assets/img/technology-system-add-external-example.png' /><img /></p>
 <h6 id='figure13_an_example_of_adding_two_numbers_external_to_a_system'>Figure-1.3: An example of adding two numbers external to a system.</h6>
 
-<h3 id='simplified_object_interfaces_decoupling_and_code_reuse'>Simplified Object Interfaces, Decoupling and Code Reuse</h3>
+<h3 id='simplified_interfaces_decoupling_and_code_reuse'>Simplified Interfaces, Decoupling and Code Reuse</h3>
 
-<p>What is interesting about the examples is that they all have a similar interface: they all look the same to an external observer. However, internally, these systems are doing completely different things.</p>
+<p>What is interesting about the examples is that they all have a similar <a href='http://en.wikipedia.org/wiki/Interface_(computing)'>interface</a>: they all look the same to an external observer. However, internally, these systems are doing completely different things.</p>
 
-<p>In the first example, when Add calls withLong of the object plugged into the opLeft (or opRight) property, a value is simply returned from a Long type. However, in the second example, Add ends up using an object that references a form. Two completely different behaviors: but externally they look the exact same.</p>
+<p>In the first example, when Add calls withLong of the instance plugged into the opLeft (or opRight) property, a value is simply returned from the Long. However, in the second example, Add ends up using an object that references a form. Two completely different behaviors: but externally they look the exact same.</p>
 
 <p>Since the interface is the exact same, Add is fully unaware of where the values being added are coming from. This means that the system to Add is not “connected” to the system that finds the value on the form for us.</p>
 
-<p>This is a desired feature of software languages and frameworks. A way to decouple systems from each other <a href='#id-7'>7</a>. An advantage of decoupling is that sub-systems are more reusable when they are decoupled from other sub-systems.</p>
+<p>This is a desired feature of software languages and frameworks. A way to <a href='http://en.wikipedia.org/wiki/Decoupling'>decouple</a> systems from each other <a href='#id-7'>7</a>. An advantage of decoupling is that sub-systems are more reusable when they are decoupled from other sub-systems.</p>
 
 <h3 id='greatest_disadvantage_of_traditional_programming'>Greatest Disadvantage of Traditional Programming</h3>
 
@@ -432,15 +493,13 @@ public class Int : IItem {
 
 <h2 id='footnotes'>Footnotes</h2>
 
-<p id='id-1'> 1. Within this &#8220;paper&#8221; we look at systems as being similar to objects, classes, modules and the such.</p>
+<p id='id-1'> 1. Within this &#8220;paper&#8221; we look at systems as being &#8220;similar&#8221; to objects, classes, modules, subroutines and the such.</p>
 
 <p id='id-2'> 2. Interface Vision was written in C#. Note that we are providing a withLong property where, later on in the page, you see it is withSystem. In reality, and for execution speed, every object can implement a with* method where * is a primitive data type like long, int, float, boolean, long, etc.</p>
 
 <p id='id-3'> 3. Note that we do not provide a configuration for the form itself. This was done to keep the example simple.</p>
 
 <p id='id-4'> 4. We could generalize the idea of locating information within our framework.</p>
-
-<p id='id-5'> 5. Some may view a global instance as a “hack”. This is just an example and other methods of memory access are used.</p>
 
 <p id='id-6'> 6. Note that, to keep the example simple, we do not provide a configuration for the form itself. The Form class would be part of the vision framework. Instantiating and defining the form would be done in the exact same manner as was done with the Add program.</p>
 
@@ -457,6 +516,8 @@ public class Int : IItem {
 <p id='id-12'> 12. Traditionally, data structure objects support both the structure and the searching of that structure. This does seem to violate the single-responsibility principle.</p>
 
 <p id='id-13'> 13. Code that is thread safe usually requires some kind of operating system call slowing down the code in general: even when it is not being used in a multi-threaded environment.</p>
+
+<p>http://en.wikipedia.org/wiki/Subroutine</p>
 </div>
 
 

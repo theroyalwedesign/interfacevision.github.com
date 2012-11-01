@@ -27,6 +27,7 @@ tagline: Programming Without Coding
       <div class="control-group">
         <label class="control-label" for="entry_2">Feedback</label>
         <div class="controls">
+          <span class="help-block">What type of feedback would you be willing to give? Note that we will only send you an email if you check one or more options.</span>
           <label class="checkbox">
             <input type="checkbox" name="entry.1.group" value="UX" id="group_1_1"></input>
             The User Experience (UX)
@@ -51,7 +52,6 @@ tagline: Programming Without Coding
             <input type="checkbox" name="entry.1.group" value="OTHER" id="group_1_6"></input>
             Other - Please describe in feedback entry below
           </label>
-          <span class="help-block">Note that we will only send you an email if you check one or more of the above options.</span>
         </div>
       </div>
       <div class="control-group">

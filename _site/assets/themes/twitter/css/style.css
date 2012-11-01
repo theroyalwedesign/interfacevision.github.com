@@ -283,6 +283,15 @@ body {
 
 @media (max-width: 979px) {
 
+	.hero-unit pre {
+		margin-left: 0px;
+		margin-right: 0px;
+	}
+	
+	.hero-unit li, ul {
+		margin-left: 0px;
+	}
+
   .container.navbar-wrapper {
     margin-bottom: 0;
     width: auto;
@@ -328,6 +337,15 @@ body {
 
 
 @media (max-width: 767px) {
+
+	.hero-unit pre {
+		margin-left: 0px;
+		margin-right: 0px;
+	}
+	
+	.hero-unit li, ul {
+		margin-left: 0px;
+	}
 
   .navbar-inner {
     margin: -20px;

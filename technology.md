@@ -9,35 +9,41 @@ tagline: Programming Without Coding
 
 # About Our Technology
 
-## The Vision
+## The Vision - Visual Programming
 
-> Eventually, programming will be accomplished by composing programs visually: not through coding. This is inevitable.
+> Eventually, programming will be done by composing software visually: not through coding. This is inevitable.
 
-## Part 1 - Interface Vision
+## Part 1 - Interface Vision and SIP
 
 ### Introduction
 
-Interface Vision is a visual object language and fully [composable](http://en.wikipedia.org/wiki/Composability) object framework. Instead of coding, users of Interface Vision visually connect systems (objects) [(1)](#id-1) to each other: specifically their properties.
+Interface Vision is a visual object language and fully [composable](http://en.wikipedia.org/wiki/Composability) object framework. Instead of writing [source code](http://en.wikipedia.org/wiki/Source_code), programmers visually connect systems/objects [(1)](#id-1) to each other: specifically their <a href="http://en.wikipedia.org/wiki/Property_(programming)">properties</a>.
 
-The framework and visual language were developed using a programming methodology called Simple Interface Programming (SIP).
+The visual object language and framework are being developed using a [programming paradigm](http://en.wikipedia.org/wiki/Programming_paradigm) we developed called Simple Interface Programming (SIP).
 
 Our framework is written in C# using [Mono](http://www.mono-project.com/Main_Page), [Monodevelop](http://monodevelop.com/), [Mono Touch](http://xamarin.com/monotouch) and [Visual Studio](http://www.microsoft.com/visualstudio/eng).
 
-So, before we delve into Interface Vision, let's talk about the programming methodology SIP.
+So, before we delve into Interface Vision, let's talk about the programming paradigm SIP.
 
-### What Makes SIP Different From OOP?
+### What Makes SIP Different?
 
-Systems (classes) within SIP have **no public methods**! Yes. Really. Our framework has tens of thousands of lines of code and we have all of one method: static int main.
+SIP does not use functions or <a href="http://en.wikipedia.org/wiki/Method_(computer_science)">methods</a>. Yes. Really. Our framework has tens of thousands of lines of source code and we have **one** function:
 
-Wait. If we have no public methods, then how do we:
+    static int main { ... }
+
+Wait. If we have no functions or methods, then how do we:
 
 * **define** the behavior of a system?
 * **pass** external information to a system?
 * **initialize** a system?
 
+Want to know more?
+
+* [Why We Only Use Properties](http://blog.interfacevision.com/technology/only-properties/) - Explains why we decided subroutines with parameters are bad.
+
 #### Where We Put Behavior
 
-SIP use properties, instead of method, to define system behavior. Notice in [Source 1.1](#id-s1-1), withLong contains the logic to add:
+SIP use <a href="http://en.wikipedia.org/wiki/Property_(programming)">properties</a>, instead of methods, to define system behavior. Notice, in [Source 1.1](#id-s1-1), withLong contains the specific task to add:
 
     ...
     public long withLong {
@@ -45,16 +51,18 @@ SIP use properties, instead of method, to define system behavior. Notice in [Sou
     }
     ...
 
-Want to know more?
+Stated another way, we do have subroutines (methods, functions, etc.) but we don't allow them to receive parameters: no [method signatures](http://en.wikipedia.org/wiki/Method_signature).
 
-* [Why We Don't Use Methods](http://blog.interfacevision.com/technology/no-methods/) - Explains why we decided methods were bad.
+Want to know more?
+    
 * [Methods, Properties and Abstractions](http://blog.interfacevision.com/technology/methods-and-abstraction/) - Explains how methods and properties differ as abstractions.
+
 
 #### How We Pass Information To Systems 
 
 In SIP, we don't really pass external information into a system. Instead, we "pull" that information into a system. How do we do this?
 
-Traditionally, properties contain information internal to a system (object/class/module/etc.) and external information is provided via methods with parameters. However, within SIP, a property can contain a reference to external information.
+Traditionally, properties and <a href="http://en.wikipedia.org/wiki/Attribute_(computing)">attributes</a> contain information internal to a system (object/class/module/etc.). External information is provided via methods with parameters. However, within SIP, a property can contain a reference to external information.
 
 This "reference" is actually a specific type of system/class which is able to locate information contained within [Composite Centric Memory (CCM)](#id-composite-centric-memory). We call these locators and each locator is able to find information within an associated data structure. For example, a HashTable would have a HashTableLocator.
 
@@ -63,14 +71,30 @@ Want to know more?
 * [Locators](http://blog.interfacevision.com/technology/locators/) - Explains how locators are used to find information within CCM.
 
 #### How Do We Initialize A System?
-Constructors are a type of method which means we don't use them (Every class still has one implicit constructor which is called during run-time. We just don't use constructors to initialize the properties of an instance). In a way this makes sense. Users drag and drop, within the development environment, a system to create a new instance.
+Since Interface Vision is a [visual programming language](http://en.wikipedia.org/wiki/Visual_programming_language), users drag and drop a system/class to create instances. Usually, a user will attach a new instance to a property of an existing instance.
 
-We store and load all of these "hooked up" instances in a configuration file using [serialization](http://en.wikipedia.org/wiki/Serialization). An example of just such a configuration is shown in [Source-1.5](#id-s1-5)
+We store and load all of these attached instances in a configuration file using [serialization](http://en.wikipedia.org/wiki/Serialization). An example of just such a configuration is shown in [Source-1.5](#id-s1-5)
 
-It is possible to code the initialization as shown in [Source-1.3](#id-s1-3).
+However, it is possible to code the configuration as shown in [Source-1.3](#id-s1-3).
 
-### Example Configuration Internal Information
-Let’s say we want to add two integers. We create an Add class (system) with two properties as shown [(2)](#id-2):
+### An Example Configuration Using Internal Information
+Let’s say we want to add two numbers (longs, integers, floats, etc.). Addition takes a left operand and a right operand. Traditionally, add is defined as a function (or a method) as follows:
+
+    long add ( long opLeft, long opRight ) {
+      return opLeft + opRight;
+    }
+
+    int add ( int opLeft, int opRight ) {
+      return opLeft + opRight;
+    }
+
+    float add ( float opLeft, float opRight ) {
+      return opLeft + opRight;
+    }
+
+However, in SIP, you aren't allowed to use parameters. Instead we use properties.
+
+We create an Add system (class) with properties as shown [(2)](#id-2):
 
     public interface IItem {
     	long withLong { get; set; }
@@ -91,44 +115,70 @@ Let’s say we want to add two integers. We create an Add class (system) with tw
     		get { return opLeft.withInt + opRight.withInt; }
     	}
     }
-###### Source-1.1: The Add Part can add two numbers. {#id-s1-1}
+###### Source-1.1: The Add system can add two numbers. {#id-s1-1}
 
-The first thing to note is that the properties opLeft and opRight are of type IItem.
+The first thing to note is that the properties opLeft (the left operand of add) and opRight (the right operand of add) are not primitive data types. They are of type IItem.
 
     ...
   	public IItem opLeft { get; set; }
   	public IItem opRight { get; set; }
     ...
 
-This means if we want to add two long primitive data types (or integers or floats), we will need to call the withLong (withInt, withFloat) property of IItem. This is seen within the implementation of withLong (and withInt) of Add:
+This means if we want to add two long primitive data types (or integers or floats), we will need to call the withLong (withInt, withFloat) property of IItem. This is seen within the implementation of withLong, withInt and withFloat of Add.
 
     ...
-  	public long withLong {
-  		get { return opLeft.withLong + opRight.withLong; }
+  	public long withLong {C
+  		get { return opLeft.withLong + opRight.withLong; } /* TODO: Check for overflow */
+  	}
+  	public long withInt {
+  		get { return opLeft.withInt + opRight.withInt; } /* TODO: Check for overflow */
+  	}
+  	public long withFloat {
+  		get { return opLeft.withInt + opRight.withInt; } /* TODO: Check for overflow */
   	}
     ...
 
-This probably means we will need a Long class (an Int class and Float class) to hold the value of the primitive data type.
+This probably means we will need a Long system, Int system and Float system to hold the value of a primitive data type.
 
     public class Long : IItem {
     	public long value { get; set; }
     	public long withLong {
-    		get { return value;}
+    		get { return value; }
+    	}
+    	public int withInt {
+    		get { return (int)value; } /* TODO: Check for overflow */
+    	}
+    	public float withFloat {
+    		get { return (float)value; }
     	}
     }
 
     public class Int : IItem {
-    	public long value { get; set; }
+    	public int value { get; set; }
     	public long withLong {
-    		get { return value;}
+    		get { return value; }
+    	}
+    	public int withInt {
+    		get { return value; }
+    	}
+    	public float withFloat {
+    		get { return (float)value; }
     	}
     }
-    public class Int : IItem {
-    	public long value { get; set; }
+    
+    public class Float : IItem {
+    	public float value { get; set; }
     	public long withLong {
-    		get { return value;}
+    		get { return (long)value; } /* TODO: Check for overflow */
+    	}
+    	public int withInt {
+    		get { return (int)value; } /* TODO: Check for overflow */
+    	}
+    	public float withFloat {
+    		get { return value; }
     	}
     }
+
 ###### Source-1.2: A Long can contain a long primitive data type.
 
 So, let’s see how we compose addition using C# object initializers:    
@@ -143,16 +193,22 @@ So, let’s see how we compose addition using C# object initializers:
 ###### Source-1.3: Our first program simply adds two numbers. {#id-s1-3}
 The result of adding two numbers is found by simply calling myProgram.withLong.
 
-We can visually represent Add using a diagram.
+    long result = myProgram.withLong;
+    
+We could use the same composed system to get the result as an integer.
+
+    int result = myProgram.withInt;
+
+We can visually represent our add configuration using a diagram.
 
 <p class="pagination-centered"><img class="img-polaroid" src="/assets/img/technology-system-add-internal-example.png"><img></p>
 ###### Figure-1.1: An example of adding two numbers internal to a system.
 
 In this example, the information located in the properties is internal to the system. The values are just parts of type Long assigned to properties. Let’s look at an example where the information is external.
 
-#### Locator Objects And External Information
+### An Example Configuration Using External Information
 
-Figure-1.2 is a form that has two inputs. When we press “Add” on that form, two numbers are summed ([3](#id-3)).
+Figure-1.2 is a form that has two fields. When we press “Add” on that form, two numbers are summed ([3](#id-3)).
 
 <p class="pagination-centered"><img class="img-polaroid" src="/assets/img/technology-system-add-form.png"><img></p>
 ###### Figure-1.2: A form which adds two numbers.
@@ -168,21 +224,26 @@ We are only allowed to compose programs and we can’t provide information via a
     }
 ###### Source-1.4: The FormValue Part is able to retrieve a value from the field of a form.
 
-The example code is almost boilerplate except the global object called Ccm which stands for Composite Centric Memory (CCM) ([5](#id-5)). Ccm will be covered in detail later.
+The example code in Source-1.4 is almost boilerplate except the global object called Ccm (which stands for [Composite Centric Memory (CCM)](#id-composite-centric-memory) ).
+
+    ...
+    get { return Ccm.shared[nameForm].field[nameField].withLong; }
+    ...
+
 Here is an example usage ([6](#id-6)):
 
     static void main() { 
-    	IItem myProgram = new Add {
-    		opLeft = new FormValue {
-    			nameForm = “AddForm”,
-    			nameField = “opLeft”
+      IItem myProgram = new Add {
+        opLeft = new FormValue {
+          nameForm = “AddForm”,
+          nameField = “opLeft”
         },
-    		opRight = new FormValue {
+        opRight = new FormValue {
           nameForm = “AddForm”,
           nameField = “opRight”
         }
-    	};
-    	long result = myProgram.withLong;
+      };
+      long result = myProgram.withLong;
     }
 ###### Source-1.4: The values to add are external to the Add part.
 
@@ -191,15 +252,15 @@ A visual representation of this example is shown in Figure-1.3.
 <p class="pagination-centered"><img class="img-polaroid" src="/assets/img/technology-system-add-external-example.png"><img></p>
 ###### Figure-1.3: An example of adding two numbers external to a system.
 
-### Simplified Object Interfaces, Decoupling and Code Reuse
+### Simplified Interfaces, Decoupling and Code Reuse
 
-What is interesting about the examples is that they all have a similar interface: they all look the same to an external observer. However, internally, these systems are doing completely different things. 
+What is interesting about the examples is that they all have a similar <a href="http://en.wikipedia.org/wiki/Interface_(computing)">interface</a>: they all look the same to an external observer. However, internally, these systems are doing completely different things. 
 
-In the first example, when Add calls withLong of the object plugged into the opLeft (or opRight) property, a value is simply returned from a Long type. However, in the second example, Add ends up using an object that references a form. Two completely different behaviors: but externally they look the exact same.
+In the first example, when Add calls withLong of the instance plugged into the opLeft (or opRight) property, a value is simply returned from the Long. However, in the second example, Add ends up using an object that references a form. Two completely different behaviors: but externally they look the exact same.
 
 Since the interface is the exact same, Add is fully unaware of where the values being added are coming from. This means that the system to Add is not “connected” to the system that finds the value on the form for us.
 
-This is a desired feature of software languages and frameworks. A way to decouple systems from each other [7](#id-7). An advantage of decoupling is that sub-systems are more reusable when they are decoupled from other sub-systems.
+This is a desired feature of software languages and frameworks. A way to [decouple](http://en.wikipedia.org/wiki/Decoupling) systems from each other [7](#id-7). An advantage of decoupling is that sub-systems are more reusable when they are decoupled from other sub-systems.
 
 ### Greatest Disadvantage of Traditional Programming
 
@@ -345,15 +406,13 @@ This also makes for programs that are cloud friendly as they can be easily scale
 
 ## Footnotes
 
-{#id-1} 1. Within this "paper" we look at systems as being similar to objects, classes, modules and the such.
+{#id-1} 1. Within this "paper" we look at systems as being "similar" to objects, classes, modules, subroutines and the such.
 
 {#id-2} 2. Interface Vision was written in C#. Note that we are providing a withLong property where, later on in the page, you see it is withSystem. In reality, and for execution speed, every object can implement a with* method where * is a primitive data type like long, int, float, boolean, long, etc.
 
 {#id-3} 3. Note that we do not provide a configuration for the form itself. This was done to keep the example simple.
 
 {#id-4} 4. We could generalize the idea of locating information within our framework.
-
-{#id-5} 5. Some may view a global instance as a “hack”. This is just an example and other methods of memory access are used.
 
 {#id-6} 6. Note that, to keep the example simple, we do not provide a configuration for the form itself. The Form class would be part of the vision framework. Instantiating and defining the form would be done in the exact same manner as was done with the Add program.
 
@@ -370,3 +429,5 @@ This also makes for programs that are cloud friendly as they can be easily scale
 {#id-12} 12. Traditionally, data structure objects support both the structure and the searching of that structure. This does seem to violate the single-responsibility principle.
 
 {#id-13} 13. Code that is thread safe usually requires some kind of operating system call slowing down the code in general: even when it is not being used in a multi-threaded environment.
+
+http://en.wikipedia.org/wiki/Subroutine
