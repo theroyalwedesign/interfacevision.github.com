@@ -283,6 +283,11 @@ body {
 
 @media (max-width: 979px) {
 
+	.hero-unit {
+		padding-left: 30px;
+		padding-right: 30px;
+	}
+
 	.hero-unit pre {
 		margin-left: 0px;
 		margin-right: 0px;
@@ -298,7 +303,6 @@ body {
   }
   .navbar-inner {
     border-radius: 0;
-    margin: -20px 0;
   }
 
   .carousel .item {
@@ -330,13 +334,18 @@ body {
   }
 
 	.navbar {
-		margin-bottom: 40px;
+		margin-bottom: 20px;
 	}
 
 }
 
 
 @media (max-width: 767px) {
+
+	.hero-unit {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
 
 	.hero-unit pre {
 		margin-left: 0px;
@@ -346,10 +355,6 @@ body {
 	.hero-unit li, ul {
 		margin-left: 0px;
 	}
-
-  .navbar-inner {
-    margin: -20px;
-  }
 
   .carousel {
     margin-left: -20px;
@@ -390,7 +395,7 @@ body {
   }
 
 	.navbar {
-		margin-bottom: 40px;
+		margin-bottom: 20px;
 	}
 
 }

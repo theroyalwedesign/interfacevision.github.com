@@ -1,11 +1,10 @@
 ---
-layout: page
-title: Interface Vision - Alpha Signup
+layout: post
+title: Interface Vision - Signup Successful
 tagline: Programming Without Coding
 ---
 {% include JB/setup %}
 
-<div class="hero-unit">
-  <h1>Interface Vision - Alpha Signup</h1>
-  <p>Your signup was successful.</p>
-</div>
+#Interface Vision - Signup Successful
+Your signup was successful.
+Return to [Interface Vision](/index.html).
