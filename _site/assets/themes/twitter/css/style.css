@@ -3,7 +3,7 @@ html, body {
   font-family: 'Pontano Sans', sans-serif;
 }
 
-.cursor-pointer a:hover, .cursor-pointer a:active{
+.cursor-pointer a:hover, .cursor-pointer a:active {
 	cursor: pointer;
 }
 
@@ -11,13 +11,13 @@ html, body {
 	text-decoration: none;
 }
 
+.modal.fade.in {
+	top: 25%;
+}
+
 .modal {
 	width: 920px;
   margin-left: -460px; /* - width/2 */	
-}
-
-.modal.fade.in {
-	top: 25%;
 }
 
 .modal-body {
@@ -308,6 +308,16 @@ body {
 
 @media (max-width: 979px) {
 
+	.modal {
+		width: 740px;
+	  margin-left: -370px; /* - width/2 */	
+	}
+
+	.modal-body {
+		height: 550px;
+		max-height: 550px;
+	}
+
 	.hero-unit {
 		padding-left: 30px;
 		padding-right: 30px;
@@ -350,6 +360,7 @@ body {
     margin: 0 auto 20px;
   }
 
+
   .featurette-video.pull-left,
   .featurette-video.pull-right {
     display: block;
@@ -366,6 +377,17 @@ body {
 
 
 @media (max-width: 767px) {
+
+
+	.modal {
+		width: 340px;
+	  margin-left: 10%; /* - width/2 */	
+	}
+
+	.modal-body {
+		height: 240px;
+		max-height: 240px;
+	}
 
 	.hero-unit {
 		padding-left: 20px;
