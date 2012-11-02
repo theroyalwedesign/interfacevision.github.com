@@ -3,6 +3,9 @@ html, body {
   font-family: 'Pontano Sans', sans-serif;
 }
 
+.container {
+	max-width:950px;
+}
 .img-rounded {
 	width: 80px;
 	height: 80px;
@@ -294,7 +297,7 @@ body {
 	}
 	
 	.hero-unit li, ul {
-		margin-left: 0px;
+		margin-left: 12px;
 	}
 
   .container.navbar-wrapper {
@@ -353,7 +356,7 @@ body {
 	}
 	
 	.hero-unit li, ul {
-		margin-left: 0px;
+		margin-left: 12px
 	}
 
   .carousel {
