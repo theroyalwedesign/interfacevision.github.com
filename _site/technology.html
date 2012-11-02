@@ -74,6 +74,15 @@
       </div>
     </div>
 
+    <div id="image-popup" class="modal hide fade">
+      <div class="modal-body">
+        <img id="image-to-show"></img>
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="btn btn-primary" data-dismiss="modal">Close</a>
+      </div>
+    </div>
+
     <div class="container marketing">
     
 <div class="hero-unit">
@@ -117,12 +126,6 @@
 <li><strong>initialize</strong> a part?</li>
 </ul>
 
-<p>Want to know more?</p>
-
-<ul>
-<li><a href='http://blog.interfacevision.com/technology/only-properties/'>Why We Only Use Properties</a> - Explains why we decided subroutines with parameters are bad.</li>
-</ul>
-
 <h4 id='where_we_put_tasks'>Where We Put Tasks</h4>
 
 <p>SIP use <a href='http://en.wikipedia.org/wiki/Property_(programming)'>properties</a>, instead of methods, to define the tasks a part performs. Notice, in <a href='#id-s1-1'>Source 1.1</a>, withLong contains the task to add two numbers.</p>
@@ -144,12 +147,6 @@ public long withLong {
 <p>This is where SIP differs. Within SIP, a property can contain a reference to external information.</p>
 
 <p>This &#8220;reference&#8221; is actually a special type of part, called a locator, which is able to locate information contained within <a href='http://en.wikipedia.org/wiki/Data_structure'>data structures</a>. For example, a HashTable would have a HashTableLocator and an Array would have an ArrayLocator.</p>
-
-<p>Want to know more?</p>
-
-<ul>
-<li><a href='http://blog.interfacevision.com/technology/locators/'>Locators</a> - Explains how locators are used to find information within <a href='http://en.wikipedia.org/wiki/Data_structure'>data structures</a>.</li>
-</ul>
 
 <h4 id='how_do_we_initialize_parts'>How Do We Initialize Parts?</h4>
 
@@ -566,7 +563,7 @@ get { return Ccm.shared[nameForm].field[nameField].withLong; }
             <li><a href="http://www.twitter.com/interfacevision" target="_blank">&copy; Interface Vision 2012</a></li>
             <li><a class="nav-a-social" href="https://plus.google.com/101227313031284036080/posts" target="_blank"><i class="icon-google-color icon-social"></i></a></li>
             <li><a class="nav-a-social" href="http://www.twitter.com/interfacevision" target="_blank"><i class="icon-twitter-color icon-social"></i></a></li>
-            <li><a class="nav-a-social" href="mailto:erichosick@gmail.com"><i class="icon-mail-color icon-social"></i></a></li>
+            <li><a class="nav-a-social" href="mailto:erichosick@interfacevision.com"><i class="icon-mail-color icon-social"></i></a></li>
           </ul>
         </div>
        </footer>

@@ -8,9 +8,11 @@ tagline: Programming Without Coding
 # Interface Vision - Signup
 We are looking for early adopters interested in using our alpha products.
 
-Follow us on [twitter](http://twitter.com/interfacevision) if you don't want to give us your email address.
+You can <a href="https://twitter.com/interfaceVision" class="twitter-follow-button" data-show-count="false" data-size="large" data-show-screen-name="false" data-dnt="true">Follow</a> us on Twitter if you don't want to give out your email address.
 
 We will not share your email with anyone.
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
 <div class="form-horizontal">
 

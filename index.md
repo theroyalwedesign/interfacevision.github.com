@@ -69,7 +69,7 @@ tagline: Programming Without Coding
   <h2 class="featurette-heading">We Code</h2>
   <h2 class="featurette-heading muted">So You Don't Have To</h2>
   <h2 class="featurette-heading muted no-underline">
-    <a href="/technology.html">Learn How</a>
+    <a href="/technology.html">Learn How We Do It</a>
   </h2>
 </div>
 
@@ -83,17 +83,8 @@ tagline: Programming Without Coding
   <h1>HOW WE DO THE IMPOSSIBLE</h1>
 </div>  
 
-<div id="image-popup-vision" class="modal hide fade">
-  <div class="modal-body">
-    <img src="../assets/img/iPadMockupVision1084x847.png"></img>
-  </div>
-  <div class="modal-footer">
-    <a href="#" class="btn btn-primary" data-dismiss="modal">Close</a>
-  </div>
-</div>
-
 <div class="featurette cursor-pointer">
-  <a class="cursor-pointer" onclick="$('#image-popup-vision').modal({ keyboard: true, show: true, backdrop: true});">
+  <a class="cursor-pointer" onclick="$('#image-to-show').attr('src','../assets/img/iPadMockupVision1084x847.png');$('#image-popup').modal({ keyboard: true, show: true, backdrop: true});">
     <img class="featurette-image pull-right popup-image" src="../assets/img/iPadMockupVision524x409.png"></img>
   </a>
   <h2 class="featurette-heading">Step 1. <span class="muted">We Code The Parts</span></h2>
@@ -106,7 +97,7 @@ tagline: Programming Without Coding
 <hr class="featurette-divider">
 
 <div class="featurette cursor-pointer">
-  <a class="cursor-pointer" onclick="$('#image-popup-vision').modal({ keyboard: true, show: true, backdrop: true});">
+  <a class="cursor-pointer" onclick="$('#image-to-show').attr('src','../assets/img/iPadMockupVision1084x847.png');$('#image-popup').modal({ keyboard: true, show: true, backdrop: true});">
     <img class="featurette-image pull-left popup-image" src="../assets/img/iPadMockupVision524x409.png"></img>
   </a>
   <h2 class="featurette-heading">Step 2. <span class="muted">You Hook Up The Parts</span></h2>

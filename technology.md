@@ -39,10 +39,6 @@ Wait. If we have no functions or methods, then how do we:
 * **pass** information to a part?
 * **initialize** a part?
 
-Want to know more?
-
-* [Why We Only Use Properties](http://blog.interfacevision.com/technology/only-properties/) - Explains why we decided subroutines with parameters are bad.
-
 #### Where We Put Tasks
 
 SIP use <a href="http://en.wikipedia.org/wiki/Property_(programming)">properties</a>, instead of methods, to define the tasks a part performs. Notice, in [Source 1.1](#id-s1-1), withLong contains the task to add two numbers.
@@ -64,10 +60,6 @@ Traditionally, <a href="http://en.wikipedia.org/wiki/Property_(programming)">pro
 This is where SIP differs. Within SIP, a property can contain a reference to external information.
 
 This "reference" is actually a special type of part, called a locator, which is able to locate information contained within [data structures](http://en.wikipedia.org/wiki/Data_structure). For example, a HashTable would have a HashTableLocator and an Array would have an ArrayLocator.
-
-Want to know more?
-
-* [Locators](http://blog.interfacevision.com/technology/locators/) - Explains how locators are used to find information within [data structures](http://en.wikipedia.org/wiki/Data_structure).
 
 #### How Do We Initialize Parts?
 Since Interface Vision is a [visual programming language](http://en.wikipedia.org/wiki/Visual_programming_language), users drag and drop parts to create them. Usually, a user will attach a new part to the property of an existing part.

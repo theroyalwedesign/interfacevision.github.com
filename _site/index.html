@@ -74,6 +74,15 @@
       </div>
     </div>
 
+    <div id="image-popup" class="modal hide fade">
+      <div class="modal-body">
+        <img id="image-to-show"></img>
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="btn btn-primary" data-dismiss="modal">Close</a>
+      </div>
+    </div>
+
     <div class="container marketing">
     
 <!--
@@ -136,7 +145,7 @@
   <h2 class='featurette-heading'>We Code</h2>
   <h2 class='featurette-heading muted'>So You Don't Have To</h2>
   <h2 class='featurette-heading muted no-underline'>
-    <a href='/technology.html'>Learn How</a>
+    <a href='/technology.html'>Learn How We Do It</a>
   </h2>
 </div><div class='signup-divider pagination-centered'>
   <h1>We Need Feedback!</h1>
@@ -144,15 +153,8 @@
   <a class='btn btn-large btn-success' href='/signup.html'>Sign Up For Alpha</a>
 </div><div class='huge-divider pagination-centered'>
   <h1>HOW WE DO THE IMPOSSIBLE</h1>
-</div><div class='modal hide fade' id='image-popup-vision'>
-  <div class='modal-body'>
-    <img src='../assets/img/iPadMockupVision1084x847.png' /><img />
-  </div>
-  <div class='modal-footer'>
-    <a class='btn btn-primary' data-dismiss='modal' href='#'>Close</a>
-  </div>
 </div><div class='featurette cursor-pointer'>
-  <a class='cursor-pointer' onclick='$(&apos;#image-popup-vision&apos;).modal({ keyboard: true, show: true, backdrop: true});'>
+  <a class='cursor-pointer' onclick='$(&apos;#image-to-show&apos;).attr(&apos;src&apos;,&apos;../assets/img/iPadMockupVision1084x847.png&apos;);$(&apos;#image-popup&apos;).modal({ keyboard: true, show: true, backdrop: true});'>
     <img class='featurette-image pull-right popup-image' src='../assets/img/iPadMockupVision524x409.png' /><img />
   </a>
   <h2 class='featurette-heading'>Step 1. <span class='muted'>We Code The Parts</span></h2>
@@ -161,7 +163,7 @@
   <p class='lead'>We have high level software parts that support very complex tasks like communicating across the internet.</p>
   <p class='lead'>We hope you can stick with the high level parts: getting your software out the door as soon as possible. However, you can use the low level parts if your business has very unique requirements.</p>
 </div><hr class='featurette-divider' /><div class='featurette cursor-pointer'>
-  <a class='cursor-pointer' onclick='$(&apos;#image-popup-vision&apos;).modal({ keyboard: true, show: true, backdrop: true});'>
+  <a class='cursor-pointer' onclick='$(&apos;#image-to-show&apos;).attr(&apos;src&apos;,&apos;../assets/img/iPadMockupVision1084x847.png&apos;);$(&apos;#image-popup&apos;).modal({ keyboard: true, show: true, backdrop: true});'>
     <img class='featurette-image pull-left popup-image' src='../assets/img/iPadMockupVision524x409.png' /><img />
   </a>
   <h2 class='featurette-heading'>Step 2. <span class='muted'>You Hook Up The Parts</span></h2>
@@ -178,7 +180,7 @@
             <li><a href="http://www.twitter.com/interfacevision" target="_blank">&copy; Interface Vision 2012</a></li>
             <li><a class="nav-a-social" href="https://plus.google.com/101227313031284036080/posts" target="_blank"><i class="icon-google-color icon-social"></i></a></li>
             <li><a class="nav-a-social" href="http://www.twitter.com/interfacevision" target="_blank"><i class="icon-twitter-color icon-social"></i></a></li>
-            <li><a class="nav-a-social" href="mailto:erichosick@gmail.com"><i class="icon-mail-color icon-social"></i></a></li>
+            <li><a class="nav-a-social" href="mailto:erichosick@interfacevision.com"><i class="icon-mail-color icon-social"></i></a></li>
           </ul>
         </div>
        </footer>

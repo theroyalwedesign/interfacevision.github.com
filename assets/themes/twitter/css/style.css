@@ -250,6 +250,7 @@ body {
 }
 .featurette-image {
   margin-top: -40px; /* Vertically center images part 3: negative margin up the image the same amount of the padding to center it. */
+	margin-bottom: 10px;
 }
 
 .featurette-video {
