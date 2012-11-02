@@ -7,15 +7,63 @@ tagline: Programming Without Coding
 
 {% assign posts_collate = site.posts %}
 
+<!--
+<div id="myCarousel" class="carousel slide">
+  <div class="carousel-inner">
+    <div class="item active">
+      <img src="../assets/img/eventually.jpg" alt="">
+      <div class="carousel-caption">
+        <h4>Eventually</h4>
+        <p>software will be created without coding</p>
+      </div>
+    </div>
+    <div class="item">
+      <img src="../assets/img/evolutionary.jpg" alt="">
+      <div class="carousel-caption">
+        <h4>Evolutionary</h4>
+        <p>software framework</p>
+      </div>
+    </div>
+    <div class="item">
+      <img src="../assets/img/inevitable.jpg" alt="">
+      <div class="carousel-caption">
+        <h4>Inevitable</h4>
+        <p>as the wheel, flying, walking on the moon</p>
+      </div>
+    </div>
+    <div class="item">
+      <img src="../assets/img/brilliant.jpg" alt="">
+      <div class="carousel-caption">
+        <h4>Brilliant</h4>
+        <p>times ahead</p>
+      </div>
+    </div>
+    <div class="item">
+      <img src="../assets/img/vision.jpg" alt="">
+      <div class="carousel-caption">
+        <h4>Interface Vision</h4>
+        <p>Programming without coding</p>
+      </div>
+    </div>
+  </div>
+  <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+  <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
+</div>
+
+-->
+
 <div class="featurette">
-  <iframe class="featurette-video pull-right" src="http://player.vimeo.com/video/41001941" width="640" height="360" frameborder="0" webkitallowfullscreen="webkitallowfullscreen" mozallowfullscreen="mozallowfullscreen" allowfullscreen="allowfullscreen"> </iframe>
+  
+  <iframe class="featurette-video pull-right" src="http://player.vimeo.com/video/41001941" width="640" height="360" frameborder="0" webkitallowfullscreenlscreen="webkitallowfullscreen" mozallowfullscreen="mozallowfullscreen" allowfullscreen="allowfullscreen"> </iframe>
   <h2 class="featurette-heading">We Code</h2>
   <h2 class="featurette-heading muted">So You Don't Have To</h2>
-  <h2 class="featurette-heading muted"><a href="/technology.html">See How</a></h2>
+  <h2 class="featurette-heading muted no-underline">
+    <a href="/technology.html">Learn How</a>
+  </h2>
 </div>
 
 <div class="signup-divider pagination-centered">
-  <h1>We Need Your Feedback!</h1>
+  <h1>We Need Feedback!</h1>
   <!--<a class="btn btn-large btn-success" href="https://docs.google.com/a/interfacevision.com/spreadsheet/viewform?formkey=dHhIdnh0eHVBN2p0MVRJYnB6Mmw0amc6MQ"  target="_blank">Sign Up For Alpha</a> -->
   <a class="btn btn-large btn-success" href="/signup.html">Sign Up For Alpha</a>
 </div>
@@ -24,8 +72,19 @@ tagline: Programming Without Coding
   <h1>HOW WE DO THE IMPOSSIBLE</h1>
 </div>  
 
-<div class="featurette">
-  <img class="featurette-image pull-right" src="../assets/img/iPadMockupVision-542x424.png">
+<div id="image-popup-vision" class="modal hide fade">
+  <div class="modal-body">
+    <img src="../assets/img/iPadMockupVision1084x847.png"></img>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn btn-primary" data-dismiss="modal">Close</a>
+  </div>
+</div>
+
+<div class="featurette cursor-pointer">
+  <a class="cursor-pointer" onclick="$('#image-popup-vision').modal({ keyboard: true, show: true, backdrop: false});">
+    <img class="featurette-image pull-right popup-image" src="../assets/img/iPadMockupVision524x409.png"></img>
+  </a>
   <h2 class="featurette-heading">Step 1. <span class="muted">We Code The Parts</span></h2>
   <p class="lead">We code hundreds of non-business specific software parts.</p>
   <p class="lead">We have low level software parts that support very simple tasks like adding two numbers.</p>
@@ -36,7 +95,7 @@ tagline: Programming Without Coding
 <hr class="featurette-divider">
 
 <div class="featurette">
-  <img class="featurette-image pull-left" src="../assets/img/iPadMockupVision-542x424.png">
+  <img class="featurette-image pull-left" src="../assets/img/iPadMockupVision524x409.png">
   <h2 class="featurette-heading">Step 2. <span class="muted">You Hook Up The Parts</span></h2>
   <p class="lead">You hook up parts, using our visual object language and framework, to solve your business specific problems. That's it.</p>
   <p class="lead">There is <strong>no need</strong> to code, compile, debug or test because the programs you create area always running. Always running allows you to get immediate feedback to any changes you make. This allows faster turn around times.</p>

@@ -3,6 +3,28 @@ html, body {
   font-family: 'Pontano Sans', sans-serif;
 }
 
+.cursor-pointer a:hover, .cursor-pointer a:active{
+	cursor: pointer;
+}
+
+.no-underline a:hover {
+	text-decoration: none;
+}
+
+.modal {
+	width: 920px;
+  margin-left: -460px; /* - width/2 */	
+}
+
+.modal.fade.in {
+	top: 25%;
+}
+
+.modal-body {
+	height: 690px;
+	max-height: 690px;
+}
+
 .container {
 	max-width:950px;
 }
