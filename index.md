@@ -65,8 +65,7 @@ tagline: Programming Without Coding
 -->
 
 <div class="featurette">
-  
-  <iframe class="featurette-video pull-right" src="http://player.vimeo.com/video/41001941" width="640" height="360" frameborder="0" webkitallowfullscreenlscreen="webkitallowfullscreen" mozallowfullscreen="mozallowfullscreen" allowfullscreen="allowfullscreen"> </iframe>
+  <iframe class="featurette-video pull-right" src="http://player.vimeo.com/video/41001941?api=0" width="640" height="360" frameborder="0" webkitAllowFullScreen = "webkitAllowFullScreen" mozallowfullscreen = "mozallowfullscreen" allowFullScreen = "allowFullScreen"> </iframe>
   <h2 class="featurette-heading">We Code</h2>
   <h2 class="featurette-heading muted">So You Don't Have To</h2>
   <h2 class="featurette-heading muted no-underline">
