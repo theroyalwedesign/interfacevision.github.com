@@ -102,7 +102,7 @@ tagline: Programming Without Coding
   </a>
   <h2 class="featurette-heading">Step 2. <span class="muted">You Hook Up The Parts</span></h2>
   <p class="lead">You hook up parts, using our visual object language and framework, to solve your business specific problems. That's it.</p>
-  <p class="lead">There is <strong>no need</strong> to code, compile, debug or test because the programs you create area always running. Always running allows you to get immediate feedback to any changes you make. This allows faster turn around times.</p>
+  <p class="lead">There is <strong>no need</strong> to code, compile, debug or test because the programs you create are always running. Always running allows you to get immediate feedback to any changes you make. This allows faster turn around times.</p>
   <p class="lead">Creating an online service? No problem. Our environment is being designed from the ground up to work seamlessly in the cloud.</p>
 </div>
 
