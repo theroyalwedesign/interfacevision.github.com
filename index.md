@@ -84,13 +84,13 @@ tagline: Programming Without Coding
 </div>  
 
 <div class="featurette cursor-pointer">
-  <a class="cursor-pointer" onclick="$('#image-to-show').attr('src','../assets/img/iPadMockupVision1084x847.png');$('#image-popup').modal({ keyboard: true, show: true, backdrop: true});">
-    <img class="featurette-image pull-right popup-image" src="../assets/img/iPadMockupVision524x409.png"></img>
+  <a class="cursor-pointer" onclick="$('#image-to-show').attr('src','../assets/img/iPadMockupParts1084x847.png');$('#image-popup').modal({ keyboard: true, show: true, backdrop: true});">
+    <img class="featurette-image pull-right popup-image" src="../assets/img/iPadMockupParts524x409.png"></img>
   </a>
   <h2 class="featurette-heading">Step 1. <span class="muted">We Code The Parts</span></h2>
   <p class="lead">We code hundreds of non-business specific software parts.</p>
   <p class="lead">We have low level software parts that support very simple tasks like adding two numbers.</p>
-  <p class="lead">We have high level software parts that support very complex tasks like communicating across the internet.</p>
+  <p class="lead">We have high level software parts and templates that support very complex tasks like communicating across the internet.</p>
   <p class="lead">We hope you can stick with the high level parts: getting your software out the door as soon as possible. However, you can use the low level parts if your business has very unique requirements.</p>
 </div>
 
