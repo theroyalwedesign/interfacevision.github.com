@@ -16,7 +16,7 @@ html, body {
 }
 
 .modal {
-	width: 920px;
+  width: 920px;
   margin-left: -460px; /* - width/2 */	
 }
 
@@ -245,16 +245,16 @@ body {
   margin: 80px 0; /* Space out the Bootstrap <hr> more */
 }
 .featurette {
-  padding-top: 40px; /* Vertically center images part 1: add padding above and below text. */
+  padding-top: 0px; /* Vertically center images part 1: add padding above and below text. */
   overflow: hidden; /* Vertically center images part 2: clear their floats. */
 }
 .featurette-image {
-  margin-top: -40px; /* Vertically center images part 3: negative margin up the image the same amount of the padding to center it. */
+  margin-top: 40px; /* Vertically center images part 3: negative margin up the image the same amount of the padding to center it. */
 	margin-bottom: 10px;
 }
 
 .featurette-video {
-  margin-top: -40px; /* Vertically center images part 3: negative margin up the image the same amount of the padding to center it. */
+  margin-top: 0px; /* Vertically center images part 3: negative margin up the image the same amount of the padding to center it. */
 }
 
 
