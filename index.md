@@ -92,6 +92,9 @@ tagline: Programming Without Coding
   <p class="lead">We have low level software parts that support very simple tasks like adding two numbers.</p>
   <p class="lead">We have high level software parts and templates that support very complex tasks like communicating across the internet.</p>
   <p class="lead">We hope you can stick with the high level parts: getting your software out the door as soon as possible. However, you can use the low level parts if your business has very unique requirements.</p>
+  
+  <p class="lead">What happens if your framework is missing parts you need? Our framework is incredibly easy to understand and use. This means a fast learning curve for developers within your organization who need to code new parts.</p>
+  
 </div>
 
 <hr class="featurette-divider">
@@ -106,7 +109,16 @@ tagline: Programming Without Coding
   <p class="lead">Creating an online service? No problem. Our environment is being designed from the ground up to work seamlessly in the cloud.</p>
 </div>
 
+<div class="huge-divider pagination-centered">
+  <h1>SHOW ME THE CORE TECHNOLOGY</h1>
+</div>  
 
+<div class="featurette">
+  <p class="pagination-centered">
+    <iframe class="featurette-video" src="http://player.vimeo.com/video/52974956" width="940" height="530" frameborder="0" webkitAllowFullScreen = "webkitAllowFullScreen" mozallowfullscreen = "mozallowfullscreen" allowFullScreen = "allowFullScreen"> </iframe>
+  </p>
+  <p class="lead">Our core technology is called Simple Interface Programming (SIP). You can learn more about SIP by going to our <a href = "/technology.html">technology</a> page.</p>
+</div>
 
 
 

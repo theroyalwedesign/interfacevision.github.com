@@ -51,7 +51,19 @@ SIP use properties, instead of methods, to define the tasks a part performs. Not
 
 SIP doesn't allow developers to create subroutines (methods, functions, modules, etc.) which take parameters.
 
-#### How We Pass Information To Different Parts 
+
+#### Discovering SIP
+
+If you have the time, watch our new video on Discovering Simple Interface Programming (SIP)
+
+<div class="featurette">
+  <p class="pagination-centered">
+    <iframe class="featurette-video" src="http://player.vimeo.com/video/52974956" width="940" height="530" frameborder="0" webkitAllowFullScreen = "webkitAllowFullScreen" mozallowfullscreen = "mozallowfullscreen" allowFullScreen = "allowFullScreen"> </iframe>
+  </p>
+</div>
+
+
+#### How We Pass Information To Different Parts
 
 In SIP, we don't really pass information to a part. Instead, we "pull" that information into the part. How do we do this?
 
