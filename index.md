@@ -64,8 +64,12 @@ tagline: Programming Without Coding
 </div>
 -->
 
-<div class="featurette">
-  <iframe class="featurette-video pull-right" src="http://player.vimeo.com/video/41001941?api=0" width="640" height="360" frameborder="0" webkitAllowFullScreen = "webkitAllowFullScreen" mozallowfullscreen = "mozallowfullscreen" allowFullScreen = "allowFullScreen"> </iframe>
+<div class="featurette cursor-pointer">
+  <a class="cursor-pointer" onclick="$('#image-to-show').attr('src','../assets/img/InterfaceVisionMockup1644x1161.png');$('#image-popup').modal({ keyboard: true, show: true, backdrop: true});">
+    <img class="featurette-image pull-right popup-image" src="../assets/img/interfaceVisionMockup524x370.png"></img>
+  </a>
+  
+<!--  <iframe class="featurette-video pull-right" src="http://player.vimeo.com/video/41001941?api=0" width="640" height="360" frameborder="0" webkitAllowFullScreen = "webkitAllowFullScreen" mozallowfullscreen = "mozallowfullscreen" allowFullScreen = "allowFullScreen"> </iframe> -->
   <h2 class="featurette-heading">We Code</h2>
   <h2 class="featurette-heading muted">So You Don't Have To</h2>
   <h2 class="featurette-heading muted no-underline">
