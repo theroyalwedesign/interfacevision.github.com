@@ -1,6 +1,27 @@
 <div class="well sidebar-nav">
   <ul class="nav nav-list">
-    <li class="nav-header">About</li>
-    <li> <a href="http://www.interfacevision.com">Interface Vision</a><p class="nav-about">a group working on software development platforms that can be used without coding.</p></li>
-  </ul>
+		<li>Documentation</li>
+     {% if site.JB.posts_collate.provider == "custom" %}
+       {% include custom/posts_collate %}
+     {% else %}
+       {% for post in posts_collate  %}
+         {% capture this_category %}{{ post.category }}{% endcapture %}
+         {% capture next_category %}{{ post.previous.category }}{% endcapture %}
+
+         {% if forloop.first %}
+           <li class="nav-header">{{ this_category }}</li>
+         {% endif %}
+
+         <li><a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></li>
+
+         {% if forloop.last %}
+         {% else %}
+           {% if this_year != next_year %}
+	           <li class="nav-header">{{ next_category }}</li>
+           {% endif %}
+         {% endif %}
+       {% endfor %}
+     {% endif %}
+     {% assign posts_collate = nil %}
+   </ul>
 </div>

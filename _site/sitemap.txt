@@ -3,6 +3,7 @@ http://bloginterfacevision.github.com/archive.html
 http://bloginterfacevision.github.com/atom.xml
 http://bloginterfacevision.github.com/blog.html
 http://bloginterfacevision.github.com/categories.html
+http://bloginterfacevision.github.com/documentation.html
 http://bloginterfacevision.github.com/index.html
 http://bloginterfacevision.github.com/pages.html
 http://bloginterfacevision.github.com/products.html
@@ -11,3 +12,5 @@ http://bloginterfacevision.github.com/signupthankyou.html
 http://bloginterfacevision.github.com/sitemap.txt
 http://bloginterfacevision.github.com/tags.html
 http://bloginterfacevision.github.com/technology.html
+
+http://bloginterfacevision.github.com/documentation-sip/doc-general-sip-properties

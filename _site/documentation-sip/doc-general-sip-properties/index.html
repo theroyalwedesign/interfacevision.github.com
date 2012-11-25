@@ -1,0 +1,275 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Defining and Using Properties in SIP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Eric Hosick">
+
+    <meta property="og:title" content="Interface Vision" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="http://www.interfacevision.com/assets/img/logoFinalStormyDaze122x260.png"/>
+    <meta property="og:description" content="Interface Vision is a group working on software development platforms that can be used without coding."/>
+    <meta property="fb:admins" content="erichosick" />
+
+    <link href='//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css' rel='stylesheet'>    
+    <link href="/assets/themes/twitter/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <link href="http://fonts.googleapis.com/css?family=Pontano+Sans" rel="stylesheet" type="text/css">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+
+<!--
+    <script src="/assets/js/jquery.js"></script>
+    <script src="/assets/js/bootstrap-transition.js"></script>
+    <script src="/assets/js/bootstrap-alert.js"></script>
+    <script src="/assets/js/bootstrap-modal.js"></script>
+    <script src="/assets/js/bootstrap-dropdown.js"></script>
+    <script src="/assets/js/bootstrap-scrollspy.js"></script>
+    <script src="/assets/js/bootstrap-tab.js"></script>
+    <script src="/assets/js/bootstrap-tooltip.js"></script>
+    <script src="/assets/js/bootstrap-popover.js"></script>
+    <script src="/assets/js/bootstrap-button.js"></script>
+    <script src="/assets/js/bootstrap-collapse.js"></script>
+    <script src="/assets/js/bootstrap-carousel.js"></script>
+    <script src="/assets/js/bootstrap-typeahead.js"></script>
+
+-->
+
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="/"><img src="/assets/img/logoFinalStormyDaze122x260.png"></img></a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li><a href="/">Home</a></li>
+              <li><a href="/technology.html">Our Technology</a></li>
+              <li><a href="/products.html">Products</a></li>
+							<li><a href="/documentation.html">Documentation</a></li>
+              <li><a href="http://blog.interfacevision.com">Blog</a></li>
+            </ul>
+            <p class="pull-right">
+<!--              <a class="nav-a-social" href="//plus.google.com/101227313031284036080?prsrc=3" rel="publisher">
+                <img src="//ssl.gstatic.com/images/icons/gplus-32.png" alt="Google+"/>
+              </a> -->
+              <a class="nav-a-social" href="//plus.google.com/101227313031284036080?prsrc=3" rel="publisher"target="_blank"><i class="icon-google-color icon-social"></i></a>
+              <a class="nav-a-social" href="http://www.twitter.com/interfacevision" target="_blank"><i class="icon-twitter-color icon-social"></i></a>
+              <a class="nav-a-social" href="mailto:erichosick@interfacevision.com"><i class="icon-mail-color icon-social"></i></a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div id="image-popup" class="modal hide fade">
+      <div class="modal-body">
+        <img id="image-to-show"></img>
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="btn btn-primary" data-dismiss="modal">Close</a>
+      </div>
+    </div>
+
+    <div class="container marketing">
+      
+<div class="hero-unit">
+  <h2 id='defining_and_using_properties_in_sip'>Defining and Using Properties in SIP</h2>
+
+<p>A property in Simple Interface Programming (SIP) is different from attributes or traditional properties.</p>
+
+<p>A SIP property can contain a part instance and software behavior.</p>
+
+<p>As such, accessing a SIP property will:</p>
+
+<ol>
+<li>return part located in that property.</li>
+
+<li>run behavior contained within the property.</li>
+
+<li>both locate a part and run the behavior on the part.</li>
+</ol>
+
+<h2 id='defining_properties_in_sip'>Defining Properties in SIP</h2>
+
+<p>Two steps are required to define a SIP property.</p>
+
+<h3 id='step_1__persisting_properties'>Step 1 - Persisting Properties</h3>
+
+<p>First, we define how the property is persisted.</p>
+
+<pre><code>private ItemClass p_propertySip = Empty.instanceStatic;
+[XmlElement(&quot;propertySip&quot;)] public ItemClass xml_propertySip {
+  get { return p_propertySip; }
+  set {
+    p_propertySip = (null != value) ? value : Empty.instanceStatic;
+    p_propertySip.parentDirect = this;
+  }
+}</code></pre>
+
+<p>Every SIP property has an XmlElement with a property name of xml_propertySip where propertySip is the name of the property. The Name of the element is almost always the same as the name of the property (in this case propertySip).</p>
+
+<pre><code>[XmlElement(&quot;propertySip&quot;)] public ItemClass xml_propertySip { ... }</code></pre>
+
+<p>The get scope of the property always returns the part located in p_propertySip as seen here:</p>
+
+<pre><code>get { return p_propertySip; }</code></pre>
+
+<p>where p_propertySip is defined as:</p>
+
+<p>private ItemClass p_propertySip = Empty.instanceStatic;</p>
+
+<p>Setting a SIP property involves setting the p_propertySip property and the properties parent part.</p>
+
+<p>A SIP property can <strong>never</strong> be null. As such, on setting the property, we check for null and set the instance to an Empty part if null was passed:</p>
+
+<pre><code>p_propertySip = (null != value) ? value : Empty.instanceStatic;</code></pre>
+
+<p>The part placed within a SIP property has a &#8220;parent&#8221; or another part that owns the part. As such, we set the parent of the new property to the current Part:</p>
+
+<pre><code>p_propertySip.parentDirect = this;</code></pre>
+
+<h3 id='step_2__accessing_properties'>Step 2 - Accessing Properties</h3>
+
+<p>Second, we need to describe how to access the persisted property:</p>
+
+<pre><code>[XmlIgnore] public IPart propertySip {
+  get { return xml_propertySip.callWith ? xml_propertySip.withItem : xml_propertySip; }
+}</code></pre>
+
+<p>You almost always access a SIP property through this property. Here is where we decide if we return a Part, run the behavior of a Part or do both.</p>
+
+<p>The callWith property of every Part is, by default, true. That means the behavior will always be called on a Part unless callWith is overridden. When overridden, and set to false, the access a property will return the part persisted in xml_propertySip.</p>
+
+<h3 id='putting_it_all_together'>Putting It All Together</h3>
+
+<p>Here is an example of a fully defined SIP property named variables.</p>
+
+<pre><code>	[XmlIgnore] public IPart variables {
+		get { xml_variables.callWith ? xml_variables.withItem : xml_variables; }
+	}
+	
+	private ItemClass p_variables = Empty.instanceStatic;
+	[XmlElement(&quot;variables&quot;)] public ItemClass xml_variables {
+		get { return p_variables; }
+		set {
+			p_variables = (null != value) ? value : Empty.instanceStatic;
+			p_variables.parentDirect = this;
+		}
+	}</code></pre>
+
+<h2 id='using_properties_in_sip'>Using Properties in SIP</h2>
+
+<h3 id='creating_a_part_instance'>Creating a Part Instance</h3>
+
+<p>When programmatically creating a part, you use the xml_propertySip. An example of creating a Template part is provided:</p>
+
+<pre><code>...
+IPart template = new Template {
+  xml_variables = new FloatNamed { name = &quot;some name&quot;, value = 4.0 },
+  xml_action = new ...
+}
+...</code></pre>
+
+<h3 id='using_a_property'>Using a Property</h3>
+
+<p>When programming, you use a property by simply accessing the property like so:</p>
+
+<pre><code>...
+IPart variablesFound = template.variables;
+...</code></pre>
+
+<p>In this example code along with the above example code, since callWith is true, the withItem of the Part located in xml_variables is called. This happens to be a FloatNamed which, when withItem is called, returns an instance of itself.</p>
+
+<h2 id='improving_access_time'>Improving Access Time</h2>
+
+<p>In some cases, your property may always want to run withItem of the Part placed in a property. In this case, we can simplify the implementation as follows:</p>
+
+<pre><code>[XmlIgnore] public IPart propertySip {
+  get { return xml_propertySip.withItem; }
+}</code></pre>
+
+<p>Let&#8217;s consider an add Part which contains a left and right argument. Add and is defined as follows:</p>
+
+<pre><code>namespace Vision.Core {
+  [Serializable] public class OpArgDual : Part, IArgDouble {
+    [XmlIgnore] public IPart argLeft {
+      get { return xml_argLeft.withItem; }
+    }
+
+    private ItemClass p_argLeft = Empty.instanceStatic;
+    [XmlElement(&quot;argLeft&quot;)] public ItemClass xml_argLeft {
+      get { return p_argLeft; }
+      set {
+        p_argLeft = (null != value) ? value : Empty.instanceStatic;
+        p_argLeft.parentDirect = this;
+      }
+    }
+
+    [XmlIgnore] public IPart argRight {
+      get { return xml_argRight.withItem; }
+    }
+
+    private ItemClass p_argRight = Empty.instanceStatic;
+    [XmlElement(&quot;argRight&quot;)] public ItemClass xml_argRight {
+      get { return p_argRight; }
+      set {
+        p_argRight = (null != value) ? value : Empty.instanceStatic;
+        p_argRight.parentDirect = this;
+      }
+    }
+  }
+
+  [Serializable] public class Add : OpArgDual {
+    [XmlIgnore] public override int withInt {
+      get {
+        return argLeft.withInt + argRight.withInt;
+      }
+    }
+  }
+}</code></pre>
+
+<p>In this case, we always need to use the value of argLeft or argRight when doing mathematical operations with left and right arguments. We never want to return the Part and use it in some way. So, in this case, we can simplify the get scope of argLeft and argRight directly accessing the persisted xml_argLeft.withItem (or xml_argRight.withItem).</p>
+
+<h2 id='why_not_use_macros_to_define_a_property'>Why Not Use Macros To Define A Property?</h2>
+
+<p>We don&#8217;t use macros because C# does not support macros <a href='http://blogs.msdn.com/b/csharpfaq/archive/2004/03/09/86979.aspx'>Why doesn&#8217;t C# support #define macros?</a></p>
+</div>
+
+
+      <div>
+				<footer>
+	        <hr>
+	        <div class="navbar">
+	          <ul class="nav">
+	            <li><a href="http://www.twitter.com/interfacevision" target="_blank">&copy; Interface Vision 2012</a></li>
+	            <li><a class="nav-a-social" href="https://plus.google.com/101227313031284036080/posts" target="_blank"><i class="icon-google-color icon-social"></i></a></li>
+	            <li><a class="nav-a-social" href="http://www.twitter.com/interfacevision" target="_blank"><i class="icon-twitter-color icon-social"></i></a></li>
+	            <li><a class="nav-a-social" href="mailto:erichosick@interfacevision.com"><i class="icon-mail-color icon-social"></i></a></li>
+	          </ul>
+	        </div>
+	       </footer>
+				</div>
+    </div>    
+
+    
+  </body>
+</html>
+
