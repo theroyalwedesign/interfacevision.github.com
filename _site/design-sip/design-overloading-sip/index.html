@@ -97,11 +97,11 @@
 
 <p>We don&#8217;t use overloading because our framework has no subroutines to overload. This is because the rules of Simple Interface Programming (SIP) don&#8217;t allow subroutines with explicit parameters.</p>
 
-<p>Instead of overloading, we use Parts that are able to operate on all primitives. Currently, we have chosen Part (aka object), string, boolean, integer, long, float, double, byte<span />, int<span />, long<span /> and float<span /> as the primitives we support.</p>
+<p>Instead of overloading, we use Parts that are able to operate on all primitives. Currently, we have chosen Part (aka object), string, boolean, integer, long, float, double, byte&#91;&#93;, int&#91;&#93;, long&#91;&#93; and float&#91;&#93; as the primitives we support.</p>
 
 <h2 id='example_of_traditional_overloading'>Example of Traditional Overloading</h2>
 
-<p>The following is how, traditionally, the function add would be defined:</p>
+<p>The following is how, traditionally, the function add would be defined for different primitives:</p>
 
 <pre><code>...
 int add (int left, int right ) { return left + right }
@@ -109,17 +109,17 @@ long add (long left, int right) { return left = right }
 long add (long left, long right) { return left + right }
 ...</code></pre>
 
-<p>and so on. The left and right parameters for add vary based on the primitives we need to add.</p>
+<p>and so on. The left and right parameters for add vary based on the primitives we need to add. This is known as overloading: specifically we have overloaded the subroutine add.</p>
 
-<h2 id='the_with_properties'>The &#8220;With&#8221; Properties</h2>
+<h2 id='how_we_overload_subroutines'>How We &#8220;Overload&#8221; Subroutines</h2>
 
-<p>Our Part part use &#8220;with&#8221; Properties: each &#8220;with&#8221; property being of a different primitive data type. Here is the pseudo-code for our Part part (note we are only showing withPart, withLong and withFloat).</p>
+<p>Our Part part use &#8220;with&#8221; Properties: each &#8220;with&#8221; property being of a different primitive data type. Here is the pseudo-code for our Part part (note we are only showing withPart, withInt and withFloat).</p>
 
 <pre><code>[Serializable] public class Part : IPart {
   ...
-  [XmlIgnore] public virtual IPart   withPart { get; set; }
-  [XmlIgnore] public virtual int    withLong { get; set; }
-  [XmlIgnore] public virtual float   withFloat { get; set; }
+  [XmlIgnore] public virtual IPart withPart { get; set; }
+  [XmlIgnore] public virtual int   withInt { get; set; }
+  [XmlIgnore] public virtual float withFloat { get; set; }
   ...
 }</code></pre>
 
@@ -239,15 +239,17 @@ IPart addTwoFloats = new Add { argLeft = floatA, argRight = floatB };
 
 <p>We are now able to support any combination of addition between the primitive data types of floats, strings, integers, arrays, and so on.</p>
 
-<h2 id='why_we_dont_use_overloading'>Why We Don&#8217;t Use Overloading</h2>
+<h2 id='why_we_use_with_properties'>Why We Use &#8220;With&#8221; Properties</h2>
 
-<p>Since SIP is supposed to be used with Interface Vision, we want to be able to visually represent operations without focusing on the primitives we are operating on.</p>
+<p>Since or framework is used with Interface Vision, we want to be able to visually represent operations without focusing on the primitives we are operating on.</p>
 
 <h3 id='visual_composition'>Visual Composition</h3>
 
 <p>Let&#8217;s see how addition looks visually.</p>
 <p class='pagination-centered'><img class='featurette-image img-polaroid' src='/assets/img/doc-overloading-sip-visual-example.png' /> <img /></p>
 <p>What is important to note is that the inputs and outputs to our addition configuration do not care about what primitive types we will be adding. By hooking up our Add, we are able to support <strong>all</strong> combinations of addition of primitive types. The actual primitive we operate in depends on which &#8220;with&#8221; property is accessed on the Add part.</p>
+
+<p>A cool thing to note is that this all happens at the &#8220;p-code&#8221; level meaning there is very little to no performance hit.</p>
 
 <h2 id='why_not_use_conversion_inside_operations'>Why Not Use Conversion Inside Operations?</h2>
 

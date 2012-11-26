@@ -4,7 +4,7 @@
  <title>Interface Vision</title>
  <link href="http://bloginterfacevision.github.com/atom.xml" rel="self"/>
  <link href="http://bloginterfacevision.github.com"/>
- <updated>2012-11-26T14:45:36+07:00</updated>
+ <updated>2012-11-26T15:06:39+07:00</updated>
  <id>http://bloginterfacevision.github.com</id>
  <author>
    <name>Eric Hosick</name>
@@ -23,11 +23,11 @@
 
 &lt;p&gt;We don&amp;#8217;t use overloading because our framework has no subroutines to overload. This is because the rules of Simple Interface Programming (SIP) don&amp;#8217;t allow subroutines with explicit parameters.&lt;/p&gt;
 
-&lt;p&gt;Instead of overloading, we use Parts that are able to operate on all primitives. Currently, we have chosen Part (aka object), string, boolean, integer, long, float, double, byte&lt;span /&gt;, int&lt;span /&gt;, long&lt;span /&gt; and float&lt;span /&gt; as the primitives we support.&lt;/p&gt;
+&lt;p&gt;Instead of overloading, we use Parts that are able to operate on all primitives. Currently, we have chosen Part (aka object), string, boolean, integer, long, float, double, byte&amp;#91;&amp;#93;, int&amp;#91;&amp;#93;, long&amp;#91;&amp;#93; and float&amp;#91;&amp;#93; as the primitives we support.&lt;/p&gt;
 
 &lt;h2 id='example_of_traditional_overloading'&gt;Example of Traditional Overloading&lt;/h2&gt;
 
-&lt;p&gt;The following is how, traditionally, the function add would be defined:&lt;/p&gt;
+&lt;p&gt;The following is how, traditionally, the function add would be defined for different primitives:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;...
 int add (int left, int right ) { return left + right }
@@ -35,17 +35,17 @@ long add (long left, int right) { return left = right }
 long add (long left, long right) { return left + right }
 ...&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;and so on. The left and right parameters for add vary based on the primitives we need to add.&lt;/p&gt;
+&lt;p&gt;and so on. The left and right parameters for add vary based on the primitives we need to add. This is known as overloading: specifically we have overloaded the subroutine add.&lt;/p&gt;
 
-&lt;h2 id='the_with_properties'&gt;The &amp;#8220;With&amp;#8221; Properties&lt;/h2&gt;
+&lt;h2 id='how_we_overload_subroutines'&gt;How We &amp;#8220;Overload&amp;#8221; Subroutines&lt;/h2&gt;
 
-&lt;p&gt;Our Part part use &amp;#8220;with&amp;#8221; Properties: each &amp;#8220;with&amp;#8221; property being of a different primitive data type. Here is the pseudo-code for our Part part (note we are only showing withPart, withLong and withFloat).&lt;/p&gt;
+&lt;p&gt;Our Part part use &amp;#8220;with&amp;#8221; Properties: each &amp;#8220;with&amp;#8221; property being of a different primitive data type. Here is the pseudo-code for our Part part (note we are only showing withPart, withInt and withFloat).&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;[Serializable] public class Part : IPart {
   ...
-  [XmlIgnore] public virtual IPart   withPart { get; set; }
-  [XmlIgnore] public virtual int    withLong { get; set; }
-  [XmlIgnore] public virtual float   withFloat { get; set; }
+  [XmlIgnore] public virtual IPart withPart { get; set; }
+  [XmlIgnore] public virtual int   withInt { get; set; }
+  [XmlIgnore] public virtual float withFloat { get; set; }
   ...
 }&lt;/code&gt;&lt;/pre&gt;
 
@@ -165,15 +165,17 @@ IPart addTwoFloats = new Add { argLeft = floatA, argRight = floatB };
 
 &lt;p&gt;We are now able to support any combination of addition between the primitive data types of floats, strings, integers, arrays, and so on.&lt;/p&gt;
 
-&lt;h2 id='why_we_dont_use_overloading'&gt;Why We Don&amp;#8217;t Use Overloading&lt;/h2&gt;
+&lt;h2 id='why_we_use_with_properties'&gt;Why We Use &amp;#8220;With&amp;#8221; Properties&lt;/h2&gt;
 
-&lt;p&gt;Since SIP is supposed to be used with Interface Vision, we want to be able to visually represent operations without focusing on the primitives we are operating on.&lt;/p&gt;
+&lt;p&gt;Since or framework is used with Interface Vision, we want to be able to visually represent operations without focusing on the primitives we are operating on.&lt;/p&gt;
 
 &lt;h3 id='visual_composition'&gt;Visual Composition&lt;/h3&gt;
 
 &lt;p&gt;Let&amp;#8217;s see how addition looks visually.&lt;/p&gt;
 &lt;p class='pagination-centered'&gt;&lt;img class='featurette-image img-polaroid' src='/assets/img/doc-overloading-sip-visual-example.png' /&gt; &lt;img /&gt;&lt;/p&gt;
 &lt;p&gt;What is important to note is that the inputs and outputs to our addition configuration do not care about what primitive types we will be adding. By hooking up our Add, we are able to support &lt;strong&gt;all&lt;/strong&gt; combinations of addition of primitive types. The actual primitive we operate in depends on which &amp;#8220;with&amp;#8221; property is accessed on the Add part.&lt;/p&gt;
+
+&lt;p&gt;A cool thing to note is that this all happens at the &amp;#8220;p-code&amp;#8221; level meaning there is very little to no performance hit.&lt;/p&gt;
 
 &lt;h2 id='why_not_use_conversion_inside_operations'&gt;Why Not Use Conversion Inside Operations?&lt;/h2&gt;
 

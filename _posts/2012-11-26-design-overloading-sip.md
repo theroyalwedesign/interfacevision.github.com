@@ -14,11 +14,11 @@ author_twitter: erichosick
 
 We don't use overloading because our framework has no subroutines to overload. This is because the rules of Simple Interface Programming (SIP) don't allow subroutines with explicit parameters.
 
-Instead of overloading, we use Parts that are able to operate on all primitives. Currently, we have chosen Part (aka object), string, boolean, integer, long, float, double, byte[], int[], long[] and float[] as the primitives we support.
+Instead of overloading, we use Parts that are able to operate on all primitives. Currently, we have chosen Part (aka object), string, boolean, integer, long, float, double, byte&#91;&#93;, int&#91;&#93;, long&#91;&#93; and float&#91;&#93; as the primitives we support.
 
 ## Example of Traditional Overloading
 
-The following is how, traditionally, the function add would be defined:
+The following is how, traditionally, the function add would be defined for different primitives:
 
     ...
     int add (int left, int right ) { return left + right }
@@ -26,17 +26,17 @@ The following is how, traditionally, the function add would be defined:
     long add (long left, long right) { return left + right }
     ...
 
-and so on. The left and right parameters for add vary based on the primitives we need to add.
+and so on. The left and right parameters for add vary based on the primitives we need to add. This is known as overloading: specifically we have overloaded the subroutine add.
 
-## The "With" Properties
+## How We "Overload" Subroutines
 
-Our Part part use "with" Properties: each "with" property being of a different primitive data type. Here is the pseudo-code for our Part part (note we are only showing withPart, withLong and withFloat).
+Our Part part use "with" Properties: each "with" property being of a different primitive data type. Here is the pseudo-code for our Part part (note we are only showing withPart, withInt and withFloat).
 
     [Serializable] public class Part : IPart {
       ...
-      [XmlIgnore] public virtual IPart   withPart { get; set; }
-      [XmlIgnore] public virtual int    withLong { get; set; }
-      [XmlIgnore] public virtual float   withFloat { get; set; }
+      [XmlIgnore] public virtual IPart withPart { get; set; }
+      [XmlIgnore] public virtual int   withInt { get; set; }
+      [XmlIgnore] public virtual float withFloat { get; set; }
       ...
     }
 
@@ -156,9 +156,9 @@ Adding two integers and getting a float:
 
 We are now able to support any combination of addition between the primitive data types of floats, strings, integers, arrays, and so on.
 
-## Why We Don't Use Overloading
+## Why We Use "With" Properties
 
-Since SIP is supposed to be used with Interface Vision, we want to be able to visually represent operations without focusing on the primitives we are operating on.
+Since or framework is used with Interface Vision, we want to be able to visually represent operations without focusing on the primitives we are operating on.
 
 ### Visual Composition
 
@@ -167,6 +167,8 @@ Let's see how addition looks visually.
 <p class="pagination-centered"><img class="featurette-image img-polaroid" src="/assets/img/doc-overloading-sip-visual-example.png"> </img></p>
 
 What is important to note is that the inputs and outputs to our addition configuration do not care about what primitive types we will be adding. By hooking up our Add, we are able to support **all** combinations of addition of primitive types. The actual primitive we operate in depends on which "with" property is accessed on the Add part.
+
+A cool thing to note is that this all happens at the "p-code" level meaning there is very little to no performance hit.
 
 ## Why Not Use Conversion Inside Operations?
 
