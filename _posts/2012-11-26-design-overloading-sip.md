@@ -207,6 +207,6 @@ We could have also created parts to do conversion such as a FloatToInt part. How
 
 In both examples, conversion within operations and conversion parts, we end up with part explosion: AddLong, AddFloat, AddString, AddFloatLong and so on. Really, if you think about it, overloading is not really the best way to define operations between primitive data types because of this subroutine explosion issue: a real problem in the programming industry.
 
-People do solve this problem to some extent by using things like Generics ([C# Generics](http://msdn.microsoft.com/en-us/library/ms379564(v=vs.80).aspx) for example).
+People do solve this problem to some extent by using things like Generics. Here, for example, are [C# Generics](http://msdn.microsoft.com/en-us/library/ms379564.aspx).
 
 
