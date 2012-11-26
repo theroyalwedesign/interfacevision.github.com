@@ -15,8 +15,8 @@ group: navigation
 	</div>
 	<div class="span9">
 		<div class="hero-unit">
-			<h1>Documentation</h1>
-			 <p>Documentation on SIP and Interface Vision.</p>
+			<h1>Documentation and Design</h1>
+			 <p>Documentation and Design Documents for Simple Interface Programming (SIP) and Interface Vision.</p>
       <ul>
         {% if site.JB.posts_collate.provider == "custom" %}
           {% include custom/posts_collate %}

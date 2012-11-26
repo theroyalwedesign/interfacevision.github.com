@@ -4,7 +4,7 @@
  <title>Interface Vision</title>
  <link href="http://bloginterfacevision.github.com/atom.xml" rel="self"/>
  <link href="http://bloginterfacevision.github.com"/>
- <updated>2012-11-25T17:07:11+07:00</updated>
+ <updated>2012-11-26T14:41:09+07:00</updated>
  <id>http://bloginterfacevision.github.com</id>
  <author>
    <name>Eric Hosick</name>
@@ -13,11 +13,218 @@
 
  
  <entry>
+   <title>Why We Don't Need Overloading</title>
+   <link href="http://bloginterfacevision.github.com/design-sip/design-overloading-sip"/>
+   <updated>2012-11-26T00:00:00+07:00</updated>
+   <id>http://bloginterfacevision.github.com/design-sip/design-overloading-sip</id>
+   <content type="html">&lt;h1 id='why_we_dont_use_overloading'&gt;Why We Don&amp;#8217;t Use Overloading&lt;/h1&gt;
+
+&lt;h2 id='introduction'&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;We don&amp;#8217;t use overloading because our framework has no subroutines to overload. This is because the rules of Simple Interface Programming (SIP) don&amp;#8217;t allow subroutines with explicit parameters.&lt;/p&gt;
+
+&lt;p&gt;Instead of overloading, we use Parts that are able to operate on all primitives. Currently, we have chosen Part (aka object), string, boolean, integer, long, float, double, byte&lt;span /&gt;, int&lt;span /&gt;, long&lt;span /&gt; and float&lt;span /&gt; as the primitives we support.&lt;/p&gt;
+
+&lt;h2 id='example_of_traditional_overloading'&gt;Example of Traditional Overloading&lt;/h2&gt;
+
+&lt;p&gt;The following is how, traditionally, the function add would be defined:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;...
+int add (int left, int right ) { return left + right }
+long add (long left, int right) { return left = right }
+long add (long left, long right) { return left + right }
+...&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and so on. The left and right parameters for add vary based on the primitives we need to add.&lt;/p&gt;
+
+&lt;h2 id='the_with_properties'&gt;The &amp;#8220;With&amp;#8221; Properties&lt;/h2&gt;
+
+&lt;p&gt;Our Part part use &amp;#8220;with&amp;#8221; Properties: each &amp;#8220;with&amp;#8221; property being of a different primitive data type. Here is the pseudo-code for our Part part (note we are only showing withPart, withLong and withFloat).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[Serializable] public class Part : IPart {
+  ...
+  [XmlIgnore] public virtual IPart   withPart { get; set; }
+  [XmlIgnore] public virtual int    withLong { get; set; }
+  [XmlIgnore] public virtual float   withFloat { get; set; }
+  ...
+}&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;By default, these properties do nothing for the set scope and return a &amp;#8220;default value&amp;#8221; for the get scope: usually 0, false, empty string, empty part and 0 length arrays.&lt;/p&gt;
+
+&lt;p&gt;Every Part that inherits from the Part class can optionally implement a &amp;#8220;with&amp;#8221; property.&lt;/p&gt;
+
+&lt;p&gt;Note: The Part class is our framework&amp;#8217;s &amp;#8220;object&amp;#8221; from which everything inherits. At some point, we will update the C# object class to contain &amp;#8220;with&amp;#8221; properties.&lt;/p&gt;
+
+&lt;h2 id='example_primitive_parts'&gt;Example Primitive Parts&lt;/h2&gt;
+
+&lt;p&gt;Let&amp;#8217;s look at pseudo-code for the Float and Integer part. Our Float and Integer parts implements the &amp;#8220;with&amp;#8221; properties as follows:&lt;/p&gt;
+
+&lt;h3 id='float_part'&gt;Float Part&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;namespace Vision.Core {
+
+  [Serializable] public class Float : Part {
+    protected float p_value = 0.0f;
+    [XmlElement(&amp;quot;value&amp;quot;)] public override float withFloat {
+      get { return p_value; }
+      set { p_value = value; }
+    }
+
+    [XmlIgnore] public override int withInt {
+      get { return (int)p_value; }
+      set { p_value = value; }
+    }
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Our Float Part is able to convert to different primitive types automatically (note this is pseudo-code and more validation occurs in the actual source code).&lt;/p&gt;
+
+&lt;p&gt;Note: At some point we will update object of C# to contain with properties. The example Float part would be removed and the float type would be updated. This allows us to take advantage of boxing, etc.&lt;/p&gt;
+
+&lt;h3 id='integer_part'&gt;Integer Part&lt;/h3&gt;
+
+&lt;p&gt;The Integer Part looks almost similar to the Float part.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;namespace Vision.Core {
+  [Serializable] public class Integer : Part {
+
+    protected int p_value = 0;
+    [XmlElement(&amp;quot;value&amp;quot;)] public override int withInt {
+      get { return p_value; }
+      set { p_value = value; }
+    }
+
+    [XmlIgnore] public override float withFloat {
+      get { return (float)withInt; }
+      set { withInt = (int)value; }
+    }
+
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id='operations'&gt;Operations&lt;/h2&gt;
+
+&lt;p&gt;So, we have our primitives defined. Let&amp;#8217;s look at how we bypass the need for Overloading by implementing an Add Part.&lt;/p&gt;
+
+&lt;h3 id='add_part'&gt;Add Part&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;namespace Vision.Core {
+  [Serializable] public class Add : OpArgDual {
+
+    [XmlElement(&amp;quot;argLeft&amp;quot;)] public Part argLeft { get; set; }
+    [XmlElement(&amp;quot;argRight&amp;quot;)] public Part argRight { get; set; }
+
+    [XmlIgnore] public override int withInt {
+      get { return argLeft.withInt + argRight.withInt; }
+    }
+
+    [XmlIgnore] public override float withFloat {
+      get {
+        return argLeft.withFloat + argRight.withFloat;
+      }
+    }
+
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;What is most interesting to note is that each &amp;#8220;with&amp;#8221; Property calls the associated &amp;#8220;with&amp;#8221; property of argLeft and argRight and then adds them. For example, withFloat is implemented as:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;return argLeft.withFloat + argRight.withFloat;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id='putting_it_all_together'&gt;Putting it All Together&lt;/h2&gt;
+
+&lt;p&gt;Let&amp;#8217;s see how we are able to use operations on different primitive types without Overloading. First, we will setup a few variables:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;...
+IPart integerA = new Integer { withInt = 3 };
+IPart integerB = new Integer { withInt = 4 };
+IPart floatA = new Float { withFloat = 3.0f };
+IPart floatB = new Float { withFloat = 3.0f };
+
+IPart addTwoInts = new Add { argLeft = integerA, argRight = integerB };
+IPart addTwoFloats = new Add { argLeft = floatA, argRight = floatB };
+
+	IPart addTwoThings = new Add { argLeft = floatA, argRight = integerA };
+...&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Adding two floats:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;float floatResult = addTwoFloats.withFloat;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Adding two integers:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;int integerResult = addTwoInts.withInt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Adding a float and an integer and getting a float:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;float floatResult = addTwoThings.withFloat;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Adding two integers and getting a float:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;float floatResult = addTowInts.withFloat;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We are now able to support any combination of addition between the primitive data types of floats, strings, integers, arrays, and so on.&lt;/p&gt;
+
+&lt;h2 id='why_we_dont_use_overloading'&gt;Why We Don&amp;#8217;t Use Overloading&lt;/h2&gt;
+
+&lt;p&gt;Since SIP is supposed to be used with Interface Vision, we want to be able to visually represent operations without focusing on the primitives we are operating on.&lt;/p&gt;
+
+&lt;h3 id='visual_composition'&gt;Visual Composition&lt;/h3&gt;
+
+&lt;p&gt;Let&amp;#8217;s see how addition looks visually.&lt;/p&gt;
+&lt;p class='pagination-centered'&gt;&lt;img class='featurette-image img-polaroid' src='/assets/img/doc-overloading-sip-visual-example.png' /&gt; &lt;img /&gt;&lt;/p&gt;
+&lt;p&gt;What is important to note is that the inputs and outputs to our addition configuration do not care about what primitive types we will be adding. By hooking up our Add, we are able to support &lt;strong&gt;all&lt;/strong&gt; combinations of addition of primitive types. The actual primitive we operate in depends on which &amp;#8220;with&amp;#8221; property is accessed on the Add part.&lt;/p&gt;
+
+&lt;h2 id='why_not_use_conversion_inside_operations'&gt;Why Not Use Conversion Inside Operations?&lt;/h2&gt;
+
+&lt;p&gt;We could have had a single withPart property and then provided conversion within operations.&lt;/p&gt;
+
+&lt;p&gt;However, this would require our code to continually validate that the correct type of data was returned before applying an operation. For example, let&amp;#8217;s say we wanted to implement adding integers and we only have withPart. We would need to do something as follows:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;namespace Vision.Core {
+  [Serializable] public class AddInteger : OpArgDual {
+
+    [XmlElement(&amp;quot;argLeft&amp;quot;)] public object argLeft { get; set; }
+    [XmlElement(&amp;quot;argRight&amp;quot;)] public object argRight { get; set; }
+
+    [XmlIgnore] public override object withPart {
+      get {
+        int result = 0;
+        if (( argLeft is int ) &amp;amp;&amp;amp; ( argRight is int )) {
+          result = (int)argLeft + (int)argRight;
+        } else {
+          // Throw an Exception? Just return 0?
+        }
+        return result
+      }
+    }
+
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We felt this would greatly slow down execution time: especially in math libraries.&lt;/p&gt;
+
+&lt;p&gt;Note: In this pseudo-code, we use object.&lt;/p&gt;
+
+&lt;h3 id='how_about_conversion_parts'&gt;How About Conversion Parts&lt;/h3&gt;
+
+&lt;p&gt;We could have also created parts to do conversion such as a FloatToInt part. However, we would end up, again, with Part explosion. Also, with a visual integration environment, you would have to use a lot of conversion parts making the program look, visually, messy.&lt;/p&gt;
+
+&lt;h3 id='subroutine_explosion'&gt;Subroutine Explosion&lt;/h3&gt;
+
+&lt;p&gt;In both examples, conversion within operations and conversion parts, we end up with part explosion: AddLong, AddFloat, AddString, AddFloatLong and so on. Really, if you think about it, overloading is not really the best way to define operations between primitive data types because of this subroutine explosion issue: a real problem in the programming industry.&lt;/p&gt;
+
+&lt;p&gt;People do solve this problem to some extent by using things like Generics (&lt;a href='http://msdn.microsoft.com/en-us/library/ms379564(v=vs.80'&gt;C# Generics&lt;/a&gt;.aspx) for example).&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
    <title>Defining and Using Properties in SIP</title>
-   <link href="http://bloginterfacevision.github.com/documentation-sip/doc-general-sip-properties"/>
+   <link href="http://bloginterfacevision.github.com/design-sip/design-general-sip-properties"/>
    <updated>2012-11-25T00:00:00+07:00</updated>
-   <id>http://bloginterfacevision.github.com/documentation-sip/doc-general-sip-properties</id>
-   <content type="html">&lt;h2 id='defining_and_using_properties_in_sip'&gt;Defining and Using Properties in SIP&lt;/h2&gt;
+   <id>http://bloginterfacevision.github.com/design-sip/design-general-sip-properties</id>
+   <content type="html">&lt;h1 id='defining_and_using_properties_in_sip'&gt;Defining and Using Properties in SIP&lt;/h1&gt;
+
+&lt;h2 id='introduction'&gt;Introduction&lt;/h2&gt;
 
 &lt;p&gt;A property in Simple Interface Programming (SIP) is different from attributes or traditional properties.&lt;/p&gt;
 
@@ -26,7 +233,7 @@
 &lt;p&gt;As such, accessing a SIP property will:&lt;/p&gt;
 
 &lt;ol&gt;
-&lt;li&gt;return part located in that property.&lt;/li&gt;
+&lt;li&gt;return a part located in that property.&lt;/li&gt;
 
 &lt;li&gt;run behavior contained within the property.&lt;/li&gt;
 

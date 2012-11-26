@@ -2,13 +2,15 @@
 layout: post
 title: "Defining and Using Properties in SIP"
 description: ""
-category: documentation-sip
+category: design-sip
 tags: [SIP Properties, Properties, Attributes]
 author: Eric Hosick
 author_twitter: erichosick
 ---
 
-## Defining and Using Properties in SIP
+# Defining and Using Properties in SIP
+
+## Introduction
 
 A property in Simple Interface Programming (SIP) is different from attributes or traditional properties.
 
@@ -16,7 +18,7 @@ A SIP property can contain a part instance and software behavior.
 
 As such, accessing a SIP property will:
 
-1. return part located in that property.
+1. return a part located in that property.
 1. run behavior contained within the property.
 1. both locate a part and run the behavior on the part.
 
