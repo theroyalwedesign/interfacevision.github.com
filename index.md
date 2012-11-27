@@ -89,7 +89,7 @@ tagline: Programming Without Coding
 
 <div class="featurette cursor-pointer">
   <a class="cursor-pointer" onclick="$('#image-to-show').attr('src','../assets/img/iPadMockupParts1084x847.png');$('#image-popup').modal({ keyboard: true, show: true, backdrop: true});">
-    <img class="featurette-image pull-right popup-image" src="../assets/img/iPadMockupParts524x409.png"></img>
+    <img class="featurette-image pull-right popup-image img-polaroid" src="../assets/img/iPadMockupParts524x409.png"></img>
   </a>
   <h2 class="featurette-heading">Step 1. <span class="muted">We Code The Parts</span></h2>
   <p class="lead">We code hundreds of non-business specific software parts.</p>
@@ -105,7 +105,7 @@ tagline: Programming Without Coding
 
 <div class="featurette cursor-pointer">
   <a class="cursor-pointer" onclick="$('#image-to-show').attr('src','../assets/img/iPadMockupVision1084x847.png');$('#image-popup').modal({ keyboard: true, show: true, backdrop: true});">
-    <img class="featurette-image pull-left popup-image" src="../assets/img/iPadMockupVision524x409.png"></img>
+    <img class="featurette-image pull-left popup-image img-polaroid" src="../assets/img/iPadMockupVision524x409.png"></img>
   </a>
   <h2 class="featurette-heading">Step 2. <span class="muted">You Hook Up The Parts</span></h2>
   <p class="lead">You hook up parts, using our visual object language and framework, to solve your business specific problems. That's it.</p>
