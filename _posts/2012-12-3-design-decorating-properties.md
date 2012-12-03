@@ -121,6 +121,14 @@ the output of this program is:
 
 The interesting point to notice is that the Observer is injected between xml_argLeft of Add and the Float Part which has a value of 4.3.
 
+## Visually Representing Decorators
+
+We should be able to represent decorators as "hooks" into our visual object language. The hook looks like a "current loop" - a device that wraps around a wire to monitor how much current flows through the wire.
+
+<p class="pagination-centered"><img class="featurette-image img-polaroid" src="/assets/img/design-decorating-properties-observer.png"> </img></p>
+
+We don't want to clutter up our original add program by visually injecting the Observer into our program. Instead, we are able to "attach" it to the program, as you would attaching any monitoring device to a circuit (for example).
+
 ## Cool Examples of Decorating Properties
 
 Note that we can do all of this while the program is running: no need to code, build, and then run the program.

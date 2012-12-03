@@ -4,7 +4,7 @@
  <title>Interface Vision</title>
  <link href="http://bloginterfacevision.github.com/atom.xml" rel="self"/>
  <link href="http://bloginterfacevision.github.com"/>
- <updated>2012-12-03T15:41:23+07:00</updated>
+ <updated>2012-12-03T17:17:37+07:00</updated>
  <id>http://bloginterfacevision.github.com</id>
  <author>
    <name>Eric Hosick</name>
@@ -129,6 +129,12 @@ IPart ignore = addTwoNumbers.withPart;
 6.7&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;The interesting point to notice is that the Observer is injected between xml_argLeft of Add and the Float Part which has a value of 4.3.&lt;/p&gt;
+
+&lt;h2 id='visually_representing_decorators'&gt;Visually Representing Decorators&lt;/h2&gt;
+
+&lt;p&gt;We should be able to represent decorators as &amp;#8220;hooks&amp;#8221; into our visual object language. The hook looks like a &amp;#8220;current loop&amp;#8221; - a device that wraps around a wire to monitor how much current flows through the wire.&lt;/p&gt;
+&lt;p class='pagination-centered'&gt;&lt;img class='featurette-image img-polaroid' src='/assets/img/design-decorating-properties-observer.png' /&gt; &lt;img /&gt;&lt;/p&gt;
+&lt;p&gt;We don&amp;#8217;t want to clutter up our original add program by visually injecting the Observer into our program. Instead, we are able to &amp;#8220;attach&amp;#8221; it to the program, as you would attaching any monitoring device to a circuit (for example).&lt;/p&gt;
 
 &lt;h2 id='cool_examples_of_decorating_properties'&gt;Cool Examples of Decorating Properties&lt;/h2&gt;
 
