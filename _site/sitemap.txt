@@ -13,5 +13,6 @@ http://bloginterfacevision.github.com/sitemap.txt
 http://bloginterfacevision.github.com/tags.html
 http://bloginterfacevision.github.com/technology.html
 
+http://bloginterfacevision.github.com/design-sip/design-decorating-properties
 http://bloginterfacevision.github.com/design-sip/design-overloading-sip
 http://bloginterfacevision.github.com/design-sip/design-general-sip-properties

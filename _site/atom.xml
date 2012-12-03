@@ -4,13 +4,150 @@
  <title>Interface Vision</title>
  <link href="http://bloginterfacevision.github.com/atom.xml" rel="self"/>
  <link href="http://bloginterfacevision.github.com"/>
- <updated>2012-11-27T22:08:04+07:00</updated>
+ <updated>2012-12-03T15:13:27+07:00</updated>
  <id>http://bloginterfacevision.github.com</id>
  <author>
    <name>Eric Hosick</name>
    <email>erichosick@interfacevision.com</email>
  </author>
 
+ 
+ <entry>
+   <title>Decorating Properties of Instances</title>
+   <link href="http://bloginterfacevision.github.com/design-sip/design-decorating-properties"/>
+   <updated>2012-12-03T00:00:00+07:00</updated>
+   <id>http://bloginterfacevision.github.com/design-sip/design-decorating-properties</id>
+   <content type="html">&lt;h1 id='decorating_properties_of_instances'&gt;Decorating Properties of Instances&lt;/h1&gt;
+
+&lt;h2 id='introduction'&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;The &lt;a href='http://en.wikipedia.org/wiki/Decorator_pattern'&gt;Decorator Pattern&lt;/a&gt; allows you to compose and alter &lt;strong&gt;object&lt;/strong&gt; behavior at runtime. This is a powerful design tool to have.&lt;/p&gt;
+
+&lt;p&gt;Adding the ability to &lt;strong&gt;decorate the property&lt;/strong&gt; of an object would be even more powerful. It would give developers the ability to alter behavior at any point in their program (similar in concept to &lt;a href='http://en.wikipedia.org/wiki/Aspect-oriented_programming'&gt;aspects&lt;/a&gt; but at runtime).&lt;/p&gt;
+
+&lt;p&gt;How is this done?&lt;/p&gt;
+
+&lt;h2 id='review_of_sip_properties'&gt;Review of SIP Properties&lt;/h2&gt;
+
+&lt;p&gt;Please take a quick look at our discussion on &lt;a href='/design-sip/design-overloading-sip/'&gt;Overloading&lt;/a&gt; if you would like an introduction to how SIP properties work.&lt;/p&gt;
+
+&lt;p&gt;Any behavior in SIP is composed of Parts. The composed program below displays the addition of two numbers in a console:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;..
+IPart addTwoNumbers = new ConsoleWriteLine {
+  xml_text = new FloatDefault {
+    xml_defaultValue =  new Add {
+      xml_argLeft = new Vision.Core.Float { withFloat = 4.3f },
+      xml_argRight = new Vision.Core.Float { withFloat = 2.4f }
+    }
+  }
+};
+IPart ignore = addTwoNumbers.withPart;
+..&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;the output of this program is:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;6.7&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The only &amp;#8220;tricky&amp;#8221; part of that program is the FloatDefault part. This part is used to convert the result of the addition from float to string (or we end up concatenating the values as strings resulting in &amp;#8216;4.32.4&amp;#8217; as the output).&lt;/p&gt;
+
+&lt;h2 id='the_observer_part'&gt;The Observer Part&lt;/h2&gt;
+
+&lt;p&gt;What better way to show how to decorator a property than to show how we can observer (see &lt;a href='http://en.wikipedia.org/wiki/Observer_pattern'&gt;Observer Pattern&lt;/a&gt;) any point in our program.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#8217;s provide some pseudo-code on the Observer part:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;public class Observer : PartParent {
+  public Part xml_property { get; set; }
+  public Part xml_actionBeforeGet { get; set; }
+  public Part xml_actionAfterGet { get; set; }
+
+  public override IPart withPart {
+    get {
+      IPart ignore = actionBeforeGet.withPart;
+      IPart result = property.withPart;
+      ignore = actionAfterGet.withPart;
+      return result;
+    }
+  }
+
+  public override float withFloat {
+    get {
+      IPart ignore = actionBeforeGet.withPart;
+      float result = property.withFloat;
+      ignore = actionAfterGet.withPart;
+      return result;
+    }
+  }
+  ....
+}&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The property xml_property contains the part, and thus access to the property, that we are going to observe. The actions we take before and after a property is accessed is configured in the xml_actionBeforeGet and xml_actionAfterGet properties respectively. The logic for each with property is the same:&lt;/p&gt;
+
+&lt;p&gt;Run the action before we access the property:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;IPart ignore = actionBeforeGet.withPart;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Use the property&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;float result = property.withFloat;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Run the action after we access the property.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ignore = actionAfterGet.withPart;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Finally, return the result of the get.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;return result;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We are now able to inject an observer anywhere within our program during run-time. Woo hoo! Note the observer, in this case, is passive. We should not alter the flow of the program in any way: just observe.&lt;/p&gt;
+
+&lt;h2 id='putting_it_all_together'&gt;Putting it All Together&lt;/h2&gt;
+
+&lt;p&gt;Let&amp;#8217;s print some text letting the user know we are accessing the argLeft property of Add.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;..
+IPart addTwoNumbers = new ConsoleWriteLine {
+  xml_text = new FloatDefault {
+    xml_defaultValue = new Add {
+      xml_argLeft = new Observer {
+          xml_property = new Float { withFloat = 4.3f },
+          xml_actionBeforeGet = new ConsoleWriteLine {
+	          xml_text = new String { withString = &amp;quot;The Add&amp;#39;s argLeft property will be accessed.&amp;quot; }
+        },
+      xml_argRight = new Float { withFloat = 2.4f }
+    }
+  }
+};
+
+IPart ignore = addTwoNumbers.withPart;
+..&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;the output of this program is:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;The Add&amp;#39;s argLeft property will be accessed.
+6.7&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The interesting point to notice is that the Observer is injected between xml_argLeft of Add and the Float Part which has a value of 4.3.&lt;/p&gt;
+
+&lt;h2 id='cool_examples_of_decorating_properties'&gt;Cool Examples of Decorating Properties&lt;/h2&gt;
+
+&lt;p&gt;Note that we can do all of this while the program is running: no need to code, build, and then run the program.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;We could wrap any property of a program using a Timer part letting us know how much CPU time is used by a particular property whenever it is called.&lt;/li&gt;
+
+&lt;li&gt;We can notify other parts of a program when a property was accessed allowing us to add &amp;#8220;onX&amp;#8221; events anywhere in the program.&lt;/li&gt;
+
+&lt;li&gt;We can debug parts of a program during runtime without altering the existing behavior (because the observer is passive): even in production if need be.&lt;/li&gt;
+
+&lt;li&gt;We can inject logic to monitor things like conversions (of customers for example) without altering the existing behavior of our program.&lt;/li&gt;
+
+&lt;li&gt;We can inject single event triggers in our program that remove themselves from the program once they trigger.&lt;/li&gt;
+
+&lt;li&gt;We can create Agents that inject behavior within a program to monitor different parts of a program.&lt;/li&gt;
+&lt;/ol&gt;</content>
+ </entry>
  
  <entry>
    <title>Why We Don't Need Overloading</title>
