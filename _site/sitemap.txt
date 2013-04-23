@@ -5,6 +5,8 @@ http://bloginterfacevision.github.com/blog.html
 http://bloginterfacevision.github.com/categories.html
 http://bloginterfacevision.github.com/docdesign.html
 http://bloginterfacevision.github.com/index.html
+http://bloginterfacevision.github.com/index2.html
+http://bloginterfacevision.github.com/index3.html
 http://bloginterfacevision.github.com/pages.html
 http://bloginterfacevision.github.com/products.html
 http://bloginterfacevision.github.com/signup.html

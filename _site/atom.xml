@@ -4,7 +4,7 @@
  <title>Interface Vision</title>
  <link href="http://bloginterfacevision.github.com/atom.xml" rel="self"/>
  <link href="http://bloginterfacevision.github.com"/>
- <updated>2012-12-03T17:17:37+07:00</updated>
+ <updated>2013-04-23T11:14:21-07:00</updated>
  <id>http://bloginterfacevision.github.com</id>
  <author>
    <name>Eric Hosick</name>
@@ -15,7 +15,7 @@
  <entry>
    <title>Decorating Properties of Instances</title>
    <link href="http://bloginterfacevision.github.com/design-sip/design-decorating-properties"/>
-   <updated>2012-12-03T00:00:00+07:00</updated>
+   <updated>2012-12-03T00:00:00-08:00</updated>
    <id>http://bloginterfacevision.github.com/design-sip/design-decorating-properties</id>
    <content type="html">&lt;h1 id='decorating_properties_of_instances'&gt;Decorating Properties of Instances&lt;/h1&gt;
 
@@ -158,7 +158,7 @@ IPart ignore = addTwoNumbers.withPart;
  <entry>
    <title>Why We Don't Need Overloading</title>
    <link href="http://bloginterfacevision.github.com/design-sip/design-overloading-sip"/>
-   <updated>2012-11-26T00:00:00+07:00</updated>
+   <updated>2012-11-26T00:00:00-08:00</updated>
    <id>http://bloginterfacevision.github.com/design-sip/design-overloading-sip</id>
    <content type="html">&lt;h1 id='why_we_dont_use_overloading'&gt;Why We Don&amp;#8217;t Use Overloading&lt;/h1&gt;
 
@@ -365,7 +365,7 @@ IPart addTwoFloats = new Add { argLeft = floatA, argRight = floatB };
  <entry>
    <title>Defining and Using Properties in SIP</title>
    <link href="http://bloginterfacevision.github.com/design-sip/design-general-sip-properties"/>
-   <updated>2012-11-25T00:00:00+07:00</updated>
+   <updated>2012-11-25T00:00:00-08:00</updated>
    <id>http://bloginterfacevision.github.com/design-sip/design-general-sip-properties</id>
    <content type="html">&lt;h1 id='defining_and_using_properties_in_sip'&gt;Defining and Using Properties in SIP&lt;/h1&gt;
 
