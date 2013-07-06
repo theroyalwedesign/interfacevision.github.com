@@ -1,6 +1,6 @@
 html, body {
   background-color: #f3f3f3;
-  font-family: 'Pontano Sans', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .cursor-pointer a:hover, .cursor-pointer a:active {
@@ -149,10 +149,14 @@ body {
 
 /* Downsize the brand/project name a bit */
 .navbar .brand {
-  padding: 14px 20px 16px; /* Increase vertical padding to match navbar links */
-  font-size: 16px;
-  font-weight: bold;
-  text-shadow: 0 -1px 0 rgba(0,0,0,.5);
+  padding: 4px 20px 4px; /* Increase vertical padding to match navbar links */
+  font-size: 38px;
+}
+
+/* Downsize the brand/project name a bit */
+.navbar .brandLogo {
+  padding: 8px 40px 4px 0px; /* Increase vertical padding to match navbar links */
+  font-size: 38px;
 }
 
 /* Navbar links: increase padding for taller navbar */

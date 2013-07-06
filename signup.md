@@ -6,7 +6,7 @@ tagline: Programming Without Coding
 {% include JB/setup %}
 
 # Interface Vision - Signup
-We are looking for early adopters interested in using our alpha products.
+Signup for our beta program and receive a free one year subscription to our Vision Business Plan.
 
 You can <a href="https://twitter.com/interfaceVision" class="twitter-follow-button" data-show-count="false" data-size="large" data-show-screen-name="false" data-dnt="true">Follow</a> us on Twitter if you don't want to give out your email address.
 
@@ -69,7 +69,7 @@ We will not share your email with anyone.
 
     <div class="control-group">
       <div class="controls">
-        <button class="btn btn-large btn-success" type="submit" name="submit" value="Submit">Sign Up For Alpha</button>
+        <button class="btn btn-large btn-success" type="submit" name="submit" value="Submit">Sign Up Now</button>
       </div>
     </div>
   </form>
