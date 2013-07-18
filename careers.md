@@ -28,7 +28,7 @@ theme:
 
 <div class="container marketing">
   <div class="featurette" id="Proposals">
-    <img class="featurette-image pull-right" src="{{ ASSET_PATH }}/img/misc/currentLog.jpg">
+    <img class="featurette-image pull-right" src="{{ ASSET_PATH }}/img/misc/career_01.png">
     <h2 class="featurette-heading">We Have The Technology</h2>
     <h2 class="featurette-heading muted">Do You Have The Skills</h2>
     <p class="lead">If you are a developer, you must be wondering how we do it. What magic goes on behind the scenes that makes <b><i>VISION</i></b> possible.</p>
