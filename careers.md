@@ -12,7 +12,7 @@ theme:
 <div id="myCarousel" class="carousel slide">
   <div class="carousel-inner">
     <div class="item active">
-      <img src="{{ ASSET_PATH }}/img/carousel/slide-04.jpg" alt="">
+      <img src="{{ ASSET_PATH }}/img/carousel/slide-11.jpg" alt="">
       <div class="container">
         <div class="carousel-caption">
           <h1>Careers</h1>
