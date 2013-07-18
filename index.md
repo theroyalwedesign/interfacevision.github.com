@@ -3,7 +3,7 @@ layout: page
 title: Interface Vision - Home
 id: home
 tagline: Decoding Software Development
-description: Interface Vision provides awesome development tools and educational products for aspiring software visionaries.
+description: Interface Vision provides awesome development tools and educational products.
 theme:
   name: twitter
 ---
