@@ -1,20 +1,18 @@
 
-http://bloginterfacevision.github.com/archive.html
-http://bloginterfacevision.github.com/atom.xml
-http://bloginterfacevision.github.com/blog.html
-http://bloginterfacevision.github.com/categories.html
-http://bloginterfacevision.github.com/docdesign.html
-http://bloginterfacevision.github.com/index.html
-http://bloginterfacevision.github.com/index2.html
-http://bloginterfacevision.github.com/index3.html
-http://bloginterfacevision.github.com/pages.html
-http://bloginterfacevision.github.com/products.html
-http://bloginterfacevision.github.com/signup.html
-http://bloginterfacevision.github.com/signupthankyou.html
-http://bloginterfacevision.github.com/sitemap.txt
-http://bloginterfacevision.github.com/tags.html
-http://bloginterfacevision.github.com/technology.html
+http://interfacevision.github.io/aboutUs.html
+http://interfacevision.github.io/archive.html
+http://interfacevision.github.io/atom.xml
+http://interfacevision.github.io/attribution.html
+http://interfacevision.github.io/careers.html
+http://interfacevision.github.io/categories.html
+http://interfacevision.github.io/contact.html
+http://interfacevision.github.io/index.html
+http://interfacevision.github.io/pages.html
+http://interfacevision.github.io/rss.xml
+http://interfacevision.github.io/signup.html
+http://interfacevision.github.io/signupthankyou.html
+http://interfacevision.github.io/sitemap.txt
+http://interfacevision.github.io/tags.html
+http://interfacevision.github.io/tour.html
 
-http://bloginterfacevision.github.com/design-sip/design-decorating-properties
-http://bloginterfacevision.github.com/design-sip/design-overloading-sip
-http://bloginterfacevision.github.com/design-sip/design-general-sip-properties
+http://interfacevision.github.io/lessons/2011/12/29/jekyll-introduction

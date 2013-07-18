@@ -1,10 +1,25 @@
 ---
-layout: post
+layout: page
 title: Interface Vision - Signup Successful
-tagline: Programming Without Coding
+id: signup
+tagline: Thank you for signing up for Interface Vision's beta program.
+theme:
+  name: twitter
 ---
+
 {% include JB/setup %}
 
-#Interface Vision - Signup Successful
-Your signup was successful.
-Return to [Interface Vision](/index.html).
+<!-- Carousel ================================================== -->
+<div id="myCarousel" class="carousel slide">
+  <div class="carousel-inner">
+    <div class="item active">
+      <img src="{{ ASSET_PATH }}/img/carousel/slide-07.jpg" alt="">
+      <div class="container">
+        <div class="carousel-caption">
+          <h1>Signup Successful</h1>
+          <p class="lead">Thank your for signing up to our Beta program.</p>
+        </div> <!-- carousel-caption -->
+      </div> <!-- container -->
+    </div> <!-- item active -->
+  </div> <!-- carousel-inner -->
+</div>

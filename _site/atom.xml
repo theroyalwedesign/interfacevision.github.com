@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
  
  <title>Interface Vision</title>
- <link href="http://bloginterfacevision.github.com/atom.xml" rel="self"/>
- <link href="http://bloginterfacevision.github.com"/>
- <updated>2013-07-05T23:16:32-07:00</updated>
- <id>http://bloginterfacevision.github.com</id>
+ <link href="http://interfacevision.github.io/" rel="self"/>
+ <link href="http://interfacevision.github.io"/>
+ <updated>2013-07-17T22:10:39-07:00</updated>
+ <id>http://interfacevision.github.io</id>
  <author>
    <name>Eric Hosick</name>
    <email>erichosick@interfacevision.com</email>
@@ -13,522 +13,328 @@
 
  
  <entry>
-   <title>Decorating Properties of Instances</title>
-   <link href="http://bloginterfacevision.github.com/design-sip/design-decorating-properties"/>
-   <updated>2012-12-03T00:00:00-08:00</updated>
-   <id>http://bloginterfacevision.github.com/design-sip/design-decorating-properties</id>
-   <content type="html">&lt;h1 id='decorating_properties_of_instances'&gt;Decorating Properties of Instances&lt;/h1&gt;
+   <title>Jekyll Introduction</title>
+   <link href="http://interfacevision.github.io/lessons/2011/12/29/jekyll-introduction"/>
+   <updated>2011-12-29T00:00:00-08:00</updated>
+   <id>http://interfacevision.github.io/lessons/2011/12/29/jekyll-introduction</id>
+   <content type="html">&lt;p&gt;This Jekyll introduction will outline specifically what Jekyll is and why you would want to use it. Directly following the intro we&amp;#8217;ll learn exactly &lt;em&gt;how&lt;/em&gt; Jekyll does what it does.&lt;/p&gt;
 
-&lt;h2 id='introduction'&gt;Introduction&lt;/h2&gt;
+&lt;h2 id='overview'&gt;Overview&lt;/h2&gt;
 
-&lt;p&gt;The &lt;a href='http://en.wikipedia.org/wiki/Decorator_pattern'&gt;Decorator Pattern&lt;/a&gt; allows you to compose and alter &lt;strong&gt;object&lt;/strong&gt; behavior at runtime. This is a powerful design tool to have.&lt;/p&gt;
+&lt;h3 id='what_is_jekyll'&gt;What is Jekyll?&lt;/h3&gt;
 
-&lt;p&gt;Adding the ability to &lt;strong&gt;decorate the property&lt;/strong&gt; of an object would be even more powerful. It would give developers the ability to alter behavior at any point in their program (similar in concept to &lt;a href='http://en.wikipedia.org/wiki/Aspect-oriented_programming'&gt;aspects&lt;/a&gt; but at runtime).&lt;/p&gt;
+&lt;p&gt;Jekyll is a parsing engine bundled as a ruby gem used to build static websites from dynamic components such as templates, partials, liquid code, markdown, etc. Jekyll is known as &amp;#8220;a simple, blog aware, static site generator&amp;#8221;.&lt;/p&gt;
 
-&lt;p&gt;How is this done?&lt;/p&gt;
+&lt;h3 id='examples'&gt;Examples&lt;/h3&gt;
 
-&lt;h2 id='review_of_sip_properties'&gt;Review of SIP Properties&lt;/h2&gt;
+&lt;p&gt;This website is created with Jekyll. &lt;a href='https://github.com/mojombo/jekyll/wiki/Sites'&gt;Other Jekyll websites&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;Please take a quick look at our discussion on &lt;a href='/design-sip/design-overloading-sip/'&gt;Overloading&lt;/a&gt; if you would like an introduction to how SIP properties work.&lt;/p&gt;
+&lt;h3 id='what_does_jekyll_do'&gt;What does Jekyll Do?&lt;/h3&gt;
 
-&lt;p&gt;Any behavior in SIP is composed of Parts. The composed program below displays the addition of two numbers in a console:&lt;/p&gt;
+&lt;p&gt;Jekyll is a ruby gem you install on your local system. Once there you can call &lt;code&gt;jekyll --server&lt;/code&gt; on a directory and provided that directory is setup in a way jekyll expects, it will do magic stuff like parse markdown/textile files, compute categories, tags, permalinks, and construct your pages from layout templates and partials.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;..
-IPart addTwoNumbers = new ConsoleWriteLine {
-  xml_text = new FloatDefault {
-    xml_defaultValue =  new Add {
-      xml_argLeft = new Vision.Core.Float { withFloat = 4.3f },
-      xml_argRight = new Vision.Core.Float { withFloat = 2.4f }
-    }
-  }
-};
-IPart ignore = addTwoNumbers.withPart;
-..&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Once parsed, Jekyll stores the result in a self-contained static &lt;code&gt;_site&lt;/code&gt; folder. The intention here is that you can serve all contents in this folder statically from a plain static web-server.&lt;/p&gt;
 
-&lt;p&gt;the output of this program is:&lt;/p&gt;
+&lt;p&gt;You can think of Jekyll as a normalish dynamic blog but rather than parsing content, templates, and tags on each request, Jekyll does this once &lt;em&gt;beforehand&lt;/em&gt; and caches the &lt;em&gt;entire website&lt;/em&gt; in a folder for serving statically.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;6.7&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id='jekyll_is_not_blogging_software'&gt;Jekyll is Not Blogging Software&lt;/h3&gt;
 
-&lt;p&gt;The only &amp;#8220;tricky&amp;#8221; part of that program is the FloatDefault part. This part is used to convert the result of the addition from float to string (or we end up concatenating the values as strings resulting in &amp;#8216;4.32.4&amp;#8217; as the output).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Jekyll is a parsing engine.&lt;/strong&gt;&lt;/p&gt;
 
-&lt;h2 id='the_observer_part'&gt;The Observer Part&lt;/h2&gt;
+&lt;p&gt;Jekyll does not come with any content nor does it have any templates or design elements. This is a common source of confusion when getting started. Jekyll does not come with anything you actually use or see on your website - you have to make it.&lt;/p&gt;
 
-&lt;p&gt;What better way to show how to decorator a property than to show how we can observer (see &lt;a href='http://en.wikipedia.org/wiki/Observer_pattern'&gt;Observer Pattern&lt;/a&gt;) any point in our program.&lt;/p&gt;
+&lt;h3 id='why_should_i_care'&gt;Why Should I Care?&lt;/h3&gt;
 
-&lt;p&gt;Let&amp;#8217;s provide some pseudo-code on the Observer part:&lt;/p&gt;
+&lt;p&gt;Jekyll is very minimalistic and very efficient. The most important thing to realize about Jekyll is that it creates a static representation of your website requiring only a static web-server. Traditional dynamic blogs like Wordpress require a database and server-side code. Heavily trafficked dynamic blogs must employ a caching layer that ultimately performs the same job Jekyll sets out to do; serve static content.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;public class Observer : PartParent {
-  public Part xml_property { get; set; }
-  public Part xml_actionBeforeGet { get; set; }
-  public Part xml_actionAfterGet { get; set; }
+&lt;p&gt;Therefore if you like to keep things simple and you prefer the command-line over an admin panel UI then give Jekyll a try.&lt;/p&gt;
 
-  public override IPart withPart {
-    get {
-      IPart ignore = actionBeforeGet.withPart;
-      IPart result = property.withPart;
-      ignore = actionAfterGet.withPart;
-      return result;
-    }
-  }
+&lt;p&gt;&lt;strong&gt;Developers like Jekyll because we can write content like we write code:&lt;/strong&gt;&lt;/p&gt;
 
-  public override float withFloat {
-    get {
-      IPart ignore = actionBeforeGet.withPart;
-      float result = property.withFloat;
-      ignore = actionAfterGet.withPart;
-      return result;
-    }
-  }
-  ....
-}&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;Ability to write content in markdown or textile in your favorite text-editor.&lt;/li&gt;
 
-&lt;p&gt;The property xml_property contains the part, and thus access to the property, that we are going to observe. The actions we take before and after a property is accessed is configured in the xml_actionBeforeGet and xml_actionAfterGet properties respectively. The logic for each with property is the same:&lt;/p&gt;
+&lt;li&gt;Ability to write and preview your content via localhost.&lt;/li&gt;
 
-&lt;p&gt;Run the action before we access the property:&lt;/p&gt;
+&lt;li&gt;No internet connection required.&lt;/li&gt;
 
-&lt;pre&gt;&lt;code&gt;IPart ignore = actionBeforeGet.withPart;&lt;/code&gt;&lt;/pre&gt;
+&lt;li&gt;Ability to publish via git.&lt;/li&gt;
 
-&lt;p&gt;Use the property&lt;/p&gt;
+&lt;li&gt;Ability to host your blog on a static web-server.&lt;/li&gt;
 
-&lt;pre&gt;&lt;code&gt;float result = property.withFloat;&lt;/code&gt;&lt;/pre&gt;
+&lt;li&gt;Ability to host freely on GitHub Pages.&lt;/li&gt;
 
-&lt;p&gt;Run the action after we access the property.&lt;/p&gt;
+&lt;li&gt;No database required.&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;pre&gt;&lt;code&gt;ignore = actionAfterGet.withPart;&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id='how_jekyll_works'&gt;How Jekyll Works&lt;/h1&gt;
 
-&lt;p&gt;Finally, return the result of the get.&lt;/p&gt;
+&lt;p&gt;The following is a complete but concise outline of exactly how Jekyll works.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;return result;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Be aware that core concepts are introduced in rapid succession without code examples. This information is not intended to specifically teach you how to do anything, rather it is intended to give you the &lt;em&gt;full picture&lt;/em&gt; relative to what is going on in Jekyll-world.&lt;/p&gt;
 
-&lt;p&gt;We are now able to inject an observer anywhere within our program during run-time. Woo hoo! Note the observer, in this case, is passive. We should not alter the flow of the program in any way: just observe.&lt;/p&gt;
+&lt;p&gt;Learning these core concepts should help you avoid common frustrations and ultimately help you better understand the code examples contained throughout Jekyll-Bootstrap.&lt;/p&gt;
 
-&lt;h2 id='putting_it_all_together'&gt;Putting it All Together&lt;/h2&gt;
+&lt;h2 id='initial_setup'&gt;Initial Setup&lt;/h2&gt;
 
-&lt;p&gt;Let&amp;#8217;s print some text letting the user know we are accessing the argLeft property of Add.&lt;/p&gt;
+&lt;p&gt;After &lt;a href='/index.html#start-now'&gt;installing jekyll&lt;/a&gt; you&amp;#8217;ll need to format your website directory in a way jekyll expects. Jekyll-bootstrap conveniently provides the base directory format.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;..
-IPart addTwoNumbers = new ConsoleWriteLine {
-  xml_text = new FloatDefault {
-    xml_defaultValue = new Add {
-      xml_argLeft = new Observer {
-          xml_property = new Float { withFloat = 4.3f },
-          xml_actionBeforeGet = new ConsoleWriteLine {
-	          xml_text = new String { withString = &amp;quot;The Add&amp;#39;s argLeft property will be accessed.&amp;quot; }
-        },
-      xml_argRight = new Float { withFloat = 2.4f }
-    }
-  }
-};
+&lt;h3 id='the_jekyll_application_base_format'&gt;The Jekyll Application Base Format&lt;/h3&gt;
 
-IPart ignore = addTwoNumbers.withPart;
-..&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Jekyll expects your website directory to be laid out like so:&lt;/p&gt;
 
-&lt;p&gt;the output of this program is:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;.
+|-- _config.yml
+|-- _includes
+|-- _layouts
+|   |-- default.html
+|   |-- post.html
+|-- _posts
+|   |-- 2011-10-25-open-source-is-good.markdown
+|   |-- 2011-04-26-hello-world.markdown
+|-- _site
+|-- index.html
+|-- assets
+    |-- css
+        |-- style.css
+    |-- javascripts&lt;/code&gt;&lt;/pre&gt;
 
-&lt;pre&gt;&lt;code&gt;The Add&amp;#39;s argLeft property will be accessed.
-6.7&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;_config.yml&lt;/strong&gt;&lt;br /&gt;Stores configuration data.&lt;/p&gt;
+&lt;/li&gt;
 
-&lt;p&gt;The interesting point to notice is that the Observer is injected between xml_argLeft of Add and the Float Part which has a value of 4.3.&lt;/p&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;_includes&lt;/strong&gt;&lt;br /&gt;This folder is for partial views.&lt;/p&gt;
+&lt;/li&gt;
 
-&lt;h2 id='visually_representing_decorators'&gt;Visually Representing Decorators&lt;/h2&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;_layouts&lt;/strong&gt; &lt;br /&gt;This folder is for the main templates your content will be inserted into. You can have different layouts for different pages or page sections.&lt;/p&gt;
+&lt;/li&gt;
 
-&lt;p&gt;We should be able to represent decorators as &amp;#8220;hooks&amp;#8221; into our visual object language. The hook looks like a &amp;#8220;current loop&amp;#8221; - a device that wraps around a wire to monitor how much current flows through the wire.&lt;/p&gt;
-&lt;p class='pagination-centered'&gt;&lt;img class='featurette-image img-polaroid' src='/assets/img/design-decorating-properties-observer.png' /&gt; &lt;img /&gt;&lt;/p&gt;
-&lt;p&gt;We don&amp;#8217;t want to clutter up our original add program by visually injecting the Observer into our program. Instead, we are able to &amp;#8220;attach&amp;#8221; it to the program, as you would attaching any monitoring device to a circuit (for example).&lt;/p&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;_posts&lt;/strong&gt;&lt;br /&gt;This folder contains your dynamic content/posts. the naming format is required to be &lt;code&gt;@YEAR-MONTH-DATE-title.MARKUP@&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
 
-&lt;h2 id='cool_examples_of_decorating_properties'&gt;Cool Examples of Decorating Properties&lt;/h2&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;_site&lt;/strong&gt;&lt;br /&gt;This is where the generated site will be placed once Jekyll is done transforming it.&lt;/p&gt;
+&lt;/li&gt;
 
-&lt;p&gt;Note that we can do all of this while the program is running: no need to code, build, and then run the program.&lt;/p&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;assets&lt;/strong&gt;&lt;br /&gt;This folder is not part of the standard jekyll structure. The assets folder represents &lt;em&gt;any generic&lt;/em&gt; folder you happen to create in your root directory. Directories and files not properly formatted for jekyll will be left untouched for you to serve normally.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;(read more: &lt;a href='https://github.com/mojombo/jekyll/wiki/Usage'&gt;https://github.com/mojombo/jekyll/wiki/Usage&lt;/a&gt;)&lt;/p&gt;
+
+&lt;h3 id='jekyll_configuration'&gt;Jekyll Configuration&lt;/h3&gt;
+
+&lt;p&gt;Jekyll supports various configuration options that are fully outlined here: &lt;a href='https://github.com/mojombo/jekyll/wiki/Configuration'&gt;https://github.com/mojombo/jekyll/wiki/Configuration&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id='content_in_jekyll'&gt;Content in Jekyll&lt;/h2&gt;
+
+&lt;p&gt;Content in Jekyll is either a post or a page. These content &amp;#8220;objects&amp;#8221; get inserted into one or more templates to build the final output for its respective static-page.&lt;/p&gt;
+
+&lt;h3 id='posts_and_pages'&gt;Posts and Pages&lt;/h3&gt;
+
+&lt;p&gt;Both posts and pages should be written in markdown, textile, or HTML and may also contain Liquid templating syntax. Both posts and pages can have meta-data assigned on a per-page basis such as title, url path, as well as arbitrary custom meta-data.&lt;/p&gt;
+
+&lt;h3 id='working_with_posts'&gt;Working With Posts&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Creating a Post&lt;/strong&gt; &lt;br /&gt;Posts are created by properly formatting a file and placing it the &lt;code&gt;_posts&lt;/code&gt; folder.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Formatting&lt;/strong&gt;&lt;br /&gt;A post must have a valid filename in the form &lt;code&gt;YEAR-MONTH-DATE-title.MARKUP&lt;/code&gt; and be placed in the &lt;code&gt;_posts&lt;/code&gt; directory. If the data format is invalid Jekyll will not recognize the file as a post. The date and title are automatically parsed from the filename of the post file. Additionally, each file must have &lt;a href='https://github.com/mojombo/jekyll/wiki/YAML-Front-Matter'&gt;YAML Front-Matter&lt;/a&gt; prepended to its content. YAML Front-Matter is a valid YAML syntax specifying meta-data for the given file.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Order&lt;/strong&gt;&lt;br /&gt;Ordering is an important part of Jekyll but it is hard to specify a custom ordering strategy. Only reverse chronological and chronological ordering is supported in Jekyll.&lt;/p&gt;
+
+&lt;p&gt;Since the date is hard-coded into the filename format, to change the order, you must change the dates in the filenames.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt; &lt;br /&gt;Posts can have tags associated with them as part of their meta-data. Tags may be placed on posts by providing them in the post&amp;#8217;s YAML front matter. You have access to the post-specific tags in the templates. These tags also get added to the sitewide collection.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Categories&lt;/strong&gt; &lt;br /&gt;Posts may be categorized by providing one or more categories in the YAML front matter. Categories offer more significance over tags in that they can be reflected in the URL path to the given post. Note categories in Jekyll work in a specific way. If you define more than one category you are defining a category hierarchy &amp;#8220;set&amp;#8221;. Example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;---
+title :  Hello World
+categories : [lessons, beginner]
+---&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This defines the category hierarchy &amp;#8220;lessons/beginner&amp;#8221;. Note this is &lt;em&gt;one category&lt;/em&gt; node in Jekyll. You won&amp;#8217;t find &amp;#8220;lessons&amp;#8221; and &amp;#8220;beginner&amp;#8221; as two separate categories unless you define them elsewhere as singular categories.&lt;/p&gt;
+
+&lt;h3 id='working_with_pages'&gt;Working With Pages&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Creating a Page&lt;/strong&gt;&lt;br /&gt;Pages are created by properly formatting a file and placing it anywhere in the root directory or subdirectories that do &lt;em&gt;not&lt;/em&gt; start with an underscore.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Formatting&lt;/strong&gt;&lt;br /&gt;In order to register as a Jekyll page the file must contain &lt;a href='https://github.com/mojombo/jekyll/wiki/YAML-Front-Matter'&gt;YAML Front-Matter&lt;/a&gt;. Registering a page means 1) that Jekyll will process the page and 2) that the page object will be available in the &lt;code&gt;site.pages&lt;/code&gt; array for inclusion into your templates.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Categories and Tags&lt;/strong&gt;&lt;br /&gt;Pages do not compute categories nor tags so defining them will have no effect.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Sub-Directories&lt;/strong&gt;&lt;br /&gt;If pages are defined in sub-directories, the path to the page will be reflected in the url. Example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;.
+|-- people
+    |-- bob
+        |-- essay.html&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This page will be available at &lt;code&gt;http://yourdomain.com/people/bob/essay.html&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Recommended Pages&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;index.html&lt;/strong&gt;&lt;br /&gt;You will always want to define the root index.html page as this will display on your root URL.&lt;/li&gt;
+
+&lt;li&gt;&lt;strong&gt;404.html&lt;/strong&gt;&lt;br /&gt;Create a root 404.html page and GitHub Pages will serve it as your 404 response.&lt;/li&gt;
+
+&lt;li&gt;&lt;strong&gt;sitemap.html&lt;/strong&gt;&lt;br /&gt;Generating a sitemap is good practice for SEO.&lt;/li&gt;
+
+&lt;li&gt;&lt;strong&gt;about.html&lt;/strong&gt;&lt;br /&gt;A nice about page is easy to do and gives the human perspective to your website.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id='templates_in_jekyll'&gt;Templates in Jekyll&lt;/h2&gt;
+
+&lt;p&gt;Templates are used to contain a page&amp;#8217;s or post&amp;#8217;s content. All templates have access to a global site object variable: &lt;code&gt;site&lt;/code&gt; as well as a page object variable: &lt;code&gt;page&lt;/code&gt;. The site variable holds all accessible content and metadata relative to the site. The page variable holds accessible data for the given page or post being rendered at that point.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Create a Template&lt;/strong&gt;&lt;br /&gt;Templates are created by properly formatting a file and placing it in the &lt;code&gt;_layouts&lt;/code&gt; directory.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Formatting&lt;/strong&gt;&lt;br /&gt;Templates should be coded in HTML and contain YAML Front Matter. All templates can contain Liquid code to work with your site&amp;#8217;s data.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Rending Page/Post Content in a Template&lt;/strong&gt;&lt;br /&gt;There is a special variable in all templates named : &lt;code&gt;content&lt;/code&gt;. The &lt;code&gt;content&lt;/code&gt; variable holds the page/post content including any sub-template content previously defined. Render the content variable wherever you want your main content to be injected into your template:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;...
+&amp;lt;body&amp;gt;
+  &amp;lt;div id=&quot;sidebar&quot;&amp;gt; ... &amp;lt;/div&amp;gt;
+  &amp;lt;div id=&quot;main&quot;&amp;gt;
+    &amp;#123;{content}&amp;#125;
+  &amp;lt;/div&amp;gt;
+&amp;lt;/body&amp;gt;
+...&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id='subtemplates'&gt;Sub-Templates&lt;/h3&gt;
+
+&lt;p&gt;Sub-templates are exactly templates with the only difference being they define another &amp;#8220;root&amp;#8221; layout/template within their YAML Front Matter. This essentially means a template will render inside of another template.&lt;/p&gt;
+
+&lt;h3 id='includes'&gt;Includes&lt;/h3&gt;
+
+&lt;p&gt;In Jekyll you can define include files by placing them in the &lt;code&gt;_includes&lt;/code&gt; folder. Includes are NOT templates, rather they are just code snippets that get included into templates. In this way, you can treat the code inside includes as if it was native to the parent template.&lt;/p&gt;
+
+&lt;p&gt;Any valid template code may be used in includes.&lt;/p&gt;
+
+&lt;h2 id='using_liquid_for_templating'&gt;Using Liquid for Templating&lt;/h2&gt;
+
+&lt;p&gt;Templating is perhaps the most confusing and frustrating part of Jekyll. This is mainly due to the fact that Jekyll templates must use the Liquid Templating Language.&lt;/p&gt;
+
+&lt;h3 id='what_is_liquid'&gt;What is Liquid?&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href='https://github.com/Shopify/liquid'&gt;Liquid&lt;/a&gt; is a secure templating language developed by &lt;a href='http://shopify.com'&gt;Shopify&lt;/a&gt;. Liquid is designed for end-users to be able to execute logic within template files without imposing any security risk on the hosting server.&lt;/p&gt;
+
+&lt;p&gt;Jekyll uses Liquid to generate the post content within the final page layout structure and as the primary interface for working with your site and post/page data.&lt;/p&gt;
+
+&lt;h3 id='why_do_we_have_to_use_liquid'&gt;Why Do We Have to Use Liquid?&lt;/h3&gt;
+
+&lt;p&gt;GitHub uses Jekyll to power &lt;a href='http://pages.github.com/'&gt;GitHub Pages&lt;/a&gt;. GitHub cannot afford to run arbitrary code on their servers so they lock developers down via Liquid.&lt;/p&gt;
+
+&lt;h3 id='liquid_is_not_programmerfriendly'&gt;Liquid is Not Programmer-Friendly.&lt;/h3&gt;
+
+&lt;p&gt;The short story is liquid is not real code and its not intended to execute real code. The point being you can&amp;#8217;t do jackshit in liquid that hasn&amp;#8217;t been allowed explicitly by the implementation. What&amp;#8217;s more you can only access data-structures that have been explicitly passed to the template.&lt;/p&gt;
+
+&lt;p&gt;In Jekyll&amp;#8217;s case it is not possible to alter what is passed to Liquid without hacking the gem or running custom plugins. Both of which cannot be supported by GitHub Pages.&lt;/p&gt;
+
+&lt;p&gt;As a programmer - this is very frustrating.&lt;/p&gt;
+
+&lt;p&gt;But rather than look a gift horse in the mouth we are going to suck it up and view it as an opportunity to work around limitations and adopt client-side solutions when possible.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Aside&lt;/strong&gt; &lt;br /&gt;My personal stance is to not invest time trying to hack liquid. It&amp;#8217;s really unnecessary &lt;em&gt;from a programmer&amp;#8217;s&lt;/em&gt; perspective. That is to say if you have the ability to run custom plugins (i.e. run arbitrary ruby code) you are better off sticking with ruby. Toward that end I&amp;#8217;ve built &lt;a href='http://github.com/plusjade/mustache-with-jekyll'&gt;Mustache-with-Jekyll&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id='static_assets'&gt;Static Assets&lt;/h2&gt;
+
+&lt;p&gt;Static assets are any file in the root or non-underscored subfolders that are not pages. That is they have no valid YAML Front Matter and are thus not treated as Jekyll Pages.&lt;/p&gt;
+
+&lt;p&gt;Static assets should be used for images, css, and javascript files.&lt;/p&gt;
+
+&lt;h2 id='how_jekyll_parses_files'&gt;How Jekyll Parses Files&lt;/h2&gt;
+
+&lt;p&gt;Remember Jekyll is a processing engine. There are two main types of parsing in Jekyll.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Content parsing.&lt;/strong&gt; &lt;br /&gt;This is done with textile or markdown.&lt;/li&gt;
+
+&lt;li&gt;&lt;strong&gt;Template parsing.&lt;/strong&gt; &lt;br /&gt;This is done with the liquid templating language.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;And thus there are two main types of file formats needed for this parsing.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Post and Page files.&lt;/strong&gt;&lt;br /&gt;All content in Jekyll is either a post or a page so valid posts and pages are parsed with markdown or textile.&lt;/li&gt;
+
+&lt;li&gt;&lt;strong&gt;Template files.&lt;/strong&gt; &lt;br /&gt;These files go in &lt;code&gt;_layouts&lt;/code&gt; folder and contain your blogs &lt;strong&gt;templates&lt;/strong&gt;. They should be made in HTML with the help of Liquid syntax. Since include files are simply injected into templates they are essentially parsed as if they were native to the template.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Arbitrary files and folders.&lt;/strong&gt; &lt;br /&gt;Files that &lt;em&gt;are not&lt;/em&gt; valid pages are treated as static content and pass through Jekyll untouched and reside on your blog in the exact structure and format they originally existed in.&lt;/p&gt;
+
+&lt;h3 id='formatting_files_for_parsing'&gt;Formatting Files for Parsing.&lt;/h3&gt;
+
+&lt;p&gt;We&amp;#8217;ve outlined the need for valid formatting using &lt;strong&gt;YAML Front Matter&lt;/strong&gt;. Templates, posts, and pages all need to provide valid YAML Front Matter even if the Matter is empty. This is the only way Jekyll knows you want the file processed.&lt;/p&gt;
+
+&lt;p&gt;YAML Front Matter must be prepended to the top of template/post/page files:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;---
+layout: post
+category : pages
+tags : [how-to, jekyll]
+---
+
+... contents ...&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Three hyphens on a new line start the Front-Matter block and three hyphens on a new line end the block. The data inside the block must be valid YAML.&lt;/p&gt;
+
+&lt;p&gt;Configuration parameters for YAML Front-Matter is outlined here: &lt;a href='https://github.com/mojombo/jekyll/wiki/YAML-Front-Matter'&gt;A comprehensive explanation of YAML Front Matter&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id='defining_layouts_for_posts_and_templates_parsing'&gt;Defining Layouts for Posts and Templates Parsing.&lt;/h4&gt;
+
+&lt;p&gt;The &lt;code&gt;layout&lt;/code&gt; parameter in the YAML Front Matter defines the template file for which the given post or template should be injected into. If a template file specifies its own layout, it is effectively being used as a &lt;code&gt;sub-template.&lt;/code&gt; That is to say loading a post file into a template file that refers to another template file with work in the way you&amp;#8217;d expect; as a nested sub-template.&lt;/p&gt;
+
+&lt;h2 id='how_jekyll_generates_the_final_static_files'&gt;How Jekyll Generates the Final Static Files.&lt;/h2&gt;
+
+&lt;p&gt;Ultimately, Jekyll&amp;#8217;s job is to generate a static representation of your website. The following is an outline of how that&amp;#8217;s done:&lt;/p&gt;
 
 &lt;ol&gt;
-&lt;li&gt;We could wrap any property of a program using a Timer part letting us know how much CPU time is used by a particular property whenever it is called.&lt;/li&gt;
-
-&lt;li&gt;We can notify other parts of a program when a property was accessed allowing us to add &amp;#8220;onX&amp;#8221; events anywhere in the program.&lt;/li&gt;
-
-&lt;li&gt;We can debug parts of a program during runtime without altering the existing behavior (because the observer is passive): even in production if need be.&lt;/li&gt;
-
-&lt;li&gt;We can inject logic to monitor things like conversions (of customers for example) without altering the existing behavior of our program.&lt;/li&gt;
-
-&lt;li&gt;We can inject single event triggers in our program that remove themselves from the program once they trigger.&lt;/li&gt;
-
-&lt;li&gt;We can create Agents that inject behavior within a program to monitor different parts of a program.&lt;/li&gt;
-&lt;/ol&gt;</content>
- </entry>
- 
- <entry>
-   <title>Why We Don't Need Overloading</title>
-   <link href="http://bloginterfacevision.github.com/design-sip/design-overloading-sip"/>
-   <updated>2012-11-26T00:00:00-08:00</updated>
-   <id>http://bloginterfacevision.github.com/design-sip/design-overloading-sip</id>
-   <content type="html">&lt;h1 id='why_we_dont_use_overloading'&gt;Why We Don&amp;#8217;t Use Overloading&lt;/h1&gt;
-
-&lt;h2 id='introduction'&gt;Introduction&lt;/h2&gt;
-
-&lt;p&gt;We don&amp;#8217;t use overloading because our framework has no subroutines to overload. This is because the rules of Simple Interface Programming (SIP) don&amp;#8217;t allow subroutines with explicit parameters.&lt;/p&gt;
-
-&lt;p&gt;Instead of overloading, we use Parts that are able to operate on all primitives. Currently, we have chosen Part (aka object), string, boolean, integer, long, float, double, byte&amp;#91;&amp;#93;, int&amp;#91;&amp;#93;, long&amp;#91;&amp;#93; and float&amp;#91;&amp;#93; as the primitives we support.&lt;/p&gt;
-
-&lt;h2 id='example_of_traditional_overloading'&gt;Example of Traditional Overloading&lt;/h2&gt;
-
-&lt;p&gt;The following is how, traditionally, the function add would be defined for different primitives:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;...
-int add (int left, int right ) { return left + right }
-long add (long left, int right) { return left = right }
-long add (long left, long right) { return left + right }
-...&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;and so on. The left and right parameters for add vary based on the primitives we need to add. This is known as overloading: specifically we have overloaded the subroutine add.&lt;/p&gt;
-
-&lt;h2 id='how_we_overload_subroutines'&gt;How We &amp;#8220;Overload&amp;#8221; Subroutines&lt;/h2&gt;
-
-&lt;p&gt;Our Part part use &amp;#8220;with&amp;#8221; Properties: each &amp;#8220;with&amp;#8221; property being of a different primitive data type. Here is the pseudo-code for our Part part (note we are only showing withPart, withInt and withFloat).&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;[Serializable] public class Part : IPart {
-  ...
-  [XmlIgnore] public virtual IPart withPart { get; set; }
-  [XmlIgnore] public virtual int   withInt { get; set; }
-  [XmlIgnore] public virtual float withFloat { get; set; }
-  ...
-}&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;By default, these properties do nothing for the set scope and return a &amp;#8220;default value&amp;#8221; for the get scope: usually 0, false, empty string, empty part and 0 length arrays.&lt;/p&gt;
-
-&lt;p&gt;Every Part that inherits from the Part class can optionally implement a &amp;#8220;with&amp;#8221; property.&lt;/p&gt;
-
-&lt;p&gt;Note: The Part class is our framework&amp;#8217;s &amp;#8220;object&amp;#8221; from which everything inherits. At some point, we will update the C# object class to contain &amp;#8220;with&amp;#8221; properties.&lt;/p&gt;
-
-&lt;h2 id='example_primitive_parts'&gt;Example Primitive Parts&lt;/h2&gt;
-
-&lt;p&gt;Let&amp;#8217;s look at pseudo-code for the Float and Integer part. Our Float and Integer parts implements the &amp;#8220;with&amp;#8221; properties as follows:&lt;/p&gt;
-
-&lt;h3 id='float_part'&gt;Float Part&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;namespace Vision.Core {
-
-  [Serializable] public class Float : Part {
-    protected float p_value = 0.0f;
-    [XmlElement(&amp;quot;value&amp;quot;)] public override float withFloat {
-      get { return p_value; }
-      set { p_value = value; }
-    }
-
-    [XmlIgnore] public override int withInt {
-      get { return (int)p_value; }
-      set { p_value = value; }
-    }
-  }
-}&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Our Float Part is able to convert to different primitive types automatically (note this is pseudo-code and more validation occurs in the actual source code).&lt;/p&gt;
-
-&lt;p&gt;Note: At some point we will update object of C# to contain with properties. The example Float part would be removed and the float type would be updated. This allows us to take advantage of boxing, etc.&lt;/p&gt;
-
-&lt;h3 id='integer_part'&gt;Integer Part&lt;/h3&gt;
-
-&lt;p&gt;The Integer Part looks almost similar to the Float part.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;namespace Vision.Core {
-  [Serializable] public class Integer : Part {
-
-    protected int p_value = 0;
-    [XmlElement(&amp;quot;value&amp;quot;)] public override int withInt {
-      get { return p_value; }
-      set { p_value = value; }
-    }
-
-    [XmlIgnore] public override float withFloat {
-      get { return (float)withInt; }
-      set { withInt = (int)value; }
-    }
-
-  }
-}&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id='operations'&gt;Operations&lt;/h2&gt;
-
-&lt;p&gt;So, we have our primitives defined. Let&amp;#8217;s look at how we bypass the need for Overloading by implementing an Add Part.&lt;/p&gt;
-
-&lt;h3 id='add_part'&gt;Add Part&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;namespace Vision.Core {
-  [Serializable] public class Add : OpArgDual {
-
-    [XmlElement(&amp;quot;argLeft&amp;quot;)] public Part argLeft { get; set; }
-    [XmlElement(&amp;quot;argRight&amp;quot;)] public Part argRight { get; set; }
-
-    [XmlIgnore] public override int withInt {
-      get { return argLeft.withInt + argRight.withInt; }
-    }
-
-    [XmlIgnore] public override float withFloat {
-      get {
-        return argLeft.withFloat + argRight.withFloat;
-      }
-    }
-
-  }
-}&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;What is most interesting to note is that each &amp;#8220;with&amp;#8221; Property calls the associated &amp;#8220;with&amp;#8221; property of argLeft and argRight and then adds them. For example, withFloat is implemented as:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;return argLeft.withFloat + argRight.withFloat;&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id='putting_it_all_together'&gt;Putting it All Together&lt;/h2&gt;
-
-&lt;p&gt;Let&amp;#8217;s see how we are able to use operations on different primitive types without Overloading. First, we will setup a few variables:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;...
-IPart integerA = new Integer { withInt = 3 };
-IPart integerB = new Integer { withInt = 4 };
-IPart floatA = new Float { withFloat = 3.0f };
-IPart floatB = new Float { withFloat = 3.0f };
-
-IPart addTwoInts = new Add { argLeft = integerA, argRight = integerB };
-IPart addTwoFloats = new Add { argLeft = floatA, argRight = floatB };
-
-	IPart addTwoThings = new Add { argLeft = floatA, argRight = integerA };
-...&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Adding two floats:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;float floatResult = addTwoFloats.withFloat;&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Adding two integers:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;int integerResult = addTwoInts.withInt;&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Adding a float and an integer and getting a float:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;float floatResult = addTwoThings.withFloat;&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Adding two integers and getting a float:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;float floatResult = addTowInts.withFloat;&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;We are now able to support any combination of addition between the primitive data types of floats, strings, integers, arrays, and so on.&lt;/p&gt;
-
-&lt;h2 id='why_we_use_with_properties'&gt;Why We Use &amp;#8220;With&amp;#8221; Properties&lt;/h2&gt;
-
-&lt;p&gt;Since or framework is used with Interface Vision, we want to be able to visually represent operations without focusing on the primitives we are operating on.&lt;/p&gt;
-
-&lt;h3 id='visual_composition'&gt;Visual Composition&lt;/h3&gt;
-
-&lt;p&gt;Let&amp;#8217;s see how addition looks visually.&lt;/p&gt;
-&lt;p class='pagination-centered'&gt;&lt;img class='featurette-image img-polaroid' src='/assets/img/doc-overloading-sip-visual-example.png' /&gt; &lt;img /&gt;&lt;/p&gt;
-&lt;p&gt;What is important to note is that the inputs and outputs to our addition configuration do not care about what primitive types we will be adding. By hooking up our Add, we are able to support &lt;strong&gt;all&lt;/strong&gt; combinations of addition of primitive types. The actual primitive we operate in depends on which &amp;#8220;with&amp;#8221; property is accessed on the Add part.&lt;/p&gt;
-
-&lt;p&gt;A cool thing to note is that this all happens at the &amp;#8220;p-code&amp;#8221; level meaning there is very little to no performance hit.&lt;/p&gt;
-
-&lt;h2 id='why_not_use_conversion_inside_operations'&gt;Why Not Use Conversion Inside Operations?&lt;/h2&gt;
-
-&lt;p&gt;We could have had a single withPart property and then provided conversion within operations.&lt;/p&gt;
-
-&lt;p&gt;However, this would require our code to continually validate that the correct type of data was returned before applying an operation. For example, let&amp;#8217;s say we wanted to implement adding integers and we only have withPart. We would need to do something as follows:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;namespace Vision.Core {
-  [Serializable] public class AddInteger : OpArgDual {
-
-    [XmlElement(&amp;quot;argLeft&amp;quot;)] public object argLeft { get; set; }
-    [XmlElement(&amp;quot;argRight&amp;quot;)] public object argRight { get; set; }
-
-    [XmlIgnore] public override object withPart {
-      get {
-        int result = 0;
-        if (( argLeft is int ) &amp;amp;&amp;amp; ( argRight is int )) {
-          result = (int)argLeft + (int)argRight;
-        } else {
-          // Throw an Exception? Just return 0?
-        }
-        return result
-      }
-    }
-
-  }
-}&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;We felt this would greatly slow down execution time: especially in math libraries.&lt;/p&gt;
-
-&lt;p&gt;Note: In this pseudo-code, we use object.&lt;/p&gt;
-
-&lt;h3 id='how_about_conversion_parts'&gt;How About Conversion Parts&lt;/h3&gt;
-
-&lt;p&gt;We could have also created parts to do conversion such as a FloatToInt part. However, we would end up, again, with Part explosion. Also, with a visual integration environment, you would have to use a lot of conversion parts making the program look, visually, messy.&lt;/p&gt;
-
-&lt;h3 id='subroutine_explosion'&gt;Subroutine Explosion&lt;/h3&gt;
-
-&lt;p&gt;In both examples, conversion within operations and conversion parts, we end up with part explosion: AddLong, AddFloat, AddString, AddFloatLong and so on. Really, if you think about it, overloading is not really the best way to define operations between primitive data types because of this subroutine explosion issue: a real problem in the programming industry.&lt;/p&gt;
-
-&lt;p&gt;People do solve this problem to some extent by using things like Generics. Here, for example, are &lt;a href='http://msdn.microsoft.com/en-us/library/ms379564.aspx'&gt;C# Generics&lt;/a&gt;.&lt;/p&gt;</content>
- </entry>
- 
- <entry>
-   <title>Defining and Using Properties in SIP</title>
-   <link href="http://bloginterfacevision.github.com/design-sip/design-general-sip-properties"/>
-   <updated>2012-11-25T00:00:00-08:00</updated>
-   <id>http://bloginterfacevision.github.com/design-sip/design-general-sip-properties</id>
-   <content type="html">&lt;h1 id='defining_and_using_properties_in_sip'&gt;Defining and Using Properties in SIP&lt;/h1&gt;
-
-&lt;h2 id='introduction'&gt;Introduction&lt;/h2&gt;
-
-&lt;p&gt;A property in Simple Interface Programming (SIP) is different from attributes or traditional properties.&lt;/p&gt;
-
-&lt;p&gt;A SIP property can contain a part instance and software behavior.&lt;/p&gt;
-
-&lt;p&gt;As such, accessing a SIP property will:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;return a part located in that property.&lt;/li&gt;
-
-&lt;li&gt;run behavior contained within the property.&lt;/li&gt;
-
-&lt;li&gt;both locate a part and run the behavior on the part.&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Jekyll collects data.&lt;/strong&gt; &lt;br /&gt;Jekyll scans the posts directory and collects all posts files as post objects. It then scans the layout assets and collects those and finally scans other directories in search of pages.&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Jekyll computes data.&lt;/strong&gt; &lt;br /&gt;Jekyll takes these objects, computes metadata (permalinks, tags, categories, titles, dates) from them and constructs one big &lt;code&gt;site&lt;/code&gt; object that holds all the posts, pages, layouts, and respective metadata. At this stage your site is one big computed ruby object.&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Jekyll liquifies posts and templates.&lt;/strong&gt;&lt;br /&gt;Next jekyll loops through each post file and converts (through markdown or textile) and &lt;strong&gt;liquifies&lt;/strong&gt; the post inside of its respective layout(s). Once the post is parsed and liquified inside the the proper layout structure, the layout itself is &amp;#8220;liquified&amp;#8221;. &lt;br /&gt;&lt;strong&gt;Liquification&lt;/strong&gt; is defined as follows: Jekyll initiates a Liquid template, and passes a simpler hash representation of the ruby site object as well as a simpler hash representation of the ruby post object. These simplified data structures are what you have access to in the templates.&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Jekyll generates output.&lt;/strong&gt; &lt;br /&gt;Finally the liquid templates are &amp;#8220;rendered&amp;#8221;, thereby processing any liquid syntax provided in the templates and saving the final, static representation of the file.&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h2 id='defining_properties_in_sip'&gt;Defining Properties in SIP&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Notes.&lt;/strong&gt;&lt;br /&gt;Because Jekyll computes the entire site in one fell swoop, each template is given access to a global &lt;code&gt;site&lt;/code&gt; hash that contains useful data. It is this data that you&amp;#8217;ll iterate through and format using the Liquid tags and filters in order to render it onto a given page.&lt;/p&gt;
 
-&lt;p&gt;Two steps are required to define a SIP property.&lt;/p&gt;
+&lt;p&gt;Remember, in Jekyll you are an end-user. Your API has only two components:&lt;/p&gt;
 
-&lt;h3 id='step_1__persisting_properties'&gt;Step 1 - Persisting Properties&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;The manner in which you setup your directory.&lt;/li&gt;
 
-&lt;p&gt;First, we define how the property is persisted.&lt;/p&gt;
+&lt;li&gt;The liquid syntax and variables passed into the liquid templates.&lt;/li&gt;
+&lt;/ol&gt;
 
-&lt;pre&gt;&lt;code&gt;private ItemClass p_propertySip = Empty.instanceStatic;
-[XmlElement(&amp;quot;propertySip&amp;quot;)] public ItemClass xml_propertySip {
-  get { return p_propertySip; }
-  set {
-    p_propertySip = (null != value) ? value : Empty.instanceStatic;
-    p_propertySip.parentDirect = this;
-  }
-}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;All the data objects available to you in the templates via Liquid are outlined in the &lt;strong&gt;API Section&lt;/strong&gt; of Jekyll-Bootstrap. You can also read the original documentation here: &lt;a href='https://github.com/mojombo/jekyll/wiki/Template-Data'&gt;https://github.com/mojombo/jekyll/wiki/Template-Data&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;Every SIP property has an XmlElement with a property name of xml_propertySip where propertySip is the name of the property. The Name of the element is almost always the same as the name of the property (in this case propertySip).&lt;/p&gt;
+&lt;h2 id='conclusion'&gt;Conclusion&lt;/h2&gt;
 
-&lt;pre&gt;&lt;code&gt;[XmlElement(&amp;quot;propertySip&amp;quot;)] public ItemClass xml_propertySip { ... }&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I hope this paints a clearer picture of what Jekyll is doing and why it works the way it does. As noted, our main programming constraint is the fact that our API is limited to what is accessible via Liquid and Liquid only.&lt;/p&gt;
 
-&lt;p&gt;The get scope of the property always returns the part located in p_propertySip as seen here:&lt;/p&gt;
+&lt;p&gt;Jekyll-bootstrap is intended to provide helper methods and strategies aimed at making it more intuitive and easier to work with Jekyll =)&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;get { return p_propertySip; }&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Thank you&lt;/strong&gt; for reading this far.&lt;/p&gt;
 
-&lt;p&gt;where p_propertySip is defined as:&lt;/p&gt;
+&lt;h2 id='next_steps'&gt;Next Steps&lt;/h2&gt;
 
-&lt;p&gt;private ItemClass p_propertySip = Empty.instanceStatic;&lt;/p&gt;
-
-&lt;p&gt;Setting a SIP property involves setting the p_propertySip property and the properties parent part.&lt;/p&gt;
-
-&lt;p&gt;A SIP property can &lt;strong&gt;never&lt;/strong&gt; be null. As such, on setting the property, we check for null and set the instance to an Empty part if null was passed:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;p_propertySip = (null != value) ? value : Empty.instanceStatic;&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The part placed within a SIP property has a &amp;#8220;parent&amp;#8221; or another part that owns the part. As such, we set the parent of the new property to the current Part:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;p_propertySip.parentDirect = this;&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id='step_2__accessing_properties'&gt;Step 2 - Accessing Properties&lt;/h3&gt;
-
-&lt;p&gt;Second, we need to describe how to access the persisted property:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;[XmlIgnore] public IPart propertySip {
-  get { return xml_propertySip.callWith ? xml_propertySip.withItem : xml_propertySip; }
-}&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;You almost always access a SIP property through this property. Here is where we decide if we return a Part, run the behavior of a Part or do both.&lt;/p&gt;
-
-&lt;p&gt;The callWith property of every Part is, by default, true. That means the behavior will always be called on a Part unless callWith is overridden. When overridden, and set to false, the access a property will return the part persisted in xml_propertySip.&lt;/p&gt;
-
-&lt;h3 id='putting_it_all_together'&gt;Putting It All Together&lt;/h3&gt;
-
-&lt;p&gt;Here is an example of a fully defined SIP property named variables.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;	[XmlIgnore] public IPart variables {
-		get { xml_variables.callWith ? xml_variables.withItem : xml_variables; }
-	}
-	
-	private ItemClass p_variables = Empty.instanceStatic;
-	[XmlElement(&amp;quot;variables&amp;quot;)] public ItemClass xml_variables {
-		get { return p_variables; }
-		set {
-			p_variables = (null != value) ? value : Empty.instanceStatic;
-			p_variables.parentDirect = this;
-		}
-	}&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id='using_properties_in_sip'&gt;Using Properties in SIP&lt;/h2&gt;
-
-&lt;h3 id='creating_a_part_instance'&gt;Creating a Part Instance&lt;/h3&gt;
-
-&lt;p&gt;When programmatically creating a part, you use the xml_propertySip. An example of creating a Template part is provided:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;...
-IPart template = new Template {
-  xml_variables = new FloatNamed { name = &amp;quot;some name&amp;quot;, value = 4.0 },
-  xml_action = new ...
-}
-...&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id='using_a_property'&gt;Using a Property&lt;/h3&gt;
-
-&lt;p&gt;When programming, you use a property by simply accessing the property like so:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;...
-IPart variablesFound = template.variables;
-...&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;In this example code along with the above example code, since callWith is true, the withItem of the Part located in xml_variables is called. This happens to be a FloatNamed which, when withItem is called, returns an instance of itself.&lt;/p&gt;
-
-&lt;h2 id='improving_access_time'&gt;Improving Access Time&lt;/h2&gt;
-
-&lt;p&gt;In some cases, your property may always want to run withItem of the Part placed in a property. In this case, we can simplify the implementation as follows:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;[XmlIgnore] public IPart propertySip {
-  get { return xml_propertySip.withItem; }
-}&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Let&amp;#8217;s consider an add Part which contains a left and right argument. Add and is defined as follows:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;namespace Vision.Core {
-  [Serializable] public class OpArgDual : Part, IArgDouble {
-    [XmlIgnore] public IPart argLeft {
-      get { return xml_argLeft.withItem; }
-    }
-
-    private ItemClass p_argLeft = Empty.instanceStatic;
-    [XmlElement(&amp;quot;argLeft&amp;quot;)] public ItemClass xml_argLeft {
-      get { return p_argLeft; }
-      set {
-        p_argLeft = (null != value) ? value : Empty.instanceStatic;
-        p_argLeft.parentDirect = this;
-      }
-    }
-
-    [XmlIgnore] public IPart argRight {
-      get { return xml_argRight.withItem; }
-    }
-
-    private ItemClass p_argRight = Empty.instanceStatic;
-    [XmlElement(&amp;quot;argRight&amp;quot;)] public ItemClass xml_argRight {
-      get { return p_argRight; }
-      set {
-        p_argRight = (null != value) ? value : Empty.instanceStatic;
-        p_argRight.parentDirect = this;
-      }
-    }
-  }
-
-  [Serializable] public class Add : OpArgDual {
-    [XmlIgnore] public override int withInt {
-      get {
-        return argLeft.withInt + argRight.withInt;
-      }
-    }
-  }
-}&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;In this case, we always need to use the value of argLeft or argRight when doing mathematical operations with left and right arguments. We never want to return the Part and use it in some way. So, in this case, we can simplify the get scope of argLeft and argRight directly accessing the persisted xml_argLeft.withItem (or xml_argRight.withItem).&lt;/p&gt;
-
-&lt;h2 id='why_not_use_macros_to_define_a_property'&gt;Why Not Use Macros To Define A Property?&lt;/h2&gt;
-
-&lt;p&gt;We don&amp;#8217;t use macros because C# does not support macros &lt;a href='http://blogs.msdn.com/b/csharpfaq/archive/2004/03/09/86979.aspx'&gt;Why doesn&amp;#8217;t C# support #define macros?&lt;/a&gt;&lt;/p&gt;</content>
+&lt;p&gt;Please take a look at &lt;a href='' /&gt; or jump right into &lt;a href=''&gt;Usage&lt;/a&gt; if you&amp;#8217;d like.&lt;/p&gt;</content>
  </entry>
  
  

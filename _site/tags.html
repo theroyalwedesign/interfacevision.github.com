@@ -8,398 +8,282 @@
     
     <meta name="author" content="Eric Hosick">
 
+    <meta property="og:site_name" content="Interface Vision"/>
+    <meta property="og:type" content="company"/>
     <meta property="og:title" content="Interface Vision" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="http://www.interfacevision.com/assets/img/interfaceVisionLogoRight.png"/>
+    <meta property="og:image" content="http://www.interfacevision.com/assets/theme/twitter/img/branding/interfaceVisionLogoNoBorder.png"/>
     <meta property="og:description" content=""/>
     <meta property="fb:admins" content="erichosick" />
+    
+		<!-- Twitter Cards -->
+		<meta name="twitter:card" content="summary">
+		<meta name="twitter:image" content="http://www.interfacevision.com/assets/theme/twitter/img/branding/interfaceVisionLogoNoBorder.png">
+		<meta name="twitter:site" content="@interfacevision">
+		<meta name="twitter:creator" content="@interfacevision">    
 
-    <link href='//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css' rel='stylesheet'>    
+    <link href="/assets/themes/twitter/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="/assets/themes/twitter/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
     <link href="/assets/themes/twitter/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
 
-    <link href="http://fonts.googleapis.com/css?family=Pontano+Sans" rel="stylesheet" type="text/css">
+    <!-- <link href='//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css' rel='stylesheet'>  -->
 
-    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
 
+    <link rel="icon" href="/favicon.png" /> 
+    <link rel="shortcut icon" href="/favicon.png" />	
+	
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    
+    <!-- <script src="/assets/themes/twitter/js/jquerymobile-swipe.js"></script> -->
 
-<!--
-    <script src="/assets/js/jquery.js"></script>
-    <script src="/assets/js/bootstrap-transition.js"></script>
-    <script src="/assets/js/bootstrap-alert.js"></script>
-    <script src="/assets/js/bootstrap-modal.js"></script>
-    <script src="/assets/js/bootstrap-dropdown.js"></script>
-    <script src="/assets/js/bootstrap-scrollspy.js"></script>
-    <script src="/assets/js/bootstrap-tab.js"></script>
-    <script src="/assets/js/bootstrap-tooltip.js"></script>
-    <script src="/assets/js/bootstrap-popover.js"></script>
-    <script src="/assets/js/bootstrap-button.js"></script>
-    <script src="/assets/js/bootstrap-collapse.js"></script>
-    <script src="/assets/js/bootstrap-carousel.js"></script>
-    <script src="/assets/js/bootstrap-typeahead.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../assets/js/html5shiv.js"></script>
+    <![endif]-->
 
--->
-
+    <!-- Fav and touch icons -->
+    <!--
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="../assets/ico/favicon.png">
+    -->
   </head>
 
   <body>
-
-    <div class="navbar">
+    
+<!-- NAVBAR ================================================== -->
+<div class="navbar-wrapper">
+  <!-- Wrap the .navbar in .container to center it within the absolutely positioned parent. -->
+  <div class="container">
+    <div class="navbar navbar-inverse">
       <div class="navbar-inner">
-        <div class="container-fluid">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="/"><img src="/assets/img/interfaceVisionLogoRight.png"></img></a>
-          <div class="nav-collapse collapse">
-            <ul class="nav">
-              <li><a href="/">Home</a></li>
-              <li><a href="/technology.html">Our Technology</a></li>
-              <li><a href="/products.html">Products</a></li>
-							<li><a href="/docdesign.html">Doc/Design</a></li>
-              <li><a href="http://blog.interfacevision.com">Blog</a></li>
-            </ul>
-            <p class="pull-right">
-<!--              <a class="nav-a-social" href="//plus.google.com/101227313031284036080?prsrc=3" rel="publisher">
-                <img src="//ssl.gstatic.com/images/icons/gplus-32.png" alt="Google+"/>
-              </a> -->
-              <a class="nav-a-social" href="//plus.google.com/101227313031284036080?prsrc=3" rel="publisher"target="_blank"><i class="icon-google-color icon-social"></i></a>
-              <a class="nav-a-social" href="http://www.twitter.com/interfacevision" target="_blank"><i class="icon-twitter-color icon-social"></i></a>
-              <a class="nav-a-social" href="mailto:erichosick@interfacevision.com"><i class="icon-mail-color icon-social"></i></a>
-            </p>
+        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+		
+        <a class="brand" href="/">
+          <img width="261.5" height="64" src="/assets/themes//img/branding/interfaceVisionLogoNoBorder.png"></img>
+        </a>
+
+        <div class="nav-collapse collapse">
+          <ul class="nav">
+            <li ><a href="./index.html">Home</a></li>
+            <li ><a href="./tour.html">Tour</a></li>
+            <li ><a href="./aboutUs.html">About Us</a></li>
+            <li ><a href="./signup.html">Sign Up</a></li>
+            <li ><a href="./careers.html">Careers</a></li>
+            <!-- <li ><a href="./contact.html">Contact</a></li> -->
+          </ul>
+        </div><!-- nav-collapse -->
+      </div><!-- navbar-inner -->
+    </div><!-- navbar navbar-inverse -->
+
+  </div> <!-- container -->
+</div> <!-- navbar-wrapper -->
+
+
+
+<ul class="tag_box inline">
+    
+  
+
+
+  
+     
+    	<li><a href="/tags.html#intro-ref">intro <span>1</span></a></li>
+     
+    	<li><a href="/tags.html#beginner-ref">beginner <span>1</span></a></li>
+     
+    	<li><a href="/tags.html#jekyll-ref">jekyll <span>1</span></a></li>
+     
+    	<li><a href="/tags.html#tutorial-ref">tutorial <span>1</span></a></li>
+    
+  
+
+
+
+</ul>
+
+
+ 
+  <h2 id="intro-ref">intro</h2>
+  <ul>
+      
+    
+
+
+  
+    
+      
+      	
+      	<li><a href="/lessons/2011/12/29/jekyll-introduction">Jekyll Introduction</a></li>
+      	
+      
+    
+  
+
+
+
+  </ul>
+ 
+  <h2 id="beginner-ref">beginner</h2>
+  <ul>
+      
+    
+
+
+  
+    
+      
+      	
+      	<li><a href="/lessons/2011/12/29/jekyll-introduction">Jekyll Introduction</a></li>
+      	
+      
+    
+  
+
+
+
+  </ul>
+ 
+  <h2 id="jekyll-ref">jekyll</h2>
+  <ul>
+      
+    
+
+
+  
+    
+      
+      	
+      	<li><a href="/lessons/2011/12/29/jekyll-introduction">Jekyll Introduction</a></li>
+      	
+      
+    
+  
+
+
+
+  </ul>
+ 
+  <h2 id="tutorial-ref">tutorial</h2>
+  <ul>
+      
+    
+
+
+  
+    
+      
+      	
+      	<li><a href="/lessons/2011/12/29/jekyll-introduction">Jekyll Introduction</a></li>
+      	
+      
+    
+  
+
+
+
+  </ul>
+
+
+
+<div class="container">
+    <!-- FOOTER -->
+    <footer>
+      <div class="container">
+          <div class="row">
+              <div class="span3">
+                  <h5>Product</h5>
+                  <!-- <a href="./product.html" target="_blank">Product</a><br> -->
+                  <a href="./tour.html">Tour</a><br>
+                  <a href="./signup.html">Signup Now</a><br>
+                  <!-- <a href="#">FAQ</a><br> -->
+                  <!-- <a href="#" target="_blank">Developer Support</a> -->
+              </div>
+              <div class="span3">
+                <h5>About Us</h5>
+                <a href="./aboutUs.html">Company and Team</a><br>
+                <a href="./careers.html">Careers</a><br>
+                <a href="./tour.html">Features</a><br>
+                <!-- <a href="#">Privacy</a><br> -->
+                <!-- <a href="#">Terms</a> -->
+              </div>
+              <div class="span3">
+                <h5>Community</h5>
+                <a href="http://blog.interfacevision.com/" target="_blank">Blog</a> <br>
+                <a href="https://twitter.com/interfacevision/" target="_blank">Twitter</a> <br>
+                <a href="https://facebook.com/interfacevision/" target="_blank">Facebook</a> <br>
+                <!-- <a href="./contact.html">Contact Us</a> <br> -->
+                <!-- <a href="./attribution.html">Attribution</a> <br> -->
+              </div>
           </div>
-        </div>
       </div>
-    </div>
-
-
-    <div id="image-popup" class="modal hide fade">
-      <div class="modal-body">
-        <img id="image-to-show"></img>
-      </div>
-      <div class="modal-footer">
-        <a href="#" class="btn btn-primary" data-dismiss="modal">Close</a>
-      </div>
-    </div>
-
-    <div class="container marketing">
-      
-
-
-<div class="row-fluid">
-  <div class="span3">
-    <div class="well sidebar-nav">
-  <ul class="nav nav-list">
-		<li>Documentation</li>
-     
-       
-     
-     
-   </ul>
+<!--       <p class="pull-right"><a href="#">Back to top</a></p>
+      <p>&copy; 2013 Interface Vision, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p> -->
+    </footer>
 </div>
 
-  </div>
-  <div class="span9">
-    <div class="hero-unit">
-      <h2>All Tags</h2>
+<!-- Placed at the end of the document so the pages load faster -->
+<!-- Replaced this with:
 
-      <ul class="tag_box inline">
-          
-        
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
 
+in default.html
 
+<script src="/assets/themes//js/jquery.js"></script>
+<script src="/assets/themes//js/bootstrap-transition.js"></script>
+<script src="/assets/themes//js/bootstrap-alert.js"></script>
+<script src="/assets/themes//js/bootstrap-modal.js"></script>
+<script src="/assets/themes//js/bootstrap-dropdown.js"></script>
+<script src="/assets/themes//js/bootstrap-scrollspy.js"></script>
+<script src="/assets/themes//js/bootstrap-tab.js"></script>
+<script src="/assets/themes//js/bootstrap-tooltip.js"></script>
+<script src="/assets/themes//js/bootstrap-popover.js"></script>
+<script src="/assets/themes//js/bootstrap-button.js"></script>
+<script src="/assets/themes//js/bootstrap-collapse.js"></script>
+<script src="/assets/themes//js/bootstrap-carousel.js"></script>
+<script src="/assets/themes//js/bootstrap-typeahead.js"></script>
+-->
+
+<!--
+
+<script>
+  !function ($) {
+    $(function(){
+      // carousel demo
+      $('#myCarousel').carousel()
+    })
+  }(window.jQuery);
   
-     
-    	<li><a href="/tags.html#SIP Properties-ref">SIP Properties <span>1</span></a></li>
-     
-    	<li><a href="/tags.html#Properties-ref">Properties <span>2</span></a></li>
-     
-    	<li><a href="/tags.html#Attributes-ref">Attributes <span>1</span></a></li>
-     
-    	<li><a href="/tags.html#Overloading-ref">Overloading <span>1</span></a></li>
-     
-    	<li><a href="/tags.html#Method Overloading-ref">Method Overloading <span>1</span></a></li>
-     
-    	<li><a href="/tags.html#Primitive-ref">Primitive <span>1</span></a></li>
-     
-    	<li><a href="/tags.html#subroutines-ref">subroutines <span>1</span></a></li>
-     
-    	<li><a href="/tags.html#Decorating-ref">Decorating <span>1</span></a></li>
-     
-    	<li><a href="/tags.html#SIP-ref">SIP <span>1</span></a></li>
-     
-    	<li><a href="/tags.html#Decorator Pattern-ref">Decorator Pattern <span>1</span></a></li>
-     
-    	<li><a href="/tags.html#Observer Pattern-ref">Observer Pattern <span>1</span></a></li>
-    
+/*  $(document).ready(function() {  
+     $("#myCarousel").swiperight(function() {  
+        $("#myCarousel").carousel('prev');  
+      });  
+     $("#myCarousel").swipeleft(function() {  
+        $("#myCarousel").carousel('next');  
+     });  
+  }); */
   
+</script>
+-->
 
 
 
-      </ul>
 
 
-       
-        <h2 id="SIP Properties-ref">SIP Properties</h2>
-        <ul>
-            
-          
 
 
-  
-    
-      
-      	
-      	<li><a href="/design-sip/design-general-sip-properties">Defining and Using Properties in SIP</a></li>
-      	
-      
-    
-  
-
-
-
-        </ul>
-       
-        <h2 id="Properties-ref">Properties</h2>
-        <ul>
-            
-          
-
-
-  
-    
-      
-      	
-      	<li><a href="/design-sip/design-decorating-properties">Decorating Properties of Instances</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/design-sip/design-general-sip-properties">Defining and Using Properties in SIP</a></li>
-      	
-      
-    
-  
-
-
-
-        </ul>
-       
-        <h2 id="Attributes-ref">Attributes</h2>
-        <ul>
-            
-          
-
-
-  
-    
-      
-      	
-      	<li><a href="/design-sip/design-general-sip-properties">Defining and Using Properties in SIP</a></li>
-      	
-      
-    
-  
-
-
-
-        </ul>
-       
-        <h2 id="Overloading-ref">Overloading</h2>
-        <ul>
-            
-          
-
-
-  
-    
-      
-      	
-      	<li><a href="/design-sip/design-overloading-sip">Why We Don't Need Overloading</a></li>
-      	
-      
-    
-  
-
-
-
-        </ul>
-       
-        <h2 id="Method Overloading-ref">Method Overloading</h2>
-        <ul>
-            
-          
-
-
-  
-    
-      
-      	
-      	<li><a href="/design-sip/design-overloading-sip">Why We Don't Need Overloading</a></li>
-      	
-      
-    
-  
-
-
-
-        </ul>
-       
-        <h2 id="Primitive-ref">Primitive</h2>
-        <ul>
-            
-          
-
-
-  
-    
-      
-      	
-      	<li><a href="/design-sip/design-overloading-sip">Why We Don't Need Overloading</a></li>
-      	
-      
-    
-  
-
-
-
-        </ul>
-       
-        <h2 id="subroutines-ref">subroutines</h2>
-        <ul>
-            
-          
-
-
-  
-    
-      
-      	
-      	<li><a href="/design-sip/design-overloading-sip">Why We Don't Need Overloading</a></li>
-      	
-      
-    
-  
-
-
-
-        </ul>
-       
-        <h2 id="Decorating-ref">Decorating</h2>
-        <ul>
-            
-          
-
-
-  
-    
-      
-      	
-      	<li><a href="/design-sip/design-decorating-properties">Decorating Properties of Instances</a></li>
-      	
-      
-    
-  
-
-
-
-        </ul>
-       
-        <h2 id="SIP-ref">SIP</h2>
-        <ul>
-            
-          
-
-
-  
-    
-      
-      	
-      	<li><a href="/design-sip/design-decorating-properties">Decorating Properties of Instances</a></li>
-      	
-      
-    
-  
-
-
-
-        </ul>
-       
-        <h2 id="Decorator Pattern-ref">Decorator Pattern</h2>
-        <ul>
-            
-          
-
-
-  
-    
-      
-      	
-      	<li><a href="/design-sip/design-decorating-properties">Decorating Properties of Instances</a></li>
-      	
-      
-    
-  
-
-
-
-        </ul>
-       
-        <h2 id="Observer Pattern-ref">Observer Pattern</h2>
-        <ul>
-            
-          
-
-
-  
-    
-      
-      	
-      	<li><a href="/design-sip/design-decorating-properties">Decorating Properties of Instances</a></li>
-      	
-      
-    
-  
-
-
-
-        </ul>
-      
-
-    </div>    
-  </div>
-</div>
-
-
-
-
-
-
-      <div>
-				<footer>
-	        <hr>
-	        <div class="navbar">
-	          <ul class="nav">
-	            <li><a href="http://www.twitter.com/interfacevision" target="_blank">&copy; Interface Vision 2012</a></li>
-	            <li><a class="nav-a-social" href="https://plus.google.com/101227313031284036080/posts" target="_blank"><i class="icon-google-color icon-social"></i></a></li>
-	            <li><a class="nav-a-social" href="http://www.twitter.com/interfacevision" target="_blank"><i class="icon-twitter-color icon-social"></i></a></li>
-	            <li><a class="nav-a-social" href="mailto:erichosick@interfacevision.com"><i class="icon-mail-color icon-social"></i></a></li>
-	          </ul>
-	        </div>
-	       </footer>
-				</div>
-    </div>    
-
-    
   </body>
+
 </html>
+
 

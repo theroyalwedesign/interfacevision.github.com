@@ -1,0 +1,59 @@
+<div class="item">
+  <img src="{{ ASSET_PATH }}/img/carousel/slide-03.jpg" alt="">
+  <div class="container">
+    <div class="carousel-caption">
+      <h1>Cross Platform</h1>
+      <p class="lead">Develop once and run instantly on multiple front and back end platforms including iOS, OSX, Android, Linux and Windows.</p>
+      <a class="btn btn-large btn-primary" href="./signup.html">Sign up today</a>
+    </div> <!-- carousel-caption -->
+  </div> <!-- container -->
+</div> <!-- item -->
+
+<div class="item">
+  <img src="{{ ASSET_PATH }}/img/carousel/slide-04.jpg" alt="">
+  <div class="container">
+    <div class="carousel-caption">
+      <h1>Global Regression Testing</h1>
+      <p class="lead">Vision can assure backwards compatibility across all users and between different versions of our API using our cloud based regression testing service.</p>
+      <a class="btn btn-large btn-primary" href="./signup.html">Sign up today</a>
+    </div> <!-- carousel-caption -->
+  </div> <!-- container -->
+</div> <!-- item -->
+
+<h2>Create<br>Consistently</h2>
+<p></p>
+<p>Coding idiosyncrasies are removed, no more will you have to learn or figure out or use various platform syntax and “grammar.” Simply put the pieces of the puzzle together to make your own design.</p>
+
+<p><a class="btn btn-large btn-primary" href="./tour.html#timeAndMoney">View details &raquo;</a></p>
+
+
+<div class="item">
+  <img src="{{ ASSET_PATH }}/img/carousel/slide-01.jpg" alt="">
+  <div class="container">
+    <div class="carousel-caption">
+      <h1>Advanced Collaboration</h1>
+      <p class="lead">Developers, UX/UI designers, product owners, entrepreneurs and customers continually collaborate with each other to build out their software products in real time from anywhere.</p>
+      <a class="btn btn-large btn-success" href="./signup.html">Sign up today</a>
+    </div> <!-- carousel-caption -->
+  </div> <!-- container -->
+</div> <!-- item active -->
+<div class="item">
+  <img src="{{ ASSET_PATH }}/img/carousel/slide-02.jpg" alt="">
+  <div class="container">
+    <div class="carousel-caption">
+      <h1>Everyone Speaks the Same Language</h1>
+      <p class="lead">Entrepreneurs, UX-Designers, Developers and Product owners work seamlessly together: seeing their product emerge in real time. Getting requirements, mocking, designing and programming are all done in concert.</p>
+      <a class="btn btn-large btn-success" href="./signup.html">Sign up today</a>
+    </div> <!-- carousel-caption -->
+  </div> <!-- container -->
+</div>  <!--item  -->
+
+<div class="featurette">
+  <img class="featurette-image pull-right" src="{{ ASSET_PATH }}/img/misc/tour_01.png">
+  <h2 class="featurette-heading">One Language </h2>
+  <h2 class="featurette-heading muted">For Everyone</h2>
+  <p class="lead">VisionNo more will you have to be or find a specialist in any one language with our Vision VDP there is no idiosyncratic syntax, grammar or rules there are only pieces to your puzzle. You move them together to create what you want.  Want to build an App, no problem.  Want to build a game, done.  Need a new tool that is specific to your company, make it.  The simplicity of the system allows you to build and not divert your attentions.</p>	
+</div> <!-- featurette -->
+
+<hr class="featurette-divider">
+
