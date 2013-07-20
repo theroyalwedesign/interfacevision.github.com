@@ -16,8 +16,8 @@ theme:
       <img src="{{ ASSET_PATH }}/img/carousel/slide-05.jpg" alt="">
       <div class="container">
         <div class="carousel-caption">
-          <h1>Develop Native Cross-Platform Apps Without Writing Code</h1>
-          <p class="lead">Interface Vision has simplified the development process by creating the first true cross-platform, non domain-specific, GUI based Visual Development Platform (VDP): <b><i>VISION</i></b>.</p>
+          <h1>Create Software for Anything Without Writing Code</h1>
+          <p class="lead">We've simplified the software creation process by building the first true cross-platform GUI based Visual Development Platform (VDP): <b><i>VISION</i></b>.</p>
           <a class="btn btn-large btn-success" href="./signup.html">Sign up today</a>
         </div> <!-- carousel-caption -->
       </div> <!-- container -->
