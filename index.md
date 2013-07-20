@@ -42,7 +42,7 @@ theme:
     <div class="span4">
       <img class="img-rounded" width="140" height="140" src="{{ ASSET_PATH }}/img/index/timeAndMoney.png">
       <h2>Create<br>Faster</h2>
-      <p>Vision cuts the workload in half. Simply assemble pre-made parts or create new pieces you can reuse indefinitely.</p>
+      <p><b><i>VISION</i><b> cuts the workload in half. Simply assemble pre-made parts or create new pieces you can reuse indefinitely.</p>
       <p><a class="btn btn-large btn-primary" href="./tour.html#timeAndMoney">View details</a></p>
     </div><!-- span4 -->
     <div class="span4">
