@@ -42,14 +42,17 @@ theme:
     <div class="span4">
       <img class="img-rounded" width="140" height="140" src="{{ ASSET_PATH }}/img/index/timeAndMoney.png">
       <h2>Create<br>Faster</h2>
-      <p>Leverage off of existing parts and templates to get your products to market faster. Compose your own templates and increase reuse within your organization.</p>
+      <p>Vision cuts the workload in half. Simply assemble pre-made parts or create new pieces you can reuse indefinitely.</p>
       <p><a class="btn btn-large btn-primary" href="./tour.html#timeAndMoney">View details</a></p>
     </div><!-- span4 -->
     <div class="span4">
       <img class="img-circle" width="140" height="140" src="{{ ASSET_PATH }}/img/index/consistent3.png">
-      <h2>Create<br>Collaboratively</h2>
+      <h2>Create<br>Together</h2>
       <p></p>
-      <p>Developers, designers, product owners, entrepreneurs and customers continually collaborate with each other, within <b><i>VISION</i></b>, building software in real time.</p>
+      <p>
+        
+        
+        Developers, designers, product owners, entrepreneurs and customers can continually collaborate with each other, within <b><i>VISION</i></b>, building software in real time.</p>
       <p><a class="btn btn-large btn-primary" href="./tour.html#consistent">View details</a></p>
     </div> <!-- span4 -->
   </div> <!-- row -->
