@@ -58,21 +58,21 @@ theme:
     <img class="featurette-image pull-right" src="{{ ASSET_PATH }}/img/index/iPadMockupParts524x410.png">
     <h2 class="featurette-heading">Collaboration <span class="muted">At Every Step</span></h2>
     <p class="lead"><b><i>VISION</i></b> is the only development tool that allows developers, designers, product owners, entrepreneurs and their customers to continually collaborate with each other at every step within the development process.</p>
-    <p class="lead">Collaboration takes place within <b><i>VISION</i></b> where everyone can work together seamlessly. This seamless collaboration is possible because users of <b><i>VISION</i></b> never have to write code.</p>
+    <p class="lead">Collaboration takes place within <b><i>VISION</i></b> where everyone can work together seamlessly. This seamless collaboration is possible because the VISION platform is always running live. There is no more waiting on others to compile, debug, fix and rebuild because there is no code.</p>
   </div> <!-- featurette -->
   <hr class="featurette-divider">
   <div class="featurette">
     <img class="featurette-image pull-left" src="{{ ASSET_PATH }}/img/index/iPadMockupVision524x409.png">
     <h2 class="featurette-heading">Program Using <span class="muted">Parts and Templates</span></h2>
-    <p class="lead">Instead of coding, <b><i>VISION</i></b> users collaboratively drag parts and templates from a toolbox, arrange the parts on a canvas, and connect the parts to direct the flow of activity through assembly.</p>
+    <p class="lead">No more code.  <b><i>VISION</i></b> users drag parts and templates from a toolbox, arrange the parts on a canvas, and connect the parts to direct the flow of activity through assembly, building their program.</p>
     <p class="lead">We do the heavy lifting allowing our users to focus on their products. Users are able to see their changes live as <b><i>VISION</i></b> is always running what is being built. This means a UX designer gets immediate feedback and a product owner sees their product features implemented in real time.</p>
   </div> <!-- featurette -->
   <hr class="featurette-divider">
   <div class="featurette">
     <img class="featurette-image pull-right img-rounded" src="{{ ASSET_PATH }}/img/index/education.png">
     <h2 class="featurette-heading">Education <span class="muted">Made Easier</span></h2>
-    <p class="lead"><b><i>VISION</i></b> is very easy to learn. This, in conjunction with decoding software development, makes it really easy to teach people how to become great programmers.</p>
-    <p class="lead">Interface Vision is dedicated to making software education available to everyone: especially young adults. As such, we have partnered with <a href="http://www.innovisioneducation.com" target="_blank">The Innovision Education Group</a>.</p>
+    <p class="lead"><b><i>VISION</i></b> is very easy to learn. Our GUI-based Visual Development Platform enables users to learn how to think and work like great developers, allowing them to build any software they can imagine.</p>
+    <p class="lead">Interface Vision is dedicated to making software education available to everyone: especially young adults. As such, we have created <a href="http://www.innovisioneducation.com" target="_blank">The Innovision Education Group</a>.</p>
   </div> <!-- featurette -->
 
   <div class="huge-divider pagination-centered">
