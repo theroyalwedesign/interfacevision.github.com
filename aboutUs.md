@@ -39,7 +39,7 @@ theme:
   
   <hr class="featurette-divider">
   
-  <div class="featurette">
+  <div class="featurette" id="erichosick">
     <img class="featurette-image pull-right" src="{{ ASSET_PATH }}/img/team/ericHosick.png">
     <h2 class="featurette-heading">Eric Hosick</h2>
     <h2 class="featurette-heading muted">Founder</h2>
@@ -48,7 +48,7 @@ theme:
 	  <p class="lead"><a href="mailto:erichosick@interfacevision.com">Eric Hosick</a> (@erichosick)</p>
   </div> <!-- featurette -->
   <hr class="featurette-divider">
-  <div class="featurette">
+  <div class="featurette" id="chrishylton">
     <img class="featurette-image pull-left" src="{{ ASSET_PATH }}/img/team/chrisHylton.png">
     <h2 class="featurette-heading">Chris Hylton</h2>
     <h2 class="featurette-heading muted">Co-founder</h2>
@@ -57,7 +57,7 @@ theme:
 	  <p class="lead"><a href="mailto:chrishylton@interfacevision.com">Chris Hylton</a> (@cmhylton)</p>
   </div> <!-- featurette -->
   <hr class="featurette-divider">
-  <div class="featurette">
+  <div class="featurette" id="kevinbeattie">
     <img class="featurette-image pull-right" src="{{ ASSET_PATH }}/img/team/kevinBeattie.png">
     <h2 class="featurette-heading">Kevin Beattie</h2>
     <h2 class="featurette-heading muted">Server Infrastructure</h2>
