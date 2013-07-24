@@ -31,6 +31,18 @@ theme:
 <!-- Wrap the rest of the page in another container to center all the content. -->
 
 <div class="container marketing">
+
+  <div class="pagination-centered">
+    <img class="img-polaroid" src="{{ ASSET_PATH }}/img/index/SideBySide04.gif">
+  </div>
+  <div class="huge-divider pagination-centered">
+    <br>
+    <a class="btn btn-large btn-success" href="./signup.html">Sign up today</a>
+  </div>
+
+  <hr class="featurette-divider">
+
+
   <!-- Three columns of text below the carousel -->
   <div class="row">
     <div class="span4">
@@ -76,6 +88,7 @@ theme:
   </div> <!-- featurette -->
 
   <div class="huge-divider pagination-centered">
+    <br>
     <a class="btn btn-large btn-success" href="./signup.html">Sign up today</a>
   </div>  
 
