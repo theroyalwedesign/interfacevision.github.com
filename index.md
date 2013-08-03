@@ -31,8 +31,9 @@ theme:
 <!-- Wrap the rest of the page in another container to center all the content. -->
 
 <div class="container marketing">
-
   <div class="pagination-centered">
+    <p class="lead pull-left">Current Approach</p>
+    <p class="lead pull-right">Vision's Approach</p>    
     <img class="img-polaroid" src="{{ ASSET_PATH }}/img/index/SideBySide04.gif">
   </div>
   <div class="huge-divider pagination-centered">
