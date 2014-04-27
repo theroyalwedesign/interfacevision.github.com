@@ -17,7 +17,7 @@ theme:
       <div class="container">
         <div class="carousel-caption">
           <h1>Create Software for Anything Without Writing Code</h1>
-          <p class="lead">We've simplified the software creation process by building the first true cross-platform GUI based Visual Development Platform (VDP): <b><i>VISION</i></b>.</p>
+          <p class="lead">We've simplified the software creation process by building the first true cross-platform, open-source, GUI based Visual Development Platform (VDP): <b><i>VISION</i></b>.</p>
           <a class="btn btn-large btn-success" href="./signup.html">Sign up today</a>
         </div> <!-- carousel-caption -->
       </div> <!-- container -->
