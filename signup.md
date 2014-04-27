@@ -16,7 +16,7 @@ theme:
       <div class="container">
         <div class="carousel-caption">
           <h1>Signup Now</h1>
-          <p class="lead">Signup for our alpha program.</p>
+          <p class="lead">We are in the process of becoming an open-source solution. If you'd like access to our alpha program, sign-up and we'll contact you shortly with instructions on how to get started.</p>
 <!--           <p class="lead">Please also take the time to <a href="https://twitter.com/interfaceVision" class="twitter-follow-button" data-show-count="false" data-size="large" data-show-screen-name="false" data-dnt="true">Follow</a> us on Twitter.</p> -->
           <p class="lead">We will not share your email with anyone.</p>
         </div> <!-- carousel-caption -->
