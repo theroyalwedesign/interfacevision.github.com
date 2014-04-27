@@ -27,6 +27,14 @@ theme:
 <!-- Wrap the rest of the page in another container to center all the content. -->
 
 <div class="container marketing">
+
+  <div class="featurette">
+    <img class="featurette-image pull-left" src="{{ ASSET_PATH }}/img/index/iPadMockupParts524x410.png">
+    <h2 class="featurette-heading">Collaboration <span class="muted">At Every Step</span></h2>
+    <p class="lead"><b><i>VISION</i></b> is the only development tool that allows developers, designers, product owners, entrepreneurs and their customers to continually collaborate with each other at every step within the development process.</p>
+    <p class="lead">Collaboration takes place within <b><i>VISION</i></b> where everyone can work together seamlessly. This seamless collaboration is possible because the VISION platform is always running live. There is no more waiting on others to compile, debug, fix and rebuild because there is no code.</p>
+  </div> <!-- featurette -->
+  
   <div class="featurette" id="Proposals">
     <img class="featurette-image pull-right" src="{{ ASSET_PATH }}/img/misc/tour_02.png">
     <h2 class="featurette-heading">Design and Develop </h2>
@@ -55,6 +63,15 @@ theme:
     <p class="lead">With <b><i>VISION</i></b>, we have written an awesome framework which allows you to focus on your solutions and not our development platform.</p>
   </div> <!-- featurette -->
 
+  <hr class="featurette-divider">
+  
+  <div class="featurette">
+    <img class="featurette-image pull-right img-rounded" src="{{ ASSET_PATH }}/img/index/education.png">
+    <h2 class="featurette-heading">Education <span class="muted">Made Easier</span></h2>
+    <p class="lead"><b><i>VISION</i></b> is very easy to learn. Our GUI-based Visual Development Platform enables users to learn how to think and work like great developers, allowing them to build any software they can imagine.</p>
+    <p class="lead">Interface Vision is dedicated to making software education available to everyone: especially young adults. As such, we have created <a href="http://www.innovisioneducation.com" target="_blank">The Innovision Education Group</a>.</p>
+  </div> <!-- featurette -->
+  
   <hr class="featurette-divider">
 
   <div class="featurette">
